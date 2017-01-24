@@ -1,3 +1,5 @@
+import { config } from 'dotenv';
+
 import React, { Component } from 'react';
 import { createStore, applyMiddleware, Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -11,7 +13,8 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 //import VisibleArticle from './containers/VisibleArticle';
 //import Editor from './containers/Editor'
 //import configureStore from './configureStore';
-
+//
+config('./../../.dotenv');
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
