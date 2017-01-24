@@ -1,0 +1,2045 @@
+{
+  "GoodreadsResponse": {
+    "Request": [
+      {
+        "authentication": [
+          "true"
+        ],
+        "key": [
+          "GFPTphT7xVUhrarWQztUtg"
+        ],
+        "method": [
+          "search_index"
+        ]
+      }
+    ],
+    "search": [
+      {
+        "query": [
+          "The Shawl"
+        ],
+        "results-start": [
+          "1"
+        ],
+        "results-end": [
+          "20"
+        ],
+        "total-results": [
+          "606"
+        ],
+        "source": [
+          "Goodreads"
+        ],
+        "query-time-seconds": [
+          "0.14"
+        ],
+        "results": [
+          {
+            "work": [
+              {
+                "id": [
+                  {
+                    "_": "1824470",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "20",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "2471",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "263",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "1989",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.87"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "76523",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "The Shawl"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "43530",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Cynthia Ozick"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1403172601m/76523.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1403172601s/76523.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "16180359",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "24",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "5878",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "658",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2011",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.92"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "11253741",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "The Kashmir Shawl"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "204538",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Rosie Thomas"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1331364981m/11253741.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1331364981s/11253741.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "46061074",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "6",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "332",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "137",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2016",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "8",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "16",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.33"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "26114130",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Everfair"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "806782",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Nisi Shawl"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1445423571m/26114130.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1445423571s/26114130.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "211988",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "616",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "24",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2000",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "4",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "4.11"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "218949",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Folk Shawls"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "128200",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Cheryl Oberle"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+                    ],
+                    "small_image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "3518571",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "2",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "209",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "40",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2008",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "8",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "4.02"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "3477242",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Filter House"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "806782",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Nisi Shawl"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+                    ],
+                    "small_image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "15219965",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "7",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "901",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "98",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2011",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "5",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "3",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "4.04"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "10317626",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "The Wedding Shawl (Seaside Knitters, #5)"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "191267",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Sally Goldenbaum"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+                    ],
+                    "small_image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "41740254",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "2",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "61",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "13",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2014",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "5",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "23",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.82"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "22341845",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "The Kashmiri Shawl"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "152082",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Joanne Dobson"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1405643276m/22341845.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1405643276s/22341845.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "1946632",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "24",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "693",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "55",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "1943",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.86"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "1943993",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "The Chinese Shawl (Miss Silver, #5)"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "59525",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Patricia Wentworth"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+                    ],
+                    "small_image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "1758034",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "2",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "234",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "45",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2007",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "4.05"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "1760104",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Writing the Other"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "806782",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Nisi Shawl"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1329720859m/1760104.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1329720859s/1760104.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "21695415",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "11",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "4",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2012",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "4.55"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "15944183",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Fresh Designs: Shawls"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "27277",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Shannon Okey"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1346440216m/15944183.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1346440216s/15944183.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "107836",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "4",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "165",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "8",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "1993",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.99"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "111981",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Traditional Knitted Lace Shawls"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "64770",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Martha Waterman"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1344733982m/111981.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1344733982s/111981.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "26038991",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "2",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "10",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "7",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2013",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "7",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "26",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.60"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "18404836",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Secret of the Golden Shawl"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "7243511",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Robert G. Starr"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1378063854m/18404836.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1378063854s/18404836.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "9759333",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "3",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "39",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "6",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2009",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "4.69"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "7526497",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Haapsalu Shawl"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "3053468",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Siiri Reimann"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1373282007m/7526497.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1373282007s/7526497.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "23846543",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "2",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "51",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "8",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2013",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "4.35"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "17254552",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Bloodchildren: Stories by the Octavia E. Butler Scholars"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "806782",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Nisi Shawl"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1358369509m/17254552.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1358369509s/17254552.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "211990",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "187",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "10",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "1999",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.93"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "218951",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Shawls and Scarves: The Best of Knitter's Magazine"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "1064430",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Nancy J. Thomas"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+                    ],
+                    "small_image_url": [
+                      "https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "17534358",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "26",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2011",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "7",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "4.58"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "12547157",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Shaping Shawls"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "5183329",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Anna Dalvi"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1347303139m/12547157.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1347303139s/12547157.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "42955031",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "5",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "46",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "15",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2015",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "7",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.39"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "23398398",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Stories for Chip: A Tribute to Samuel R. Delany"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "806782",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Nisi Shawl"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1414559383m/23398398.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1414559383s/23398398.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "7100337",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "66",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "10",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2009",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "$": {
+                      "type": "integer",
+                      "nil": "true"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.50"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "6882087",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Vogue® Knitting Shawls & Wraps"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "5641325",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Vogue Knitting"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1328694963m/6882087.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1328694963s/6882087.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "22141683",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "3",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "109",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "12",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2013",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "1",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "14",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "4.17"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "16202079",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "Sock-Yarn Shawls: 15 Lacy Knitted Shawl Patterns"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "6601752",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Jen Lucas"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1378678315m/16202079.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1378678315s/16202079.jpg"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": [
+                  {
+                    "_": "44628",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "books_count": [
+                  {
+                    "_": "6",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "ratings_count": [
+                  {
+                    "_": "87",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "text_reviews_count": [
+                  {
+                    "_": "9",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_year": [
+                  {
+                    "_": "2002",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_month": [
+                  {
+                    "_": "11",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "original_publication_day": [
+                  {
+                    "_": "26",
+                    "$": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "average_rating": [
+                  "3.31"
+                ],
+                "best_book": [
+                  {
+                    "$": {
+                      "type": "Book"
+                    },
+                    "id": [
+                      {
+                        "_": "45387",
+                        "$": {
+                          "type": "integer"
+                        }
+                      }
+                    ],
+                    "title": [
+                      "The Girl with the Persian Shawl"
+                    ],
+                    "author": [
+                      {
+                        "id": [
+                          {
+                            "_": "25428",
+                            "$": {
+                              "type": "integer"
+                            }
+                          }
+                        ],
+                        "name": [
+                          "Elizabeth Mansfield"
+                        ]
+                      }
+                    ],
+                    "image_url": [
+                      "https://images.gr-assets.com/books/1309212955m/45387.jpg"
+                    ],
+                    "small_image_url": [
+                      "https://images.gr-assets.com/books/1309212955s/45387.jpg"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
