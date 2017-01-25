@@ -2,7 +2,7 @@ import { REQUEST_BOOKS, RECEIVE_BOOKS } from '../actions/LibraryActions';
 
 function searches(state, action) {
   function setActive(action, search) {
-    // helper function, pattern courtesy of eloquent javascript
+    // XXX helper function, pattern courtesy of eloquent javascript
     return Object.assign({}, search,
             {isFetching: false, active: true, books: action.books});
   }
