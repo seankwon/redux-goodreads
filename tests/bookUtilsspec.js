@@ -1,8 +1,5 @@
 import { expect } from 'chai';
 import { getBooks } from '../public/javascripts/utils/BookUtils';
-import { config } from 'dotenv';
-
-config('../.dotenv');
 
 describe('BookUtils', () => {
   it('should return url with api key', () => {

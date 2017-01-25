@@ -1,5 +1,4 @@
 require('babel-register')();
-require('dotenv').config('../.dotenv');
 
 var jsdom = require('jsdom').jsdom;
 
