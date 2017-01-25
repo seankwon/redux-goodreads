@@ -3,30 +3,33 @@ export const RECEIVE_BOOKS = 'RECEIVE_BOOKS';
 
 export const requestBooks = (query) => ({
   type: REQUEST_BOOKS,
+  isFetching: true,
+  active: false,
   query
 });
 
-export const receiveBooks = (books) => ({
+export const receiveBooks = (books, query) => ({
   type: RECEIVE_BOOKS,
-  books
-})
+  books,
+  query
+});
 
-function fetchBooks() {
-  //TODO
+function fetchBooks(query) {
+  //TODO finish implmentation of function
   return (dispatch, getState) => {
     return undefined;
   }
 }
 
 function shouldFetchBooks(books) {
-  return (!books.isFetching || books.length < 0);
+  return (books.length < 0);
 }
 
 export function fetchBooksIfNeeded(query) {
   return (dispatch, getState) => {
     const { books } = getState();
     if (shouldFetchBooks(books)) {
-      return dispatch(fetchbooks(query));
+      return dispatch(fetchBooks(query));
     }
   }
 }

@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import { getBooks } from '../public/javascripts/utils/BookUtils';
+//TODO convert to es6 syntax
 var fetchMock = require('fetch-mock');
 import { readFileSync } from 'fs';
 
