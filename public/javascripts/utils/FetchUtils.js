@@ -1,8 +1,10 @@
+import convert from 'xml-to-json-promise';
+
 export function goodreadsJSON(url) {
   function fetchGoodreadsXml(url) {
     return fetch(url)
       .then(response => response.text())
-      .then(data => Promise.resolve(data));
+      .then(data => { return data} );
   }
   //TODO perhaps Promise.resolve(convert...);
   return fetchGoodreadsXml(url)

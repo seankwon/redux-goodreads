@@ -1,18 +1,18 @@
 import { expect } from 'chai';
 import { getBooks } from '../public/javascripts/utils/BookUtils';
+var fetchMock = require('fetch-mock');
+import { readFileSync } from 'fs';
 
 describe('BookUtils', () => {
-  it('should return url with api key', () => {
-    expect(process.env.GOODREADS_API_KEY).to.not.equal(undefined);
-  });
-
   describe('getBooks', () => {
-    it('should throw error if there is no argument', () => {
-      expect(getBooks).to.throw("No Argument");
+    beforeEach(() => {
+      fetchMock.get('*', readFileSync('tests/bookResponse.xml').toString());
     });
 
-    it('should show hello world', () => {
-      expect(getBooks('The Shawl')).to.equal('hello world');
+    it('should return a list of converted objects for a search', () => {
+      getBooks('Enders Game').then((data) => {
+        expect(data[0]['id']).to.equal('2422333');
+      });
     });
   });
-})
+});
