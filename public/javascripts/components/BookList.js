@@ -5,7 +5,6 @@ import { fetchBooksIfNeeded } from '../actions/LibraryActions';
 export default class BookList extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.activePage);
 
     this.handleRender = this.handleRender.bind(this);
     this.renderPage = this.renderPage.bind(this);
@@ -29,9 +28,17 @@ export default class BookList extends Component {
     }
 
     return (
-      <div id='book-list-container'>
-        {this.props.activePage.books.map((book) => 
-          <p>{book.author}</p>
+      <div id='book-list-container' className='flex flex-wrap'>
+        {this.props.activePage.books.map((book) =>
+          <div className='col-3 book-container'>
+            <div className='image-wrapper'>
+              <img src={book.image_url} />
+            </div>
+            <div className='book-info-container'>
+              <h5>{book.author}</h5>
+              <p>{book.title}</p>
+            </div>
+          </div>
         )}
       </div>
     )

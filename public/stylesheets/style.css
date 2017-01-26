@@ -1,8 +1,29 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #f9eed9;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.image-wrapper {
+  padding: 5px;
+  background: #fff;
+  width: 50%;
+  border: 1px solid #ccc;
+}
+
+.image-wrapper img {
+  text-align: center;
+  height: 190px;
+  margin: 0 auto;
+  width: 1;
+  display: block;
 }
 
 a {
   color: #00B7FF;
+}
+
+#book-list-container {
+  width: 980px;
+  margin: 0 auto;
 }
