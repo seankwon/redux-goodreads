@@ -7,7 +7,7 @@
     "webpack-watch": "webpack -w",
     "express-server": "node ./server",
     "dev": "concurrently --kill-others \"npm run webpack-watch\" \"node ./bin/www\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "$(npm bin)/mocha --watch --require ./tests/test.setup.js tests/*spec.js"
   },
   "dependencies": {
     "babel-loader": "^6.2.10",
@@ -19,12 +19,18 @@
     "babel-preset-stage-0": "^6.22.0",
     "babel-register": "^6.22.0",
     "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
     "concurrently": "^3.1.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
+    "eslint": "^3.14.0",
     "express": "~4.14.0",
+    "fetch-mock": "^5.8.1",
     "isomorphic-fetch": "^2.2.1",
     "jade": "~1.11.0",
+    "jsdom": "^9.9.1",
+    "mocha": "^3.2.0",
+    "mock": "^0.1.1",
     "morgan": "^1.7.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -35,7 +41,10 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.2.0",
+    "request": "^2.79.0",
     "serve-favicon": "~2.3.0",
-    "webpack": "^1.14.0"
+    "webpack": "^2.0.0",
+    "xml": "^1.0.1",
+    "xml-to-json-promise": "0.0.3"
   }
 }

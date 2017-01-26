@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: './public/javascripts/app.js',
   output: {
@@ -13,7 +15,7 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    extensions: ['', '.js', '.json']
-  }
+  node: {
+    fs: 'empty'
+	}
 };
