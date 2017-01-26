@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: './public/javascripts/app.js',
   output: {
@@ -13,5 +15,7 @@ module.exports = {
       }
     ]
   },
-  target: 'node'
+  node: {
+    fs: 'empty'
+	}
 };

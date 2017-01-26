@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 
 import { goodreadsJSON } from './FetchUtils';
 
-const BOOK_SEARCH_URL = 'https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q=';
+const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q=';
 
 export function getBooks(query) {
   if (typeof query === 'undefined') {

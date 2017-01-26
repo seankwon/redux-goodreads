@@ -15,7 +15,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 const root = (
   <Provider store={store}>
 		<Router history={history}>
-      <Route path="/" component={VisibleBookList}>
+      <Route path="/app" component={VisibleBookList}>
       </Route>
     </Router>
   </Provider>
