@@ -1,6 +1,7 @@
 export const REQUEST_BOOKS = 'REQUEST_BOOKS';
 export const RECEIVE_BOOKS = 'RECEIVE_BOOKS';
-import { getBooks } from '../utils/BookUtils'
+import { getBooks } from '../utils/BookUtils';
+import { dispatch } from 'redux';
 
 export const requestBooks = (query) => ({
   type: REQUEST_BOOKS,
@@ -16,30 +17,26 @@ export const receiveBooks = (books, query) => ({
 });
 
 function fetchBooks(query) {
-  dispatch(requestBooks(query));
-  
   return (dispatch, getState) => {
     getBooks(query).then(data => dispatch(receiveBooks(data, query)));
   }
 }
 
-function shouldFetchBooks(searches, activePage) {
-  //TODO case for a search that is active.
-  function alreadyFetching(searches) {
-    return searches.find((search) => search.ifFetching).length > 0;
-  }
+function shouldFetchBooks(searches, activePage, isFetching) {
+  //TODO configure this
 
   function noActivePages(activePage) {
-    return activePage.length < 0;
-  } 
-  
-  return (searches.length < 0 || alreadyFetching(searches) || noActivePages(activePage));
+    return typeof activePage.book === 'undefined';
+  }
+
+  return (searches.length < 0 || isFetching || noActivePages(activePage));
 }
 
 export function fetchBooksIfNeeded(query) {
   return (dispatch, getState) => {
-    const { searches, activePage } = getState();
-    if (shouldFetchBooks(searches)) {
+    const { searches, activePage, isFetching } = getState().library;
+    if (shouldFetchBooks(searches, activePage, isFetching)) {
+      dispatch(requestBooks(query));
       return dispatch(fetchBooks(query));
     }
   }

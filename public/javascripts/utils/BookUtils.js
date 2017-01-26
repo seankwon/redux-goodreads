@@ -1,4 +1,4 @@
-import { escape } from 'querystring';
+
 import fetch from 'isomorphic-fetch';
 
 import { goodreadsJSON } from './FetchUtils';
@@ -10,7 +10,7 @@ export function getBooks(query) {
     throw("No Argument");
   }
 
-  const convertedQuery = escape(query);
+  const convertedQuery = encodeURIComponent(query);
   const fullUrl = `${BOOK_SEARCH_URL}${convertedQuery}`;
 
   return goodreadsJSON(fullUrl).then(rawData => {

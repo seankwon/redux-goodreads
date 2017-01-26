@@ -11,15 +11,16 @@ import {
 describe('library reducer', () => {
     const defaultState = {
         activePage: {},
-        searches: []
+        searches: [],
+        isFetching: false
     };
     const requestState = {
         activePage: {},
+        isFetching: true,
         searches: [{
             books: [],
             query: 'test',
-            active: false,
-            isFetching: true
+            active: false
         }]
     };
     const books = [{
@@ -34,11 +35,11 @@ describe('library reducer', () => {
             query: 'test',
             books: books
         },
+        isFetching: false,
         searches: [{
             books: books,
             query: 'test',
-            active: true,
-            isFetching: false
+            active: true
         }]
     };
 

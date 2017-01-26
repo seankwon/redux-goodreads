@@ -1,18 +1,15 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-//import articles from './reducers/articles';
-//import editor from './reducers/editor';
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
+import library from './reducers/LibraryReducer';
 
 const loggerMiddleware = createLogger();
-const reducers = {};
-//const reducers = combineReducers({
-//  editor,
-//  articles,
-//  routing: routerReducer
-//});
+const reducers = combineReducers({
+  library,
+  routing: routerReducer
+});
 
 export default function configureStore(preloadedState) {
   return createStore(

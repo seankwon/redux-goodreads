@@ -4,7 +4,7 @@ function searches(state, action) {
   function setActive(action, search) {
     // XXX helper function, pattern courtesy of eloquent javascript
     return Object.assign({}, search,
-            {isFetching: false, active: true, books: action.books});
+            {active: true, books: action.books});
   }
 
   switch(action.type) {
@@ -12,13 +12,12 @@ function searches(state, action) {
       let newsearch = {
         books: [],
         query: action.query,
-        active: false,
-        isFetching: true
+        active: false
       };
       return [...state.searches, newsearch];
     case RECEIVE_BOOKS:
       return state.searches.map((search) => {
-        if (search.isFetching) {
+        if (search.query === action.query) {
           return setActive(action, search);
         }
         return search;
@@ -29,6 +28,7 @@ function searches(state, action) {
 export default function library(
   state = {
     activePage: {},
+    isFetching: false,
     searches: []
   },
   action) {
@@ -40,11 +40,12 @@ export default function library(
   switch (action.type) {
     case REQUEST_BOOKS:
       return Object.assign({}, state, 
-        { searches: searches(state, action) 
+        { isFetching: true, searches: searches(state, action) 
       });
     case RECEIVE_BOOKS:
       return Object.assign({}, state, {
         activePage: {books: action.books, query: action.query},
+        isFetching: false,
         searches: searches(state, action)
       });
     default:
