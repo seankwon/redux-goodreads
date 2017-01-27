@@ -1,10 +1,12 @@
-import { REQUEST_BOOKS, RECEIVE_BOOKS } from '../actions/LibraryActions';
+import { REQUEST_BOOKS, RECEIVE_BOOKS, cachedSearch, notEmpty } from '../actions/LibraryActions';
 
 function searches(state, action) {
-  function setActive(action, search) {
-    // XXX helper function, pattern courtesy of eloquent javascript
-    return Object.assign({}, search,
-            {active: true, books: action.books});
+  let setActive = (action, search) => {
+    return Object.assign({}, search, {active: true, books: action.books});
+  }
+
+  let isCached = (cachedSearch) => {
+    return notEmpty(cachedSearch)
   }
 
   switch(action.type) {
@@ -14,7 +16,11 @@ function searches(state, action) {
         query: action.query,
         active: false
       };
-      return [...state.searches, newsearch];
+
+      if (isCached(cachedSearch(action.query, state.searches))) {
+        return state.searches
+      }
+      return [...state.searches, newsearch]
     case RECEIVE_BOOKS:
       return state.searches.map((search) => {
         if (search.query === action.query) {
