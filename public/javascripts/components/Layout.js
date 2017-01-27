@@ -3,7 +3,25 @@ import { dispatch } from 'redux';
 import { fetchBooksIfNeeded } from '../actions/LibraryActions';
 import { connect } from 'react-redux';
 
-class Layout extends Component { 
+export default class Layout extends Component { 
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.onHandleEnter = this.onHandleEnter.bind(this);
+    this.onValueChange = this.onValueChange.bind(this);
+  }
+
+  onHandleEnter(e) {
+    if (e.charCode === 13 && this.state.value.length > 0) {
+      this.props.dispatch(fetchBooksIfNeeded(this.state.value));
+    }
+  }
+
+  onValueChange(e) {
+    this.setState({value: e.target.value});
+  }
+
   render() {
     return (
       <div id='maincontainer'>
@@ -14,7 +32,13 @@ class Layout extends Component {
             </div>
             <div className='nav-section right'>
               <div className="nav-item">
-                <input placeholder="Search by Title/Author" className="search-bar" type="text" />
+                <input 
+                   placeholder="Search by Title/Author"
+                   className="search-bar" 
+                   type="text"
+                   value={this.state.value}
+                   onChange={this.onValueChange}
+                   onKeyPress={this.onHandleEnter} />
               </div>
             </div>
           </div>
@@ -24,5 +48,3 @@ class Layout extends Component {
     );
   }
 }
-
-export default connect()(Layout);

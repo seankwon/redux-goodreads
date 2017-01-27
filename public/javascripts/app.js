@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import 'babel-polyfill';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import VisibleBookList from './containers/VisibleBookList';
-import Layout from './components/Layout';
+import Layout from './containers/Layout';
 import configureStore from './configureStore';
 
 const store = configureStore();
