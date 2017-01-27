@@ -21,7 +21,8 @@ export function getBooks(query) {
         year: book['original_publication_year'][0]['_'],
         rating: book['average_rating'][0],
         author: book['best_book'][0]['author'][0]['name'][0],
-        image_url: book['best_book'][0]['image_url'][0]
+        image_url: book['best_book'][0]['image_url'][0],
+        title: book['best_book'][0]['title'][0]
       }
     });
     

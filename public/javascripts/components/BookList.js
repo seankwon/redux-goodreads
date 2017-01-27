@@ -17,7 +17,11 @@ export default class BookList extends Component {
   handleRender() {
     const { isFetching } = this.props;
     if (isFetching) {
-      return <h1>Fetching</h1>
+      return (
+        <div id='book-list-container'>
+          Currently Fetching
+        </div>
+      );
     }
     return this.renderPage();
   }
@@ -30,14 +34,18 @@ export default class BookList extends Component {
     return (
       <div id='book-list-container' className='flex flex-wrap'>
         {this.props.activePage.books.map((book) =>
-          <div className='col-3 book-container'>
-            <div className='image-wrapper'>
-              <img src={book.image_url} />
+          <div key={book.id} className="image-wrapper col-2 mr2">
+            <div className='info-container'>
+              <div className='btn-container'>
+                <div className='btn-wrapper'>
+                  <button className='btn not-rounded'>Add to Cart</button>
+                  <button className='btn not-rounded'>Info</button>
+                </div>
+              </div>
             </div>
-            <div className='book-info-container'>
-              <h5>{book.author}</h5>
-              <p>{book.title}</p>
-            </div>
+            <img src={book.image_url} />
+            <h5>{book.title}</h5>
+            <p>{book.author}</p>
           </div>
         )}
       </div>
@@ -45,6 +53,6 @@ export default class BookList extends Component {
   }
 
   render() {
-    return this.renderPage()
+    return this.handleRender();
   }
 }
