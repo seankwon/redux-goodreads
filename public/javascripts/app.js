@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import 'babel-polyfill';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import VisibleBookList from './containers/VisibleBookList';
+import Layout from './components/Layout';
 import configureStore from './configureStore';
 
 const store = configureStore();
@@ -15,7 +16,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 const root = (
   <Provider store={store}>
 		<Router history={history}>
-      <Route path="/app" component={VisibleBookList}>
+      <Route path="/app" component={Layout}>
+        <Route path="books" component={VisibleBookList}></Route>
       </Route>
     </Router>
   </Provider>
