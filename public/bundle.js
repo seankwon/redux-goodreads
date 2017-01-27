@@ -10771,7 +10771,6 @@ function fetchBooks(query) {
 function shouldFetchBooks(searches, activePage, isFetching) {
   //FIXME: - This needs serveral more cases.
 
-
   function noActivePages(activePage) {
     //TODO: make exportable later
     return typeof activePage.book === 'undefined';
@@ -25097,6 +25096,7 @@ var _LibraryActions = __webpack_require__(146);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function searches(state, action) {
+  /* XXX HELPER FUNCTIONS */
   var setActive = function setActive(action, search) {
     return (0, _assign2.default)({}, search, { active: true, books: action.books });
   };
@@ -25105,21 +25105,23 @@ function searches(state, action) {
     return (0, _LibraryActions.notEmpty)(cachedSearch);
   };
 
+  var wasRequested = function wasRequested(action, query) {
+    return action.query === query;
+  };
+
+  /* BODY OF CODE */
   switch (action.type) {
     case _LibraryActions.REQUEST_BOOKS:
-      var newsearch = {
-        books: [],
-        query: action.query,
-        active: false
-      };
+      var newsearch = { books: [], query: action.query, active: false };
+      var currentSearch = (0, _LibraryActions.cachedSearch)(action.query, state.searches);
 
-      if (isCached((0, _LibraryActions.cachedSearch)(action.query, state.searches))) {
+      if (isCached(currentSearch)) {
         return state.searches;
       }
       return [].concat((0, _toConsumableArray3.default)(state.searches), [newsearch]);
     case _LibraryActions.RECEIVE_BOOKS:
       return state.searches.map(function (search) {
-        if (search.query === action.query) {
+        if (wasRequested(action, search.query)) {
           return setActive(action, search);
         }
         return search;

@@ -50,7 +50,6 @@ function fetchBooks(query) {
 function shouldFetchBooks(searches, activePage, isFetching) {
   //FIXME: - This needs serveral more cases.
   
-
   function noActivePages(activePage) {
     //TODO: make exportable later
     return typeof activePage.book === 'undefined';
