@@ -1,23 +1,36 @@
-import { REQUEST_BOOKS, RECEIVE_BOOKS } from '../actions/LibraryActions';
+import { 
+  REQUEST_BOOKS, 
+  RECEIVE_BOOKS, 
+  cachedSearch, 
+  notEmpty } from '../actions/LibraryActions';
 
 function searches(state, action) {
-  function setActive(action, search) {
-    // XXX helper function, pattern courtesy of eloquent javascript
-    return Object.assign({}, search,
-            {active: true, books: action.books});
+  /* XXX HELPER FUNCTIONS */
+  let setActive = (action, search) => {
+    return Object.assign({}, search, {active: true, books: action.books});
   }
 
+  let isCached = (cachedSearch) => {
+    return notEmpty(cachedSearch)
+  }
+
+  let wasRequested = (action, query) => {
+    return action.query === query;
+  }
+  
+  /* BODY OF CODE */
   switch(action.type) {
     case REQUEST_BOOKS:
-      let newsearch = {
-        books: [],
-        query: action.query,
-        active: false
-      };
+      let newsearch = { books: [], query: action.query, active: false };
+      let currentSearch = cachedSearch(action.query, state.searches);
+
+      if (isCached(currentSearch)) {
+        return state.searches
+      }
       return [...state.searches, newsearch];
     case RECEIVE_BOOKS:
       return state.searches.map((search) => {
-        if (search.query === action.query) {
+        if (wasRequested(action, search.query)) {
           return setActive(action, search);
         }
         return search;
