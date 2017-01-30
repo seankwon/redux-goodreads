@@ -8,8 +8,7 @@
     "express-server": "node ./server",
     "dev": "concurrently --kill-others \"npm run webpack-watch\" \"node ./bin/www\"",
     "test": "$(npm bin)/mocha --watch --require ./tests/test.setup.js tests/*spec.js",
-    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors"
   },
   "dependencies": {
     "babel-loader": "^6.2.10",

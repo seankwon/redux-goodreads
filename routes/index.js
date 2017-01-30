@@ -6,7 +6,7 @@ require('isomorphic-fetch');
 
 /* GET home page. */
 router.get('/app*', (req, res, next) => {
-  res.sendfile('./views/index.html')
+  res.sendfile('./views/index.html');
 });
 
 router.get('/goodreads', (req, res, next) => {
