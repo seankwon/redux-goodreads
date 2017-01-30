@@ -138,3 +138,21 @@ input {
 .search-bar {
   padding: 3px;
 }
+
+#cartcontainer {
+  position: fixed;
+  bottom: -150px;
+  width: 100%;
+  z-index: 3;
+}
+
+.cart-border {
+  height: 50px;
+  position: relative;
+  background: rgb(41, 41, 41);
+}
+
+.inner-cart {
+  height: 150px;
+  background: #fff;
+}

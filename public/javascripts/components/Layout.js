@@ -43,7 +43,13 @@ export default class Layout extends Component {
             </div>
           </div>
         </nav>
+
         {React.cloneElement(this.props.children, { ...this.props, key: undefined, ref: undefined })}
+
+        <div id='cartcontainer'>
+          <div className="cart-border"></div>
+          <div className="inner-cart"></div>
+        </div>
       </div>
     );
   }
