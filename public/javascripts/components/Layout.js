@@ -46,7 +46,7 @@ export default class Layout extends Component {
 
         {React.cloneElement(this.props.children, { ...this.props, key: undefined, ref: undefined })}
 
-        <div id='cartcontainer'>
+        <div className="hidecart" id='cartcontainer'>
           <div className="cart-border"></div>
           <div className="inner-cart"></div>
         </div>

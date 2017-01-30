@@ -141,18 +141,25 @@ input {
 
 #cartcontainer {
   position: fixed;
-  bottom: -150px;
   width: 100%;
   z-index: 3;
 }
 
+#cartcontainer.hidecart {
+  bottom: -160px;
+}
+
+#cartcontainer.showcart {
+  bottom: 0px;
+}
+
 .cart-border {
-  height: 50px;
+  height: 40px;
   position: relative;
   background: rgb(41, 41, 41);
 }
 
 .inner-cart {
-  height: 150px;
+  height: 160px;
   background: #fff;
 }
