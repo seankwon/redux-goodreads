@@ -1,8 +1,5 @@
-import { 
-  REQUEST_BOOKS, 
-  RECEIVE_BOOKS, 
-  cachedSearch, 
-  notEmpty } from '../actions/LibraryActions';
+import { REQUEST_BOOKS, RECEIVE_BOOKS} from '../actions/LibraryActions';
+import { cachedSearch, notEmpty } from '../utils/BookUtils';
 
 function searches(state, action) {
   /* XXX HELPER FUNCTIONS */

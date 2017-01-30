@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { dispatch } from 'redux';
-import { fetchBooksIfNeeded } from '../actions/LibraryActions';
+import { fetchBooksIfNeeded } from '../utils/BookUtils';
 
 export default class BookList extends Component {
   constructor(props) {
