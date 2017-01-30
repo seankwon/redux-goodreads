@@ -7,7 +7,9 @@
     "webpack-watch": "webpack -w",
     "express-server": "node ./server",
     "dev": "concurrently --kill-others \"npm run webpack-watch\" \"node ./bin/www\"",
-    "test": "$(npm bin)/mocha --watch --require ./tests/test.setup.js tests/*spec.js"
+    "test": "$(npm bin)/mocha --watch --require ./tests/test.setup.js tests/*spec.js",
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "dependencies": {
     "babel-loader": "^6.2.10",
@@ -45,6 +47,8 @@
     "request": "^2.79.0",
     "serve-favicon": "~2.3.0",
     "webpack": "^2.0.0",
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-hot-middleware": "^2.16.0",
     "xml": "^1.0.1",
     "xml-to-json-promise": "0.0.3"
   }
