@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch';
 import { dispatch } from 'redux';
 import { requestBooks, receiveBooks } from '../actions/LibraryActions';
 import { goodreadsJSON } from './FetchUtils';
+import { isEmpty, notEmpty } from './ArrayUtils';
 const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q=';
 
 export function getBooks(query) {
@@ -27,15 +28,6 @@ export function getBooks(query) {
     
     return (convertedResults);
   });
-}
-
-//TODO: transfer utility functions somewhere else
-export function notEmpty(array) {
-  return array.length > 0;
-}
-
-export function isEmpty(array) {
-  return array.length === 0;
 }
 
 export function cachedSearch(query, searches) {
