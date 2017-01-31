@@ -45,7 +45,6 @@ function fetchBooks(query) {
       getBooks(query).then(data => dispatch(receiveBooks(data, query)));
       return;
     }
-    
     return dispatch(receiveBooks(cachedBook[0].books, query));
   }
 }
