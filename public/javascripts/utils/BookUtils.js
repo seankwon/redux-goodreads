@@ -17,7 +17,7 @@ export function getBooks(query) {
     const searchResults = rawData['GoodreadsResponse']['search'][0]['results'][0]['work'];
     const convertedResults = searchResults.map((book) => {
       return {
-        id: book['id'][0]['_'],
+        id: book['best_book'][0]['id'][0]['_'],
         year: book['original_publication_year'][0]['_'],
         rating: book['average_rating'][0],
         author: book['best_book'][0]['author'][0]['name'][0],
@@ -49,21 +49,21 @@ function fetchBooks(query) {
   }
 }
 
-function shouldFetchBooks(searches, activePage, isFetching) {
+function shouldFetchBooks(searches, activeSearch, isFetching) {
   //FIXME: - This needs serveral more cases.
   
-  function noActivePages(activePage) {
+  function noactiveSearchs(activeSearch) {
     //TODO: make exportable later
-    return typeof activePage.book === 'undefined';
+    return typeof activeSearch.book === 'undefined';
   }
 
-  return (searches.length < 0 || isFetching || noActivePages(activePage));
+  return (searches.length < 0 || isFetching || noactiveSearchs(activeSearch));
 }
 
 export function fetchBooksIfNeeded(query) {
   return (dispatch, getState) => {
-    const { searches, activePage, isFetching } = getState().library;
-    if (shouldFetchBooks(searches, activePage, isFetching)) {
+    const { searches, activeSearch, isFetching } = getState().library;
+    if (shouldFetchBooks(searches, activeSearch, isFetching)) {
       dispatch(requestBooks(query));
       return dispatch(fetchBooks(query));
     }

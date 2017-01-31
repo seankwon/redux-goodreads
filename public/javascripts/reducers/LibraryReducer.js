@@ -38,7 +38,7 @@ function searches(state, action) {
 
 export default function library(
   state = {
-    activePage: {},
+    activeSearch: {},
     isFetching: false,
     searches: []
   },
@@ -55,7 +55,7 @@ export default function library(
       });
     case RECEIVE_BOOKS:
       return Object.assign({}, state, {
-        activePage: {books: action.books, query: action.query},
+        activeSearch: {books: action.books, query: action.query},
         isFetching: false,
         searches: searches(state, action)
       });

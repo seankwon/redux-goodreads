@@ -9,6 +9,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import VisibleBookList from './containers/VisibleBookList';
 import Layout from './containers/Layout';
 import configureStore from './configureStore';
+import BookPage from './components/BookPage';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -18,6 +19,7 @@ const root = (
 		<Router history={history}>
       <Route path="/app" component={Layout}>
         <Route path="books" component={VisibleBookList}></Route>
+        <Route path="book/:id" component={BookPage}></Route>
       </Route>
     </Router>
   </Provider>

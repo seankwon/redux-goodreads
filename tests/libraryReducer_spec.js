@@ -10,12 +10,12 @@ import {
 
 describe('library reducer', () => {
     const defaultState = {
-        activePage: {},
+        activeSearch: {},
         searches: [],
         isFetching: false
     };
     const requestState = {
-        activePage: {},
+        activeSearch: {},
         isFetching: true,
         searches: [{
             books: [],
@@ -31,7 +31,7 @@ describe('library reducer', () => {
         image_url: 'woo'
     }];
     const receiveState = {
-        activePage: {
+        activeSearch: {
             query: 'test',
             books: books
         },
