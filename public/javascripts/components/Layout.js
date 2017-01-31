@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { dispatch } from 'redux';
 import { fetchBooksIfNeeded } from '../utils/BookUtils';
-import { connect } from 'react-redux';
+import Cart from './Cart';
 
-export default class Layout extends Component { 
+export default class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
@@ -45,11 +45,7 @@ export default class Layout extends Component {
         </nav>
 
         {React.cloneElement(this.props.children, { ...this.props, key: undefined, ref: undefined })}
-
-        <div className="hidecart" id='cartcontainer'>
-          <div className="cart-border"></div>
-          <div className="inner-cart"></div>
-        </div>
+        <Cart />
       </div>
     );
   }

@@ -6,7 +6,6 @@ module.exports = {
     path: './public',
     filename: 'bundle.js'
   },
-  /*
 	plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -21,7 +20,6 @@ module.exports = {
       }
     })
     ],
-    */
 
 
   module: {

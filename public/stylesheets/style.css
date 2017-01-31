@@ -143,6 +143,7 @@ input {
   position: fixed;
   width: 100%;
   z-index: 3;
+  transition: bottom 0.2s;
 }
 
 #cartcontainer.hidecart {
@@ -157,6 +158,7 @@ input {
   height: 40px;
   position: relative;
   background: rgb(41, 41, 41);
+  cursor: pointer;
 }
 
 .inner-cart {
