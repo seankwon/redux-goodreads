@@ -168,3 +168,9 @@ p {
   height: 160px;
   background: #fff;
 }
+
+.cart-title {
+  font-size: 16px;
+  color: #fff;
+  line-height: 40px;
+}

@@ -25133,7 +25133,7 @@ var Cart = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'flex flex-wrap' },
         cart.map(function (book) {
           return _react2.default.createElement(_Book2.default, {
             key: book.id,
@@ -25153,7 +25153,19 @@ var Cart = function (_Component) {
       return _react2.default.createElement(
         'div',
         { onClick: this.toggleCart, className: hide ? 'hidecart' : 'showcart', id: 'cartcontainer' },
-        _react2.default.createElement('div', { className: 'cart-border' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'cart-border' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container clearfix' },
+            _react2.default.createElement(
+              'p',
+              { className: 'cart-title' },
+              'Cart ^'
+            )
+          )
+        ),
         _react2.default.createElement(
           'div',
           { className: 'inner-cart' },

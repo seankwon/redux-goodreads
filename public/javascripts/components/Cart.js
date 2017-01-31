@@ -25,7 +25,7 @@ export default class Cart extends Component {
   renderCart() {
     const { cart } = this.props;
     return (
-      <div>
+      <div className="flex flex-wrap">
       {cart.map((book) =>
         <Book
           key={book.id}
@@ -43,7 +43,9 @@ export default class Cart extends Component {
 
     return (
       <div onClick={this.toggleCart} className={hide ? 'hidecart' : 'showcart'} id='cartcontainer'>
-        <div className="cart-border"></div>
+        <div className="cart-border">
+          <div className="container clearfix"><p className="cart-title">Cart ^</p></div>
+        </div>
         <div className="inner-cart">
           {this.handleCart()}
         </div>
