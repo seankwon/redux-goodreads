@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { dispatch } from 'redux';
-import { fetchBooksIfNeeded } from '../actions/LibraryActions';
+import { fetchBooksIfNeeded } from '../utils/BookUtils';
+import Book from './Book';
 
 export default class BookList extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class BookList extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchBooksIfNeeded('Marilynne Robinson'));
+    this.props.onStartup();
   }
 
   handleRender() {
@@ -34,19 +35,13 @@ export default class BookList extends Component {
     return (
       <div id='book-list-container' className='flex flex-wrap'>
         {this.props.activePage.books.map((book) =>
-          <div key={book.id} className="image-wrapper col-2 mr2">
-            <div className='info-container'>
-              <div className='btn-container'>
-                <div className='btn-wrapper'>
-                  <button className='btn not-rounded'>Add to Cart</button>
-                  <button className='btn not-rounded'>Info</button>
-                </div>
-              </div>
-            </div>
-            <img src={book.image_url} />
-            <h5>{book.title}</h5>
-            <p>{book.author}</p>
-          </div>
+          <Book
+            key={book.id}
+            id={book.id}
+            image_url={book.image_url}
+            title={book.title}
+            author={book.author}
+            addBookToCart={this.props.addToCart} />
         )}
       </div>
     )
