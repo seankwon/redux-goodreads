@@ -7,6 +7,9 @@ body {
 input {
   font-family: 'Work Sans', sans-serif;
 }
+p {
+  margin: 0;
+}
 
 /*
 *****************
@@ -137,4 +140,45 @@ input {
 
 .search-bar {
   padding: 3px;
+}
+
+#cartcontainer {
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  transition: bottom 0.2s;
+}
+
+#cartcontainer.hidecart {
+  bottom: -250px;
+}
+
+#cartcontainer.showcart {
+  bottom: 0px;
+}
+
+.cart-border {
+  height: 40px;
+  position: relative;
+  background: rgb(41, 41, 41);
+  cursor: pointer;
+}
+
+.inner-cart {
+  height: 250px;
+  background: #fff;
+}
+
+.cart-title {
+  font-size: 16px;
+  color: #fff;
+  line-height: 40px;
+}
+
+.inner-cart .container {
+  padding: 20px;
+}
+
+.inner-cart .info-container:hover {
+  opacity: 0;
 }
