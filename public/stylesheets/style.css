@@ -150,7 +150,7 @@ p {
 }
 
 #cartcontainer.hidecart {
-  bottom: -160px;
+  bottom: -250px;
 }
 
 #cartcontainer.showcart {
@@ -165,7 +165,7 @@ p {
 }
 
 .inner-cart {
-  height: 160px;
+  height: 250px;
   background: #fff;
 }
 
@@ -173,4 +173,12 @@ p {
   font-size: 16px;
   color: #fff;
   line-height: 40px;
+}
+
+.inner-cart .container {
+  padding: 20px;
+}
+
+.inner-cart .info-container:hover {
+  opacity: 0;
 }

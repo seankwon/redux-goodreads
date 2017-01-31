@@ -25169,7 +25169,11 @@ var Cart = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'inner-cart' },
-          this.handleCart()
+          _react2.default.createElement(
+            'div',
+            { className: 'clearfix container' },
+            this.handleCart()
+          )
         )
       );
     }

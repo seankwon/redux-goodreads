@@ -47,7 +47,9 @@ export default class Cart extends Component {
           <div className="container clearfix"><p className="cart-title">Cart ^</p></div>
         </div>
         <div className="inner-cart">
-          {this.handleCart()}
+          <div className="clearfix container">
+            {this.handleCart()}
+          </div>
         </div>
       </div>
     );
