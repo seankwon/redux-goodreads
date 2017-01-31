@@ -24702,9 +24702,21 @@ var _Layout2 = _interopRequireDefault(_Layout);
 
 var _reactRedux = __webpack_require__(145);
 
+var _redux = __webpack_require__(93);
+
+var _BookUtils = __webpack_require__(146);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = (0, _reactRedux.connect)()(_Layout2.default);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    onSearch: function onSearch(query) {
+      dispatch((0, _BookUtils.fetchBooksIfNeeded)(query));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_Layout2.default);
 
 /***/ }),
 /* 365 */
@@ -25127,13 +25139,15 @@ var _react = __webpack_require__(11);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _redux = __webpack_require__(93);
-
 var _BookUtils = __webpack_require__(146);
 
 var _Cart = __webpack_require__(370);
 
 var _Cart2 = _interopRequireDefault(_Cart);
+
+var _Nav = __webpack_require__(883);
+
+var _Nav2 = _interopRequireDefault(_Nav);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25142,70 +25156,16 @@ var Layout = function (_Component) {
 
   function Layout(props) {
     (0, _classCallCheck3.default)(this, Layout);
-
-    var _this = (0, _possibleConstructorReturn3.default)(this, (Layout.__proto__ || (0, _getPrototypeOf2.default)(Layout)).call(this, props));
-
-    _this.state = { value: '' };
-
-    _this.onHandleEnter = _this.onHandleEnter.bind(_this);
-    _this.onValueChange = _this.onValueChange.bind(_this);
-    return _this;
+    return (0, _possibleConstructorReturn3.default)(this, (Layout.__proto__ || (0, _getPrototypeOf2.default)(Layout)).call(this, props));
   }
 
   (0, _createClass3.default)(Layout, [{
-    key: 'onHandleEnter',
-    value: function onHandleEnter(e) {
-      if (e.charCode === 13 && this.state.value.length > 0) {
-        this.props.dispatch((0, _BookUtils.fetchBooksIfNeeded)(this.state.value));
-      }
-    }
-  }, {
-    key: 'onValueChange',
-    value: function onValueChange(e) {
-      this.setState({ value: e.target.value });
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { id: 'maincontainer' },
-        _react2.default.createElement(
-          'nav',
-          { className: 'mainnav' },
-          _react2.default.createElement(
-            'div',
-            { className: 'container clearfix' },
-            _react2.default.createElement(
-              'div',
-              { className: 'nav-section left' },
-              _react2.default.createElement(
-                'div',
-                { className: 'nav-item logo' },
-                _react2.default.createElement(
-                  'h1',
-                  null,
-                  'Redux Public Library'
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'nav-section right' },
-              _react2.default.createElement(
-                'div',
-                { className: 'nav-item' },
-                _react2.default.createElement('input', {
-                  placeholder: 'Search by Title/Author',
-                  className: 'search-bar',
-                  type: 'text',
-                  value: this.state.value,
-                  onChange: this.onValueChange,
-                  onKeyPress: this.onHandleEnter })
-              )
-            )
-          )
-        ),
+        _react2.default.createElement(_Nav2.default, { onSearch: this.props.onSearch }),
         _react2.default.cloneElement(this.props.children, (0, _extends3.default)({}, this.props, { key: undefined, ref: undefined })),
         _react2.default.createElement(_Cart2.default, null)
       );
@@ -55348,6 +55308,120 @@ var root = _react2.default.createElement(
 );
 
 _reactDom2.default.render(root, document.getElementById('root'));
+
+/***/ }),
+/* 883 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = __webpack_require__(147);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(148);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(149);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(151);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(150);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(11);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _redux = __webpack_require__(93);
+
+var _BookUtils = __webpack_require__(146);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Nav = function (_Component) {
+  (0, _inherits3.default)(Nav, _Component);
+
+  function Nav(props) {
+    (0, _classCallCheck3.default)(this, Nav);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Nav.__proto__ || (0, _getPrototypeOf2.default)(Nav)).call(this, props));
+
+    _this.state = { value: '' };
+
+    _this.onHandleEnter = _this.onHandleEnter.bind(_this);
+    _this.onValueChange = _this.onValueChange.bind(_this);
+    return _this;
+  }
+
+  (0, _createClass3.default)(Nav, [{
+    key: 'onHandleEnter',
+    value: function onHandleEnter(e) {
+      if (e.charCode === 13 && this.state.value.length > 0) {
+        this.props.onSearch(this.state.value);
+      }
+    }
+  }, {
+    key: 'onValueChange',
+    value: function onValueChange(e) {
+      this.setState({ value: e.target.value });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'nav',
+        { className: 'mainnav' },
+        _react2.default.createElement(
+          'div',
+          { className: 'container clearfix' },
+          _react2.default.createElement(
+            'div',
+            { className: 'nav-section left' },
+            _react2.default.createElement(
+              'div',
+              { className: 'nav-item logo' },
+              _react2.default.createElement(
+                'h1',
+                null,
+                'Redux Public Library'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'nav-section right' },
+            _react2.default.createElement(
+              'div',
+              { className: 'nav-item' },
+              _react2.default.createElement('input', {
+                placeholder: 'Search by Title/Author',
+                className: 'search-bar',
+                type: 'text',
+                value: this.state.value,
+                onChange: this.onValueChange,
+                onKeyPress: this.onHandleEnter })
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return Nav;
+}(_react.Component);
+
+exports.default = Nav;
 
 /***/ })
 /******/ ]);
