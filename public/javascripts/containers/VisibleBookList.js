@@ -5,9 +5,9 @@ import { fetchBooksIfNeeded } from '../utils/BookUtils';
 import BookList from '../components/BookList';
 
 const mapStateToProps = (state) => {
-  const { activePage, searches, isFetching } = state.library;
+  const { activeSearch, searches, isFetching } = state.library;
   return {
-    activePage,
+    activeSearch,
     searches,
     isFetching
   }

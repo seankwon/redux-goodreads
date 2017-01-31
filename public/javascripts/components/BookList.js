@@ -28,13 +28,13 @@ export default class BookList extends Component {
   }
 
   renderPage() {
-    if (typeof this.props.activePage.books === 'undefined') {
+    if (typeof this.props.activeSearch.books === 'undefined') {
       return <p>No Books to see here</p>
     }
 
     return (
       <div id='book-list-container' className='flex flex-wrap'>
-        {this.props.activePage.books.map((book) =>
+        {this.props.activeSearch.books.map((book) =>
           <Book
             key={book.id}
             id={book.id}
