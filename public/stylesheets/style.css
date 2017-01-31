@@ -7,6 +7,9 @@ body {
 input {
   font-family: 'Work Sans', sans-serif;
 }
+p {
+  margin: 0;
+}
 
 /*
 *****************

@@ -41,7 +41,7 @@ export default class BookList extends Component {
             image_url={book.image_url}
             title={book.title}
             author={book.author}
-            addToCart={this.props.addBookToCart} />
+            addBookToCart={this.props.addToCart} />
         )}
       </div>
     )

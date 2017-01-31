@@ -24672,11 +24672,16 @@ var _LibraryReducer = __webpack_require__(374);
 
 var _LibraryReducer2 = _interopRequireDefault(_LibraryReducer);
 
+var _CartReducer = __webpack_require__(887);
+
+var _CartReducer2 = _interopRequireDefault(_CartReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var loggerMiddleware = (0, _reduxLogger2.default)();
 var reducers = (0, _redux.combineReducers)({
   library: _LibraryReducer2.default,
+  cart: _CartReducer2.default,
   routing: _reactRouterRedux.routerReducer
 });
 
@@ -25030,7 +25035,7 @@ var BookList = function (_Component) {
             image_url: book.image_url,
             title: book.title,
             author: book.author,
-            addToCart: _this2.props.addBookToCart });
+            addBookToCart: _this2.props.addToCart });
         })
       );
     }
@@ -25082,6 +25087,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(59);
 
+var _Book = __webpack_require__(886);
+
+var _Book2 = _interopRequireDefault(_Book);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Cart = function (_Component) {
@@ -25103,15 +25112,53 @@ var Cart = function (_Component) {
       this.setState({ hide: !this.state.hide });
     }
   }, {
+    key: 'handleCart',
+    value: function handleCart() {
+      var cart = this.props.cart;
+
+      if (typeof cart === 'undefined' || cart === null) {
+        return _react2.default.createElement(
+          'p',
+          null,
+          'No cart Added'
+        );
+      } else {
+        return this.renderCart();
+      }
+    }
+  }, {
+    key: 'renderCart',
+    value: function renderCart() {
+      var cart = this.props.cart;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        cart.map(function (book) {
+          return _react2.default.createElement(_Book2.default, {
+            key: book.id,
+            id: book.id,
+            image_url: book.image_url,
+            title: book.title,
+            author: book.author });
+        })
+      );
+    }
+  }, {
     key: 'render',
     value: function render() {
       var hide = this.state.hide;
+
 
       return _react2.default.createElement(
         'div',
         { onClick: this.toggleCart, className: hide ? 'hidecart' : 'showcart', id: 'cartcontainer' },
         _react2.default.createElement('div', { className: 'cart-border' }),
-        _react2.default.createElement('div', { className: 'inner-cart' })
+        _react2.default.createElement(
+          'div',
+          { className: 'inner-cart' },
+          this.handleCart()
+        )
       );
     }
   }]);
@@ -25161,9 +25208,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _BookUtils = __webpack_require__(95);
 
-var _Cart = __webpack_require__(371);
+var _VisibleCart = __webpack_require__(888);
 
-var _Cart2 = _interopRequireDefault(_Cart);
+var _VisibleCart2 = _interopRequireDefault(_VisibleCart);
 
 var _Nav = __webpack_require__(373);
 
@@ -25187,7 +25234,7 @@ var Layout = function (_Component) {
         { id: 'maincontainer' },
         _react2.default.createElement(_Nav2.default, { onSearch: this.props.onSearch }),
         _react2.default.cloneElement(this.props.children, (0, _extends3.default)({}, this.props, { key: undefined, ref: undefined })),
-        _react2.default.createElement(_Cart2.default, null)
+        _react2.default.createElement(_VisibleCart2.default, null)
       );
     }
   }]);
@@ -25417,7 +25464,7 @@ var _CartActions = __webpack_require__(369);
 
 function addBookToCart(id) {
   return function (dispatch, getState) {
-    var books = getState().library.books;
+    var books = getState().library.activePage.books;
 
     var requestedBook = books.find(function (book) {
       return book.id === id;
@@ -55520,7 +55567,8 @@ var Book = function (_Component) {
           id = _props.id,
           image_url = _props.image_url,
           title = _props.title,
-          author = _props.author;
+          author = _props.author,
+          addBookToCart = _props.addBookToCart;
 
 
       return _react2.default.createElement(
@@ -55537,7 +55585,10 @@ var Book = function (_Component) {
               { className: 'btn-wrapper' },
               _react2.default.createElement(
                 'button',
-                { className: 'btn not-rounded' },
+                { onClick: function onClick() {
+                    return addBookToCart(id);
+                  },
+                  className: 'btn not-rounded' },
                 'Add to Cart'
               ),
               _react2.default.createElement(
@@ -55566,6 +55617,92 @@ var Book = function (_Component) {
 }(_react.Component);
 
 exports.default = Book;
+
+/***/ }),
+/* 887 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _toConsumableArray2 = __webpack_require__(384);
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+exports.default = cart;
+
+var _CartActions = __webpack_require__(369);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function books(state, action) {
+  var requestedBook = state.find(function (addedBooks) {
+    return addedBooks.id === action.book.id;
+  });
+  switch (action.type) {
+    case _CartActions.ADD_BOOK:
+      if (typeof requestedBook !== 'undefined') {
+        return state;
+      }
+      return [].concat((0, _toConsumableArray3.default)(state), [action.book]);
+    case _CartActions.DELETE_BOOK:
+      return state.filter(function (book) {
+        return action.book.id !== book.id;
+      });
+  }
+  return state;
+}
+
+function cart() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  if (typeof action === 'undefined' || action === null) {
+    return state;
+  }
+
+  switch (action.type) {
+    case _CartActions.ADD_BOOK:
+      return books(state, action);
+    case _CartActions.DELETE_BOOK:
+      return books(state, action);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+/* 888 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(151);
+
+var _Cart = __webpack_require__(371);
+
+var _Cart2 = _interopRequireDefault(_Cart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  var cart = state.cart;
+
+  return {
+    cart: cart
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Cart2.default);
 
 /***/ })
 /******/ ]);
