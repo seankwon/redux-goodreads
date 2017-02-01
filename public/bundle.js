@@ -6520,7 +6520,8 @@ function getBooks(query) {
         rating: book['average_rating'][0],
         author: book['best_book'][0]['author'][0]['name'][0],
         image_url: book['best_book'][0]['image_url'][0],
-        title: book['best_book'][0]['title'][0]
+        title: book['best_book'][0]['title'][0],
+        query: query
       };
     });
 
@@ -27932,13 +27933,20 @@ function library() {
 
   switch (action.type) {
     case _LibraryActions.REQUEST_BOOKS:
-      return (0, _assign2.default)({}, state, { isFetching: true, searches: searches(state, action)
+      return (0, _assign2.default)({}, state, { isFetching: true, searches: _searches(state, action)
       });
     case _LibraryActions.RECEIVE_BOOKS:
+      var books = action.books,
+          query = action.query;
+
+      var _searches = Object.new();
+      _searches[query] = books.map(function (book) {
+        return book.id;
+      });
       return (0, _assign2.default)({}, state, {
-        activeSearch: { books: action.books, query: action.query },
+        books: books,
         isFetching: false,
-        searches: searches(state, action)
+        searches: _searches
       });
     default:
       return state;

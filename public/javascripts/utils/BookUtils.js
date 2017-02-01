@@ -15,16 +15,19 @@ export function getBooks(query) {
 
   return goodreadsJSON(fullUrl).then(rawData => {
     const searchResults = rawData['GoodreadsResponse']['search'][0]['results'][0]['work'];
-    const convertedResults = searchResults.map((book) => {
-      return {
+    const convertedResults = searchResults.reduce((res, book) => {
+      let id = book['best_book'][0]['id'][0]['_'];
+      res[id] = {
         id: book['best_book'][0]['id'][0]['_'],
         year: book['original_publication_year'][0]['_'],
         rating: book['average_rating'][0],
         author: book['best_book'][0]['author'][0]['name'][0],
         image_url: book['best_book'][0]['image_url'][0],
-        title: book['best_book'][0]['title'][0]
-      }
-    });
+        title: book['best_book'][0]['title'][0],
+        query: query
+      };
+      return res;
+    }, {});
     
     return (convertedResults);
   });
@@ -36,33 +39,21 @@ export function cachedSearch(query, searches) {
   });
 }
 
-//TODO: Plase fetch functions into different functions.
-function fetchBooks(query) {
-  return (dispatch, getState) => {
-    const cachedBook = cachedSearch(query, getState().library.searches);
 
-    if (isEmpty(cachedBook)) {
-      getBooks(query).then(data => dispatch(receiveBooks(data, query)));
-      return;
-    }
-    return dispatch(receiveBooks(cachedBook[0].books, query));
+function fetchBooks(query) {
+  //FIXME: add functions for efficient caching
+  return (dispatch, getState) => {
+    getBooks(query).then(data => dispatch(receiveBooks(data, query)));
   }
 }
 
 function shouldFetchBooks(searches, activeSearch, isFetching) {
   //FIXME: - This needs serveral more cases.
-  
-  function noactiveSearchs(activeSearch) {
-    //TODO: make exportable later
-    return typeof activeSearch.book === 'undefined';
-  }
-
-  return (searches.length < 0 || isFetching || noactiveSearchs(activeSearch));
+  return true;
 }
 
 export function fetchBooksIfNeeded(query) {
   return (dispatch, getState) => {
-    const { searches, activeSearch, isFetching } = getState().library;
     if (shouldFetchBooks(searches, activeSearch, isFetching)) {
       dispatch(requestBooks(query));
       return dispatch(fetchBooks(query));
