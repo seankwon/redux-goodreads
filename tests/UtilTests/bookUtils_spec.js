@@ -1,17 +1,17 @@
 import { expect } from 'chai';
-import { getBooks, fetchBooksIfNeeded } from '../public/javascripts/utils/BookUtils';
+import { getBooks, fetchBooksIfNeeded } from '../../public/javascripts/utils/BookUtils';
 //TODO convert to es6 syntax
 var fetchMock = require('fetch-mock');
-import library from '../public/javascripts/reducers/LibraryReducer';
+import library from '../../public/javascripts/reducers/LibraryReducer';
 import { readFileSync } from 'fs';
 import {
     requestBooks,
     receiveBooks
-} from '../public/javascripts/actions/LibraryActions';
+} from '../../public/javascripts/actions/LibraryActions';
 
 describe('BookUtils', () => {
   beforeEach(() => {
-    fetchMock.get('*', readFileSync('tests/bookResponse.xml').toString());
+    fetchMock.get('*', readFileSync('tests/Stubs/bookResponse.xml').toString());
   });
 
   describe('getBooks', () => {
@@ -40,9 +40,9 @@ describe('BookUtils', () => {
       title: 'Ender\'s Game (Ender\'s Saga, #1)',
       query: 'Enders Game' 
     };
+    
     it('should return readable data to the reducer', () => {
       getBooks('Enders Game').then((data) => {
-        console.log(library(undefined, receiveBooks(data, 'Enders Game')));
         expect(library(undefined, receiveBooks(data, 'Enders Game'))['books']['375802'])
           .deep.equal(answer1);
       });

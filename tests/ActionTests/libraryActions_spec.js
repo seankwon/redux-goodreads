@@ -1,4 +1,4 @@
-import { requestBooks, receiveBooks, fetchBooksIfNeeded } from '../public/javascripts/actions/LibraryActions';
+import { requestBooks, receiveBooks, fetchBooksIfNeeded } from './../../public/javascripts/actions/LibraryActions';
 import { expect } from 'chai';
 
 describe('LibraryActions', () => {

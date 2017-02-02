@@ -1,11 +1,11 @@
 import {
     expect
 } from 'chai';
-import library from '../public/javascripts/reducers/LibraryReducer'
+import library from '../../public/javascripts/reducers/LibraryReducer'
 import {
     requestBooks,
     receiveBooks
-} from '../public/javascripts/actions/LibraryActions';
+} from '../../public/javascripts/actions/LibraryActions';
 
 describe('library reducer', () => {
     const defaultState = {
@@ -46,10 +46,6 @@ describe('library reducer', () => {
 
     it('initializes state', () => {
       expect(library(undefined)).to.deep.equal(defaultState);
-    });
-
-    it('should add a new query object to the library on request', () => {
-      expect(library(undefined, requestBooks('test'))).to.deep.equal(requestState);
     });
 
     it('should add a list of book objects and a search object', () => {
