@@ -27926,11 +27926,9 @@ var _CartActions = __webpack_require__(262);
 
 function addBookToCart(id) {
   return function (dispatch, getState) {
-    var books = getState().library.books.books;
+    var books = getState().library.books;
 
-    var requestedBook = books.find(function (book) {
-      return book.id === parseInt(id);
-    });
+    var requestedBook = books[parseInt(id)];
     return dispatch((0, _CartActions.addBook)(requestedBook));
   };
 }
