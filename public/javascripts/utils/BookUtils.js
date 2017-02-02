@@ -4,7 +4,7 @@ import { requestBooks, receiveBooks } from '../actions/LibraryActions';
 import { requestSearch, receiveSearch } from '../actions/NavigatorActions';
 import { goodreadsJSON } from './FetchUtils';
 import { isEmpty, notEmpty } from './ArrayUtils';
-const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q=';
+export const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q=';
 
 export function getBooks(query) {
   if (typeof query === 'undefined') {
