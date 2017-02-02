@@ -16,8 +16,11 @@ export default class BookList extends Component {
   }
 
   handleRender() {
-    //FIXME: Add forFetching Logic
-    return this.renderPage();
+    if (this.props.isFetching) {
+      return <p>Currently Fetching Books</p>
+    } else {
+      return this.renderPage();
+    }
   }
 
   renderPage() {

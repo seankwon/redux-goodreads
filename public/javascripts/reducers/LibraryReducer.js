@@ -14,9 +14,6 @@ export default function library(
   }
 
   switch (action.type) {
-    //FIXME: RENAME THESE ACTIONS, deprecate request books
-    case REQUEST_BOOKS:
-      return Object.assign({}, state);
     case RECEIVE_BOOKS:
       const { books, query } = action;
       let searches = {};

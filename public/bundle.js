@@ -6501,6 +6501,8 @@ var _redux = __webpack_require__(64);
 
 var _LibraryActions = __webpack_require__(263);
 
+var _NavigatorActions = __webpack_require__(1032);
+
 var _FetchUtils = __webpack_require__(423);
 
 var _ArrayUtils = __webpack_require__(265);
@@ -6549,18 +6551,18 @@ function fetchBooks(query) {
     getBooks(query).then(function (data) {
       return dispatch((0, _LibraryActions.receiveBooks)(data, query));
     });
+    dispatch((0, _NavigatorActions.receiveSearch)(query));
   };
 }
 
-function shouldFetchBooks(searches, activeSearch, isFetching) {
-  //FIXME: - This needs serveral more cases.
-  return true;
+function shouldFetchBooks(isFetching) {
+  return !isFetching;
 }
 
 function fetchBooksIfNeeded(query) {
   return function (dispatch, getState) {
     if (shouldFetchBooks()) {
-      dispatch((0, _LibraryActions.requestBooks)(query));
+      dispatch((0, _NavigatorActions.requestSearch)(query));
       return dispatch(fetchBooks(query));
     }
   };
@@ -17363,15 +17365,6 @@ var RECEIVE_BOOKS = exports.RECEIVE_BOOKS = 'RECEIVE_BOOKS';
 
 //TODO: [] - need action to grab info for individual pages
 
-var requestBooks = exports.requestBooks = function requestBooks(query) {
-  return {
-    type: REQUEST_BOOKS,
-    isFetching: true,
-    active: false,
-    query: query
-  };
-};
-
 var receiveBooks = exports.receiveBooks = function receiveBooks(books, query) {
   return {
     type: RECEIVE_BOOKS,
@@ -27041,16 +27034,27 @@ var _CartReducer = __webpack_require__(420);
 
 var _CartReducer2 = _interopRequireDefault(_CartReducer);
 
+var _NavigatorReducer = __webpack_require__(1033);
+
+var _NavigatorReducer2 = _interopRequireDefault(_NavigatorReducer);
+
 var _DevTools = __webpack_require__(414);
 
 var _DevTools2 = _interopRequireDefault(_DevTools);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//Reducers
 var loggerMiddleware = (0, _reduxLogger2.default)();
+
+//Created Middleware
+//Required Modules
+
+
 var reducers = (0, _redux.combineReducers)({
   library: _LibraryReducer2.default,
   cart: _CartReducer2.default,
+  navigator: _NavigatorReducer2.default,
   routing: _reactRouterRedux.routerReducer
 });
 
@@ -27104,10 +27108,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keys = __webpack_require__(67);
-
-var _keys2 = _interopRequireDefault(_keys);
-
 var _reactRedux = __webpack_require__(110);
 
 var _redux = __webpack_require__(64);
@@ -27122,25 +27122,22 @@ var _BookList2 = _interopRequireDefault(_BookList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function isEmpty(obj) {
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key)) return false;
-  }
-  return true;
-}
-
 var mapStateToProps = function mapStateToProps(state) {
-  //FIXME: searches[currentSearch]
   var _state$library = state.library,
       books = _state$library.books,
       searches = _state$library.searches;
-  //FIXME: THIS IS GROSS.
+  var _state$navigator = state.navigator,
+      currentQuery = _state$navigator.currentQuery,
+      isFetching = _state$navigator.isFetching;
 
-  var currentSearches = isEmpty(searches) ? undefined : searches[(0, _keys2.default)(searches)[0]].map(function (id) {
+  var currentSearchIdxs = searches[currentQuery];
+  //FIXME: THIS IS GROSS.
+  var currentSearches = typeof currentSearchIdxs === 'undefined' ? [] : currentSearchIdxs.map(function (id) {
     return books[id];
   });
 
   return {
+    isFetching: isFetching,
     currentSearches: currentSearches
   };
 };
@@ -27396,8 +27393,15 @@ var BookList = function (_Component) {
   }, {
     key: 'handleRender',
     value: function handleRender() {
-      //FIXME: Add forFetching Logic
-      return this.renderPage();
+      if (this.props.isFetching) {
+        return _react2.default.createElement(
+          'p',
+          null,
+          'Currently Fetching Books'
+        );
+      } else {
+        return this.renderPage();
+      }
     }
   }, {
     key: 'renderPage',
@@ -27857,13 +27861,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keys = __webpack_require__(67);
-
-var _keys2 = _interopRequireDefault(_keys);
-
 var _assign = __webpack_require__(266);
 
 var _assign2 = _interopRequireDefault(_assign);
+
+var _keys = __webpack_require__(67);
+
+var _keys2 = _interopRequireDefault(_keys);
 
 exports.default = library;
 
@@ -27888,9 +27892,6 @@ function library() {
   }
 
   switch (action.type) {
-    //FIXME: RENAME THESE ACTIONS, deprecate request books
-    case _LibraryActions.REQUEST_BOOKS:
-      return (0, _assign2.default)({}, state);
     case _LibraryActions.RECEIVE_BOOKS:
       var books = action.books,
           query = action.query;
@@ -27925,10 +27926,10 @@ var _CartActions = __webpack_require__(262);
 
 function addBookToCart(id) {
   return function (dispatch, getState) {
-    var books = getState().library.activeSearch.books;
+    var books = getState().library.books.books;
 
     var requestedBook = books.find(function (book) {
-      return book.id === id;
+      return book.id === parseInt(id);
     });
     return dispatch((0, _CartActions.addBook)(requestedBook));
   };
@@ -65511,6 +65512,74 @@ var root = _react2.default.createElement(
 );
 
 _reactDom2.default.render(root, document.getElementById('root'));
+
+/***/ }),
+/* 1032 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var REQUEST_SEARCH = exports.REQUEST_SEARCH = 'REQUEST_SEARCH';
+var RECEIVE_SEARCH = exports.RECEIVE_SEARCH = 'RECEIVE_SEARCH';
+
+var requestSearch = exports.requestSearch = function requestSearch(query) {
+  return {
+    type: REQUEST_SEARCH,
+    query: query
+  };
+};
+
+var receiveSearch = exports.receiveSearch = function receiveSearch(query) {
+  return {
+    type: RECEIVE_SEARCH,
+    query: query
+  };
+};
+
+/***/ }),
+/* 1033 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _assign = __webpack_require__(266);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+exports.default = navigator;
+
+var _NavigatorActions = __webpack_require__(1032);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function navigator() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    isFetching: false,
+    currentQuery: undefined
+  };
+  var action = arguments[1];
+
+
+  if (typeof action === 'undefined' || action === null) return state;
+
+  switch (action.type) {
+    case _NavigatorActions.REQUEST_SEARCH:
+      return (0, _assign2.default)({}, state, { isFetching: true, currentQuery: action.query });
+    case _NavigatorActions.RECEIVE_SEARCH:
+      return (0, _assign2.default)({}, state, { isFetching: false, currentQuery: action.query });
+    default:
+      return state;
+  }
+}
 
 /***/ })
 /******/ ]);

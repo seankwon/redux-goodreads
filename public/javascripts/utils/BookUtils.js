@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { dispatch } from 'redux';
 import { requestBooks, receiveBooks } from '../actions/LibraryActions';
+import { requestSearch, receiveSearch } from '../actions/NavigatorActions';
 import { goodreadsJSON } from './FetchUtils';
 import { isEmpty, notEmpty } from './ArrayUtils';
 const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q=';
@@ -39,23 +40,22 @@ export function cachedSearch(query, searches) {
   });
 }
 
-
 function fetchBooks(query) {
   //FIXME: add functions for efficient caching
   return (dispatch, getState) => {
     getBooks(query).then(data => dispatch(receiveBooks(data, query)));
+    dispatch(receiveSearch(query));
   }
 }
 
-function shouldFetchBooks(searches, activeSearch, isFetching) {
-  //FIXME: - This needs serveral more cases.
-  return true;
+function shouldFetchBooks(isFetching) {
+  return !isFetching;
 }
 
 export function fetchBooksIfNeeded(query) {
   return (dispatch, getState) => {
     if (shouldFetchBooks()) {
-      dispatch(requestBooks(query));
+      dispatch(requestSearch(query));
       return dispatch(fetchBooks(query));
     }
   }
