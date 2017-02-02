@@ -16,7 +16,7 @@ export function getBooks(query) {
   return goodreadsJSON(fullUrl).then(rawData => {
     const searchResults = rawData['GoodreadsResponse']['search'][0]['results'][0]['work'];
     const convertedResults = searchResults.reduce((res, book) => {
-      let id = book['best_book'][0]['id'][0]['_'];
+      let id = parseInt(book['best_book'][0]['id'][0]['_']);
       res[id] = {
         id: book['best_book'][0]['id'][0]['_'],
         year: book['original_publication_year'][0]['_'],
@@ -54,7 +54,7 @@ function shouldFetchBooks(searches, activeSearch, isFetching) {
 
 export function fetchBooksIfNeeded(query) {
   return (dispatch, getState) => {
-    if (shouldFetchBooks(searches, activeSearch, isFetching)) {
+    if (shouldFetchBooks()) {
       dispatch(requestBooks(query));
       return dispatch(fetchBooks(query));
     }

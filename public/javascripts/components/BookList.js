@@ -16,25 +16,18 @@ export default class BookList extends Component {
   }
 
   handleRender() {
-    const { isFetching } = this.props;
-    if (isFetching) {
-      return (
-        <div id='book-list-container'>
-          Currently Fetching
-        </div>
-      );
-    }
+    //FIXME: Add forFetching Logic
     return this.renderPage();
   }
 
   renderPage() {
-    if (typeof this.props.activeSearch.books === 'undefined') {
+    if (typeof this.props.currentSearches === 'undefined') {
       return <p>No Books to see here</p>
     }
 
     return (
       <div id='book-list-container' className='flex flex-wrap'>
-        {this.props.activeSearch.books.map((book) =>
+        {this.props.currentSearches.map((book) =>
           <Book
             key={book.id}
             id={book.id}

@@ -32,9 +32,18 @@ describe('BookUtils', () => {
   });
 
   describe('getBooks with LibraryReducer', () => {
+    const answer1 = { id: '375802',
+      year: '1985',
+      rating: '4.29',
+      author: 'Orson Scott Card',
+      image_url: '\r\nhttps://images.gr-assets.com/books/1408303130m/375802.jpg\r\n',
+      title: 'Ender\'s Game (Ender\'s Saga, #1)',
+      query: 'Enders Game' 
+    };
     it('should return readable data to the reducer', () => {
       getBooks('Enders Game').then((data) => {
-        expect(library(undefined, receiveBooks(data, 'Enders Game'))['375802'])
+        console.log(library(undefined, receiveBooks(data, 'Enders Game')));
+        expect(library(undefined, receiveBooks(data, 'Enders Game'))['books']['375802'])
           .deep.equal(answer1);
       });
     })
