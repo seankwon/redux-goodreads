@@ -25,7 +25,7 @@ const answer1 = {
   year: '1985',
   rating: '4.29',
   author: 'Orson Scott Card',
-  image_url: '\nhttps://images.gr-assets.com/books/1408303130m/375802.jpg\n',
+  image_url: '\r\nhttps://images.gr-assets.com/books/1408303130m/375802.jpg\r\n',
   title: 'Ender\'s Game (Ender\'s Saga, #1)',
   query: 'Enders Game'
 };
@@ -49,6 +49,16 @@ describe('BookUtils', () => {
       });
     });
 
+    it('should return readable data to the reducer', () => {
+      return getBooks('Enders Game').then((data) => {
+        expect(library(undefined, receiveBooks(data, 'Enders Game'))['books']['375802'])
+          .deep.equal(answer1);
+      });
+    });
+
+  });
+
+  describe('fetchBooksIfNeeded', () => {
     it('creates RECEIVE_BOOKS when fetching books', () => {
       const query = 'Enders Game'
       const expectedActions = [
@@ -71,21 +81,12 @@ describe('BookUtils', () => {
       const query = 'BAD_INPUT';
       const expectedActions = [
         { type: REQUEST_SEARCH, query: query },
-        { type: THROW_SEARCH_ERROR, query: query}
+        { type: THROW_SEARCH_ERROR, query: query }
       ];
       const store = mockStore({library: {}, navigator: {}});
       return store.dispatch(fetchBooksIfNeeded(query))
         .then(() => {
           expect(store.getActions()).to.deep.equals(expectedActions);
-      });
-    });
-  });
-
-  describe('getBooks with LibraryReducer', () => {
-    it('should return readable data to the reducer', () => {
-      return getBooks('Enders Game').then((data) => {
-        expect(library(undefined, receiveBooks(data, 'Enders Game'))['books']['375802'])
-          .deep.equal(answer1);
       });
     });
   });
