@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 //TODO: convert to es6 syntax
 var fetchMock = require('fetch-mock');
-import { requestSearch, receiveSearch } from '../public/javascripts/actions/NavigatorActions';
-import navigator from '../public/javascripts/reducers/NavigatorReducer';
+import { requestSearch, receiveSearch } from '../../public/javascripts/actions/NavigatorActions';
+import navigator from '../../public/javascripts/reducers/NavigatorReducer';
 
 describe('navigator reducer', () => {
   it('should return an empty state object if the action is undefined', () => {

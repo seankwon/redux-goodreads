@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { addBook, deleteBook } from '../public/javascripts/actions/CartActions';
-import cart from '../public/javascripts/reducers/CartReducer';
+import { addBook, deleteBook } from '../../public/javascripts/actions/CartActions';
+import cart from '../../public/javascripts/reducers/CartReducer';
 
 describe('Cart Reducer', () => {
   let book = {

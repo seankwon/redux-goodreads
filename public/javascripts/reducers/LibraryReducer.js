@@ -1,4 +1,4 @@
-import { REQUEST_BOOKS, RECEIVE_BOOKS} from '../actions/LibraryActions';
+import { RECEIVE_BOOKS } from '../actions/LibraryActions';
 import { cachedSearch } from '../utils/BookUtils';
 import { notEmpty } from '../utils/ArrayUtils';
 
