@@ -4,18 +4,23 @@ import { addBookToCart } from '../utils/CartUtils';
 import { fetchBooksIfNeeded } from '../utils/BookUtils';
 import BookList from '../components/BookList';
 
-const mapStateToProps = (state) => {
+const getCurrentSearches = (state) => {
+  const { currentQuery } = state.navigator;
   const { books, searches } = state.library;
+  let idsOfBooksInCurrentQuery = searches[currentQuery];
+
+  if (typeof idsOfBooksInCurrentQuery === 'undefined') {
+    return [];
+  }
+  return idsOfBooksInCurrentQuery.map((id) => books[id]);
+}
+
+const mapStateToProps = (state) => {
   const { currentQuery, isFetching } = state.navigator;
-  const currentSearchIdxs = searches[currentQuery];
-  //FIXME: THIS IS GROSS.
-  const currentSearches = (typeof currentSearchIdxs === 'undefined') ? 
-                            [] : 
-                            currentSearchIdxs.map((id) => books[id]);
   
   return {
-    isFetching,
-    currentSearches
+    currentSearches: getCurrentSearches(state),
+    isFetching
   }
 }
 
