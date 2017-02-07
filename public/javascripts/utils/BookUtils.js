@@ -43,6 +43,7 @@ export function cachedSearch(query, searches) {
 function fetchBooks(query) {
   //FIXME: add functions for efficient caching
   return (dispatch, getState) => {
+    dispatch(requestSearch(query));
     return getBooks(query)
       .then(data => {
         dispatch(receiveBooks(data, query))
@@ -52,15 +53,24 @@ function fetchBooks(query) {
   }
 }
 
-function shouldFetchBooks(isFetching) {
-  return !isFetching;
+function shouldFetchBooks(state, query) {
+  const { isFetching } = state.navigator;
+  const searches = state.library.searches || {};
+  if (query in searches) {
+    return false;
+  } else if (isFetching) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 export function fetchBooksIfNeeded(query) {
   return (dispatch, getState) => {
-    if (shouldFetchBooks(getState().navigator.isFetching)) {
-      dispatch(requestSearch(query));
+    if (shouldFetchBooks(getState(), query)) {
       return dispatch(fetchBooks(query));
+    } else {
+      return Promise.resolve(dispatch(receiveSearch(query)));
     }
   }
 }

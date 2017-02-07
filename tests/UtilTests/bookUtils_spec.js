@@ -75,6 +75,25 @@ describe('BookUtils', () => {
       });
     });
 
+
+    it('should not call another request if search is cached', () => {
+      const query = 'Enders Game';
+      const store = mockStore({
+        library: { 
+          books: ENDERS_GAME_RESPONSE,
+          searches: { 'Enders Game': Object.keys(ENDERS_GAME_RESPONSE).map(key => parseInt(key)) }
+        },
+        navigator: { currentQuery: 'Enders Game', isFetching: false }
+      });
+      const expectedActions = [
+        { type: RECEIVE_SEARCH, query: query }
+      ];
+      return store.dispatch(fetchBooksIfNeeded(query))
+        .then(() => {
+          expect(store.getActions()).to.deep.equals(expectedActions);
+        });
+    });
+
     it('should throw an error when the request fails', () => {
       fetchMock.restore();
       fetchMock.get('*', Error);
