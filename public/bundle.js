@@ -6546,7 +6546,6 @@ function cachedSearch(query, searches) {
 }
 
 function fetchBooks(query) {
-  //FIXME: add functions for efficient caching
   return function (dispatch, getState) {
     dispatch((0, _NavigatorActions.requestSearch)(query));
     return getBooks(query).then(function (data) {

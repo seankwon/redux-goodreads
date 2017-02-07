@@ -41,8 +41,7 @@ export function cachedSearch(query, searches) {
 }
 
 function fetchBooks(query) {
-  //FIXME: add functions for efficient caching
-  return (dispatch, getState) => {
+   return (dispatch, getState) => {
     dispatch(requestSearch(query));
     return getBooks(query)
       .then(data => {
