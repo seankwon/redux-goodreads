@@ -20,8 +20,8 @@ export default function library(
       searches[query] = Object.keys(action.books).map(key => parseInt(key));
       
       return Object.assign({}, state, {
-        books: books,
-        searches: searches
+        books: Object.assign({}, state.books, books),
+        searches: Object.assign({}, state.searches, searches)
       });
     default:
       return state;
