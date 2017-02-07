@@ -21,7 +21,7 @@ export default function library(
       
       return Object.assign({}, state, {
         books: Object.assign({}, state.books, books),
-        searches: Object.assign({}, state.searches)
+        searches: Object.assign({}, state.searches, searches)
       });
     default:
       return state;

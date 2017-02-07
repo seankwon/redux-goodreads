@@ -27963,7 +27963,7 @@ function library() {
 
       return (0, _assign2.default)({}, state, {
         books: (0, _assign2.default)({}, state.books, books),
-        searches: (0, _assign2.default)({}, state.searches)
+        searches: (0, _assign2.default)({}, state.searches, searches)
       });
     default:
       return state;
