@@ -17539,6 +17539,10 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _BookInfo = __webpack_require__(1045);
+
+var _BookInfo2 = _interopRequireDefault(_BookInfo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Book = function (_Component) {
@@ -17557,37 +17561,14 @@ var Book = function (_Component) {
           image_url = _props.image_url,
           title = _props.title,
           author = _props.author,
-          addBookToCart = _props.addBookToCart;
+          addBookToCart = _props.addBookToCart,
+          deleteBookFromCart = _props.deleteBookFromCart;
 
 
       return _react2.default.createElement(
         'div',
         { key: id, className: 'image-wrapper col-2 mr2' },
-        _react2.default.createElement(
-          'div',
-          { className: 'info-container' },
-          _react2.default.createElement(
-            'div',
-            { className: 'btn-container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'btn-wrapper' },
-              _react2.default.createElement(
-                'button',
-                { onClick: function onClick() {
-                    return addBookToCart(id);
-                  },
-                  className: 'btn not-rounded' },
-                'Add to Cart'
-              ),
-              _react2.default.createElement(
-                'button',
-                { className: 'btn not-rounded' },
-                'Info'
-              )
-            )
-          )
-        ),
+        _react2.default.createElement(_BookInfo2.default, { id: id, addBookToCart: addBookToCart }),
         _react2.default.createElement('img', { src: image_url }),
         _react2.default.createElement(
           'h5',
@@ -66213,6 +66194,112 @@ var root = _react2.default.createElement(
 );
 
 _reactDom2.default.render(root, document.getElementById('root'));
+
+/***/ }),
+/* 1045 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = __webpack_require__(68);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(40);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(69);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(49);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(41);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var BookInfo = function (_Component) {
+  (0, _inherits3.default)(BookInfo, _Component);
+
+  function BookInfo(props) {
+    (0, _classCallCheck3.default)(this, BookInfo);
+    return (0, _possibleConstructorReturn3.default)(this, (BookInfo.__proto__ || (0, _getPrototypeOf2.default)(BookInfo)).call(this, props));
+  }
+
+  (0, _createClass3.default)(BookInfo, [{
+    key: 'renderAddButton',
+    value: function renderAddButton() {
+      var _this2 = this;
+
+      if (typeof this.props.addBookToCart !== 'undefined') {
+        return _react2.default.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this2.props.addBookToCart(_this2.props.id);
+            },
+            className: 'btn not-rounded' },
+          'Add to Cart'
+        );
+      }
+    }
+  }, {
+    key: 'renderDeleteButton',
+    value: function renderDeleteButton() {
+      var _this3 = this;
+
+      if (typeof deleteBookFromCart !== 'undefined') {
+        return _react2.default.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this3.props.deleteBookFromCart(_this3.props.id);
+            },
+            className: 'btn not-rounded' },
+          'Delete'
+        );
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'info-container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'btn-container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'btn-wrapper' },
+            this.renderAddButton(),
+            this.renderDeleteButton(),
+            _react2.default.createElement(
+              'button',
+              { className: 'btn not-rounded' },
+              'Info'
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return BookInfo;
+}(_react.Component);
+
+exports.default = BookInfo;
 
 /***/ })
 /******/ ]);
