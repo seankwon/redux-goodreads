@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class Book extends Component {
   constructor(props) {
@@ -13,10 +13,11 @@ export default class Book extends Component {
         <div className='info-container'>
           <div className='btn-container'>
             <div className='btn-wrapper'>
-            <button onClick={() => addBookToCart(id)}
-              className='btn not-rounded'>
-            Add to Cart
-            </button>
+
+              <button onClick={() => addBookToCart(id)}
+                className='btn not-rounded'>
+              Add to Cart
+              </button>
               <button className='btn not-rounded'>Info</button>
             </div>
           </div>
@@ -27,4 +28,11 @@ export default class Book extends Component {
       </div>
     );
   }
+}
+
+Book.propTypes = {
+  id: PropTypes.string.isRequired,
+  image_url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
 }

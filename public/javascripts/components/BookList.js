@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { dispatch } from 'redux';
-import { fetchBooksIfNeeded } from '../utils/BookUtils';
 import Book from './Book';
 
 export default class BookList extends Component {
@@ -47,3 +46,8 @@ export default class BookList extends Component {
     return this.handleRender();
   }
 }
+
+BookList.propTypes = {
+  currentSearches: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired
+};
