@@ -6510,6 +6510,10 @@ var _promise = __webpack_require__(440);
 
 var _promise2 = _interopRequireDefault(_promise);
 
+var _keys = __webpack_require__(91);
+
+var _keys2 = _interopRequireDefault(_keys);
+
 exports.getBooks = getBooks;
 exports.cachedSearch = cachedSearch;
 exports.fetchBooksIfNeeded = fetchBooksIfNeeded;
@@ -6567,10 +6571,19 @@ function cachedSearch(query, searches) {
 }
 
 function fetchBooks(query) {
+  var convertData = function convertData(data, query) {
+    var searches = {};
+    searches[query] = (0, _keys2.default)(data).map(function (key) {
+      return parseInt(key);
+    });
+    return { searches: searches, books: data };
+  };
+
   return function (dispatch, getState) {
     dispatch((0, _NavigatorActions.requestSearch)(query));
     return getBooks(query).then(function (data) {
-      dispatch((0, _LibraryActions.receiveBooks)(data, query));
+      var convertedData = convertData(data, query);
+      dispatch((0, _LibraryActions.receiveBooks)(convertedData, query));
       dispatch((0, _NavigatorActions.receiveSearch)(query));
     }).catch(function (ex) {
       return dispatch((0, _NavigatorActions.throwSearchError)(query));
@@ -17461,10 +17474,10 @@ var RECEIVE_BOOKS = exports.RECEIVE_BOOKS = 'RECEIVE_BOOKS';
 
 //TODO: [] - need action to grab info for individual pages
 
-var receiveBooks = exports.receiveBooks = function receiveBooks(books, query) {
+var receiveBooks = exports.receiveBooks = function receiveBooks(data, query) {
   return {
     type: RECEIVE_BOOKS,
-    books: books,
+    data: data,
     query: query
   };
 };
@@ -28085,10 +28098,6 @@ var _assign = __webpack_require__(167);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _keys = __webpack_require__(91);
-
-var _keys2 = _interopRequireDefault(_keys);
-
 exports.default = library;
 
 var _LibraryActions = __webpack_require__(269);
@@ -28113,17 +28122,11 @@ function library() {
 
   switch (action.type) {
     case _LibraryActions.RECEIVE_BOOKS:
-      var books = action.books,
-          query = action.query;
-
-      var searches = {};
-      searches[query] = (0, _keys2.default)(action.books).map(function (key) {
-        return parseInt(key);
-      });
+      var data = action.data;
 
       return (0, _assign2.default)({}, state, {
-        books: (0, _assign2.default)({}, state.books, books),
-        searches: (0, _assign2.default)({}, state.searches, searches)
+        books: (0, _assign2.default)({}, state.books, data.books),
+        searches: (0, _assign2.default)({}, state.searches, data.searches)
       });
     default:
       return state;

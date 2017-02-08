@@ -15,13 +15,10 @@ export default function library(
 
   switch (action.type) {
     case RECEIVE_BOOKS:
-      const { books, query } = action;
-      let searches = {};
-      searches[query] = Object.keys(action.books).map(key => parseInt(key));
-      
+      const { data } = action;
       return Object.assign({}, state, {
-        books: Object.assign({}, state.books, books),
-        searches: Object.assign({}, state.searches, searches)
+        books: Object.assign({}, state.books, data.books),
+        searches: Object.assign({}, state.searches, data.searches)
       });
     default:
       return state;

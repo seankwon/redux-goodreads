@@ -8,12 +8,14 @@ import {
 } from '../../public/javascripts/actions/LibraryActions';
 //TODO: import all your constants
 describe('library reducer', () => {
-    const defaultState = {
-        books: {},
-        searches: {}
-    };
+  const defaultState = {
+    books: {},
+    searches: {}
+  };
 
-    const books = {1: {
+  const books = { 
+    books: {
+      1: {
         id: '1',
         year: '1985',
         rating: '5435',
@@ -22,8 +24,8 @@ describe('library reducer', () => {
         query: 'test',
         title: 'Test',
         author_id: '3'
-    }, 
-    2: {
+      }, 
+      2: {
         id: '2',
         year: '1985',
         rating: '5435',
@@ -32,9 +34,14 @@ describe('library reducer', () => {
         query: 'test',
         title: 'Test2',
         author_id: '3'
-    }};
+      }
+    },
+    searches: {'test': [1, 2]}
+  };
 
-    const books2 = {3: {
+  const books2 = {
+    books: {
+      3: {
         id: '3',
         year: '1985',
         rating: '5435',
@@ -43,34 +50,35 @@ describe('library reducer', () => {
         query: 'test',
         title: 'Test2',
         author_id: '3'
+      }
+    },
+    searches: {'test2': [3]}
+  }
 
-        }
-    }
+  const requestState = {
+      books: {},
+      searches: {}
+  };
 
-    const requestState = {
-        books: {},
-        searches: {}
-    };
+  const receiveState = {
+    books: {1: books['books'][1], 2: books['books'][2]},
+    searches: {'test': [1, 2]}
+  }
 
-    const receiveState = {
-      books: {1: books[1], 2: books[2]},
-      searches: {'test': [1, 2]}
-    }
+  const receiveState2 = {
+    books: {1: books['books'][1], 2: books['books'][2], 3: books2['books'][3]},
+    searches: {'test': [1, 2], 'test2': [3]}
+  }
 
-    const receiveState2 = {
-      books: {1: books[1], 2: books[2], 3: books2[3]},
-      searches: {'test': [1, 2], 'test2': [3]}
-    }
+  it('initializes state', () => {
+    expect(library(undefined)).to.deep.equal(defaultState);
+  });
 
-    it('initializes state', () => {
-      expect(library(undefined)).to.deep.equal(defaultState);
-    });
+  it('should add a list of book objects and a search object', () => {
+    expect(library(requestState, receiveBooks(books, 'test'))).to.deep.equal(receiveState);
+  });
 
-    it('should add a list of book objects and a search object', () => {
-      expect(library(requestState, receiveBooks(books, 'test'))).to.deep.equal(receiveState);
-    });
-
-    it('should add another key to the books object', () => {
-      expect(library(receiveState, receiveBooks(books2, 'test2'))).to.deep.equal(receiveState2);
-    })
+  it('should add another key to the books object', () => {
+    expect(library(receiveState, receiveBooks(books2, 'test2'))).to.deep.equal(receiveState2);
+  })
 });

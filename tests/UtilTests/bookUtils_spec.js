@@ -48,14 +48,6 @@ describe('BookUtils', () => {
         expect(data['375802']).to.deep.equal(answer1);
       });
     });
-
-    it('should return readable data to the reducer', () => {
-      return getBooks('Enders Game').then((data) => {
-        expect(library(undefined, receiveBooks(data, 'Enders Game'))['books']['375802'])
-          .deep.equal(answer1);
-      });
-    });
-
   });
 
   describe('fetchBooksIfNeeded', () => {
@@ -63,7 +55,7 @@ describe('BookUtils', () => {
       const query = 'Enders Game'
       const expectedActions = [
         { type: REQUEST_SEARCH, query: query },
-        { type: RECEIVE_BOOKS, query: query, books: ENDERS_GAME_RESPONSE },
+        { type: RECEIVE_BOOKS, query: query, data: ENDERS_GAME_RESPONSE },
         { type: RECEIVE_SEARCH, query: query }
       ];
 
@@ -80,8 +72,8 @@ describe('BookUtils', () => {
       const query = 'Enders Game';
       const store = mockStore({
         library: { 
-          books: ENDERS_GAME_RESPONSE,
-          searches: { 'Enders Game': Object.keys(ENDERS_GAME_RESPONSE).map(key => parseInt(key)) }
+          books: ENDERS_GAME_RESPONSE['books'],
+          searches: { 'Enders Game': Object.keys(ENDERS_GAME_RESPONSE['searches']).map(key => parseInt(key)) }
         },
         navigator: { currentQuery: 'Enders Game', isFetching: false }
       });

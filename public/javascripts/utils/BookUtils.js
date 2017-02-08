@@ -41,11 +41,18 @@ export function cachedSearch(query, searches) {
 }
 
 function fetchBooks(query) {
-   return (dispatch, getState) => {
+  let convertData = (data, query) => {
+    let searches = {};
+    searches[query] = Object.keys(data).map(key => parseInt(key));
+    return {searches: searches, books: data};
+  }
+
+  return (dispatch, getState) => {
     dispatch(requestSearch(query));
     return getBooks(query)
       .then(data => {
-        dispatch(receiveBooks(data, query))
+        const convertedData = convertData(data, query)
+        dispatch(receiveBooks(convertedData, query));
         dispatch(receiveSearch(query));
       })
       .catch(ex => dispatch(throwSearchError(query)));

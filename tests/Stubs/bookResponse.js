@@ -1,4 +1,4 @@
-export const ENDERS_GAME_RESPONSE = { '4326':
+export const ENDERS_GAME_RESPONSE = { books: {'4326':
    { id: '4326',
      year: '2006',
      rating: '3.94',
@@ -157,4 +157,8 @@ export const ENDERS_GAME_RESPONSE = { '4326':
      author: 'Raymond Khoury',
      image_url: '\r\nhttps://images.gr-assets.com/books/1451140269m/25809834.jpg\r\n',
      title: 'The End Game (Templar, #5)',
-     query: 'Enders Game' } }
+     query: 'Enders Game' } 
+    
+  },
+  searches: {'Enders Game': [4326, 9735, 44687, 375802, 6393082, 7025086, 7734468, 8782597, 10073669, 12082688, 13106605, 18596481, 19228388, 20829088, 21545825, 22874150, 23798942, 24611928, 25249440, 25809834]}
+ }
