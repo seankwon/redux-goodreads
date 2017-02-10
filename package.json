@@ -9,6 +9,7 @@
     "dev": "concurrently --kill-others \"npm run webpack-watch\" \"node ./bin/www\"",
     "test": "$(npm bin)/mocha --watch --require ./tests/test.setup.js tests/**/*spec.js",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
+    "lint": "./node_modules/.bin/eslint public/javascripts/**",
     "heroku-postbuild": "NODE_ENV=production webpack --config ./webpack.config.prod.js --progress --colors"
   },
   "dependencies": {
@@ -54,6 +55,10 @@
   "devDependencies": {
     "concurrently": "^3.1.0",
     "eslint": "^3.14.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-chai-friendly": "^0.2.0",
+    "eslint-plugin-promise": "^3.4.1",
+    "eslint-plugin-standard": "^2.0.1",
     "nock": "^9.0.2",
     "redux-devtools": "^3.3.2",
     "redux-devtools-dock-monitor": "^1.1.1",
