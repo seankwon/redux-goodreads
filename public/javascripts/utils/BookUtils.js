@@ -5,6 +5,7 @@ import { requestSearch, receiveSearch, throwSearchError } from '../actions/Navig
 import { goodreadsJSON } from './FetchUtils';
 import { isEmpty, notEmpty } from './ArrayUtils';
 export const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q=';
+export let BOOK_REVIEWS_URL = '/goodreads?page=https://www.goodreads.com/book/show/';
 
 export function getBooks(query) {
   if (typeof query === 'undefined') {
@@ -34,9 +35,41 @@ export function getBooks(query) {
   });
 }
 
-export function cachedSearch(query, searches) {
-  return searches.filter((search) => {
-    return search.query === query && notEmpty(search.books);
+export function getBook(id) {
+  if (typeof id === 'undefined' || id === null) {
+    return Error('Bad Argument');
+  }
+  const fullUrl = `${BOOK_REVIEWS_URL}${id}` + '.xml?key=GFPTphT7xVUhrarWQztUtg';
+
+  return goodreadsJSON(fullUrl).then(rawData => {
+    const bookRes = rawData['GoodreadsResponse']['book'];
+    const id = bookRes[0]['id'][0];
+    const title = bookRes[0]['title'][0];
+    const isbn = bookRes[0]['isbn'][0];
+    const imageUrl = bookRes[0]['image_url'][0];
+    const description = bookRes[0]['description'][0];
+    const numPages = bookRes[0]['num_pages'][0];
+    const author = bookRes[0]['authors'][0]['author'][0]['name'][0];
+    const popularShelves = bookRes[0]['popular_shelves'][0]['shelf'].map(shelf => { 
+      return shelf['$'];
+    });
+    const buyLinks = bookRes[0]['buy_links'][0]['buy_link'].map(buyLink => {
+      return {id: buyLink['id'][0], name: buyLink['name'][0], link: buyLink['link'][0]};
+    });
+    const similarBooks = bookRes[0]['similar_books'];
+
+    return {
+      id: id,
+      title: title,
+      isbn: isbn,
+      imageUrl: imageUrl,
+      description: description,
+      numPages: numPages,
+      author: author,
+      popularShelves: popularShelves,
+      buyLinks: buyLinks,
+      similarBooks: similarBooks
+    }
   });
 }
 

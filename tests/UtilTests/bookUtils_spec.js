@@ -6,7 +6,6 @@ import nock from 'nock';
 import fetchMock from 'fetch-mock';
 //Required Modules
 
-import { getBooks, fetchBooksIfNeeded, BOOK_SEARCH_URL } from '../../public/javascripts/utils/BookUtils';
 import library from '../../public/javascripts/reducers/LibraryReducer';
 import { ENDERS_GAME_RESPONSE	} from '../Stubs/bookResponse.js';
 import {
@@ -18,6 +17,12 @@ import {
     receiveBooks,
     RECEIVE_BOOKS,
 } from '../../public/javascripts/actions/LibraryActions';
+import {
+  getBook,
+  getBooks,
+  fetchBooksIfNeeded,
+  BOOK_SEARCH_URL
+} from '../../public/javascripts/utils/BookUtils';
 //Functions that are being tested
 
 const answer1 = {
@@ -47,6 +52,23 @@ describe('BookUtils', () => {
       return getBooks('Enders Game').then((data) => {
         expect(data['375802']).to.deep.equal(answer1);
       });
+    });
+
+    it('should return readable data to the reducer', () => {
+      return getBooks('Enders Game').then((data) => {
+        expect(library(undefined, receiveBooks(data, 'Enders Game'))['books']['375802'])
+          .deep.equal(answer1);
+      });
+    });
+  });
+
+  describe('getBook', () => {
+    it('should throw error if given invalid argument', () => {
+      expect(getBook('bad')).to.throw(Error)
+    });
+
+    it('should return a dataset of books', () => {
+      getBook(11741).then(data => console.log(JSON.stringify(data)));
     });
   });
 
