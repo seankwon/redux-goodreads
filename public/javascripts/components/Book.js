@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import BookInfo from './BookInfo';
 
 export default class Book extends Component {
   constructor(props) {
@@ -6,25 +7,29 @@ export default class Book extends Component {
   }
 
   render() {
-    const {id, image_url, title, author, addBookToCart} = this.props;
+    const {
+      id,
+      image_url, 
+      title, 
+      author, 
+      addBookToCart, 
+      deleteBookFromCart
+    } = this.props;
 
     return (
       <div key={id} className="image-wrapper col-2 mr2">
-        <div className='info-container'>
-          <div className='btn-container'>
-            <div className='btn-wrapper'>
-            <button onClick={() => addBookToCart(id)}
-              className='btn not-rounded'>
-            Add to Cart
-            </button>
-              <button className='btn not-rounded'>Info</button>
-            </div>
-          </div>
-        </div>
+        <BookInfo id={id} addBookToCart={addBookToCart} />
         <img src={image_url} />
         <h5>{title}</h5>
         <p>{author}</p>
       </div>
     );
   }
+}
+
+Book.propTypes = {
+  id: PropTypes.string.isRequired,
+  image_url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
 }

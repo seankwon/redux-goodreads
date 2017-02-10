@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { dispatch } from 'redux';
 import { fetchBooksIfNeeded } from '../utils/BookUtils';
 
@@ -10,6 +10,7 @@ export default class Nav extends Component {
     this.onHandleEnter = this.onHandleEnter.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
   }
+
   onHandleEnter(e) {
     if (e.charCode === 13 && this.state.value.length > 0) {
       this.props.onSearch(this.state.value);
@@ -41,4 +42,8 @@ export default class Nav extends Component {
       </nav>
     );
   }
+}
+
+Nav.propTypes = {
+  onSearch: PropTypes.func.isRequired
 }

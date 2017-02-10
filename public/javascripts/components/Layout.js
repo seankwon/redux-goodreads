@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { fetchBooksIfNeeded } from '../utils/BookUtils';
 import VisibleCart from '../containers/VisibleCart';
 import Nav from './Nav';
@@ -17,4 +17,8 @@ export default class Layout extends Component {
       </div>
     );
   }
+}
+
+Layout.propTypes = {
+  onSearch: PropTypes.func.isRequired
 }
