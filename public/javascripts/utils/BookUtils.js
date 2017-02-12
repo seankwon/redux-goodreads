@@ -137,7 +137,7 @@ export function fetchBookInfo (id) {
   return (dispatch, getState) => {
     dispatch(requestInfo(id))
     return getBook(id).then(data => {
-      dispatch(receiveDetailedBook(id, data))
+      dispatch(receiveDetailedBook(data, id))
       return dispatch(receiveInfo(id))
     })
     .catch(error => {
@@ -148,5 +148,11 @@ export function fetchBookInfo (id) {
 }
 
 export function fetchBookInfoIfNeeded (id) {
-  return undefined
+  return (dispatch, getState) => {
+    const { isFetching } = getState().navigator
+    if (shouldFetchBook(id, isFetching, getState())) {
+      return dispatch(fetchBookInfo(id))
+    }
+    return Promise.resolve(receiveInfo(id))
+  }
 }

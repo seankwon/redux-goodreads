@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 
 export default class BookInfo extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   renderAddButton() {
@@ -29,13 +30,14 @@ export default class BookInfo extends Component {
   }
 
   render() {
+    const { id } = this.props
     return (
       <div className='info-container'>
         <div className='btn-container'>
           <div className='btn-wrapper'>
             { this.renderAddButton() }
             { this.renderDeleteButton() }
-            <button className='btn not-rounded'>Info</button>
+            <Link to={`/app/book/${id}`}><button className='btn not-rounded'>Info</button></Link>
           </div>
         </div>
       </div>
