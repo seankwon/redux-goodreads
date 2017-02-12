@@ -229,7 +229,7 @@
                 ],
                 "image_url": [
                   {
-                    "_": "\nhttps://images.gr-assets.com/authors/1256021025p5/7491.jpg\n",
+                    "_": "https://images.gr-assets.com/authors/1256021025p5/7491.jpg",
                     "$": {
                       "nophoto": "false"
                     }
@@ -237,7 +237,7 @@
                 ],
                 "small_image_url": [
                   {
-                    "_": "\nhttps://images.gr-assets.com/authors/1256021025p2/7491.jpg\n",
+                    "_": "https://images.gr-assets.com/authors/1256021025p2/7491.jpg",
                     "$": {
                       "nophoto": "false"
                     }
@@ -260,7 +260,7 @@
           }
         ],
         "reviews_widget": [
-          "\n      \n        <style>\n  #goodreads-widget {\n    font-family: georgia, serif;\n    padding: 18px 0;\n    width:565px;\n  }\n  #goodreads-widget h1 {\n    font-weight:normal;\n    font-size: 16px;\n    border-bottom: 1px solid #BBB596;\n    margin-bottom: 0;\n  }\n  #goodreads-widget a {\n    text-decoration: none;\n    color:#660;\n  }\n  iframe{\n    background-color: #fff;\n  }\n  #goodreads-widget a:hover { text-decoration: underline; }\n  #goodreads-widget a:active {\n    color:#660;\n  }\n  #gr_footer {\n    width: 100%;\n    border-top: 1px solid #BBB596;\n    text-align: right;\n  }\n  #goodreads-widget .gr_branding{\n    color: #382110;\n    font-size: 11px;\n    text-decoration: none;\n    font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  }\n</style>\n<div id=\"goodreads-widget\">\n  <div id=\"gr_header\"><h1><a href=\"https://www.goodreads.com/book/show/11741.Housekeeping\">Housekeeping Reviews</a></h1></div>\n  <iframe id=\"the_iframe\" src=\"https://www.goodreads.com/api/reviews_widget_iframe?did=DEVELOPER_ID&amp;format=html&amp;isbn=0312424094&amp;links=660&amp;min_rating=&amp;review_back=fff&amp;stars=000&amp;text=000\" width=\"565\" height=\"400\" frameborder=\"0\"></iframe>\n  <div id=\"gr_footer\">\n    <a class=\"gr_branding\" target=\"_blank\" href=\"https://www.goodreads.com/book/show/11741.Housekeeping?utm_medium=api&amp;utm_source=reviews_widget\">Reviews from Goodreads.com</a>\n  </div>\n</div>\n\n      \n    "
+          "              <style>  #goodreads-widget {    font-family: georgia, serif;    padding: 18px 0;    width:565px;  }  #goodreads-widget h1 {    font-weight:normal;    font-size: 16px;    border-bottom: 1px solid #BBB596;    margin-bottom: 0;  }  #goodreads-widget a {    text-decoration: none;    color:#660;  }  iframe{    background-color: #fff;  }  #goodreads-widget a:hover { text-decoration: underline; }  #goodreads-widget a:active {    color:#660;  }  #gr_footer {    width: 100%;    border-top: 1px solid #BBB596;    text-align: right;  }  #goodreads-widget .gr_branding{    color: #382110;    font-size: 11px;    text-decoration: none;    font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;  }</style><div id=\"goodreads-widget\">  <div id=\"gr_header\"><h1><a href=\"https://www.goodreads.com/book/show/11741.Housekeeping\">Housekeeping Reviews</a></h1></div>  <iframe id=\"the_iframe\" src=\"https://www.goodreads.com/api/reviews_widget_iframe?did=DEVELOPER_ID&amp;format=html&amp;isbn=0312424094&amp;links=660&amp;min_rating=&amp;review_back=fff&amp;stars=000&amp;text=000\" width=\"565\" height=\"400\" frameborder=\"0\"></iframe>  <div id=\"gr_footer\">    <a class=\"gr_branding\" target=\"_blank\" href=\"https://www.goodreads.com/book/show/11741.Housekeeping?utm_medium=api&amp;utm_source=reviews_widget\">Reviews from Goodreads.com</a>  </div></div>          "
         ],
         "popular_shelves": [
           {
@@ -1035,7 +1035,7 @@
           }
         ],
         "series_works": [
-          "\n    \n  "
+          "      "
         ],
         "similar_books": [
           {

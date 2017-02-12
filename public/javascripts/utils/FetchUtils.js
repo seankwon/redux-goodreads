@@ -1,6 +1,5 @@
 import convert from 'xml-to-json-promise'
 
-
 export function goodreadsJSON (url) {
   function fetchGoodreadsXml (url) {
     return fetch(url)
@@ -9,8 +8,8 @@ export function goodreadsJSON (url) {
   }
   // TODO perhaps Promise.resolve(convert...);
   return fetchGoodreadsXml(url)
-    .then(data => convert.xmlDataToJSON(data)
-      .then(json => {
-        return json
-      }))
+    .then(data => convert.xmlDataToJSON(data, { 
+      tagNameProcessors: [(name) => {return name.replace('\n', '')}] 
+    })
+    .then(json => { return json }))
 }

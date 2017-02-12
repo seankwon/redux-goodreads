@@ -1,5 +1,11 @@
-import { receiveBooks } from '../actions/LibraryActions'
-import { requestSearch, receiveSearch, throwSearchError } from '../actions/NavigatorActions'
+import { receiveBooks, receiveDetailedBook } from '../actions/LibraryActions'
+import {
+  requestSearch,
+  receiveSearch,
+  requestInfo,
+  receiveInfo,
+  throwSearchError,
+  throwFetchInfoError } from '../actions/NavigatorActions'
 import { goodreadsJSON } from './FetchUtils'
 export const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q='
 export let BOOK_REVIEWS_URL = '/goodreads?page=https://www.goodreads.com/book/show/'
@@ -116,16 +122,29 @@ export function getBook (id) {
 }
 
 export function shouldFetchBook (id, isFetching, state) {
-  const library = state.library || {bookPage: {}}
+  let bookAlreadyFetched = (id) => {
+    const library = state.library || {bookPage: {}}
+    return parseInt(library.bookPage['id']) === parseInt(id)
+  }
 
-  if (parseInt(library.bookPage['id']) === parseInt(id)) {
+  if (bookAlreadyFetched(id)) {
     return false
   }
   return !isFetching
 }
 
 export function fetchBookInfo (id) {
-  return undefined
+  return (dispatch, getState) => {
+    dispatch(requestInfo(id))
+    return getBook(id).then(data => {
+      dispatch(receiveDetailedBook(id, data))
+      return dispatch(receiveInfo(id))
+    })
+    .catch(error => {
+      console.log(error)
+      return dispatch(throwFetchInfoError(id))
+    })
+  }
 }
 
 export function fetchBookInfoIfNeeded (id) {

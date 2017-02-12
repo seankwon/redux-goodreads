@@ -6,19 +6,26 @@ import fetchMock from 'fetch-mock'
 // Required Modules
 
 import { ENDERS_GAME_RESPONSE	} from '../Stubs/bookResponse.js'
+import { HOUSEKEEPING_RESPONSE	} from '../Stubs/bookReviewResponse.js'
 import {
   REQUEST_SEARCH,
   RECEIVE_SEARCH,
-  THROW_SEARCH_ERROR
+  THROW_SEARCH_ERROR,
+  THROW_FETCH_INFO_ERROR,
+  REQUEST_INFO,
+  RECEIVE_INFO
 } from '../../public/javascripts/actions/NavigatorActions'
 import {
-    RECEIVE_BOOKS
+  RECEIVE_BOOKS,
+  RECEIVE_DETAILED_BOOK
 } from '../../public/javascripts/actions/LibraryActions'
 import {
   getBook,
   getBooks,
   fetchBooksIfNeeded,
-  shouldFetchBook
+  shouldFetchBook,
+  fetchBookInfo,
+  fetchBookInfoIfNeeded
 } from '../../public/javascripts/utils/BookUtils'
 // Functions that are being tested
 
@@ -27,7 +34,7 @@ const answer1 = {
   year: '1985',
   rating: '4.29',
   author: 'Orson Scott Card',
-  image_url: '\r\nhttps://images.gr-assets.com/books/1408303130m/375802.jpg\r\n',
+  image_url: 'https://images.gr-assets.com/books/1408303130m/375802.jpg',
   title: 'Ender\'s Game (Ender\'s Saga, #1)',
   query: 'Enders Game'
 }
@@ -87,8 +94,65 @@ describe('BookUtils', () => {
     })
 
     it('should return false if the bookpage maps to the id - cached', () => {
-      let state = {library: {bookPage: {id: '11741'}}}
+      let state = {library: {bookPage: {id: `${EXAMPLE_ID}`}}}
       expect(shouldFetchBook(EXAMPLE_ID, false, state)).to.equal(false)
+    })
+
+    it('should return true if there is no bookPage', () => {
+      let state = {library: {bookPage: {}}}
+      expect(shouldFetchBook(EXAMPLE_ID, false, state)).to.equal(true)
+    })
+
+    it('should return true if the id and the bookPage id are different', () => {
+      let state = {library: {bookPage: {id: '43'}}}
+      expect(shouldFetchBook(EXAMPLE_ID, false, state)).to.equal(true)
+    })
+  })
+
+  describe('fetchBookInfo', () => {
+    let store
+    let expectedActions
+    let id
+    const EXAMPLE_ID = 11741
+
+    beforeEach(() => {
+      store = mockStore({library: {}, navigator: {}})
+      expectedActions = []
+    })
+
+    afterEach(() => {
+      fetchMock.restore()
+      store.clearActions()
+    })
+
+    it('should throw catch error if there is a bad argument', () => {
+      fetchMock.restore()
+      fetchMock.get('*', Error)
+      id = '2'
+      expectedActions = [
+        { type: REQUEST_INFO, id: id },
+        { type: THROW_FETCH_INFO_ERROR, id: id }
+      ]
+      return store.dispatch(fetchBookInfo('2')).then(data => {
+        expect(store.getActions()).to.deep.equal(expectedActions)
+      })
+    })
+
+    it('should be able to dispatch receive data', () => {
+      fetchMock.restore()
+      fetchMock.get('*', readFileSync('tests/Stubs/bookReviewResponse.xml').toString())
+      id = EXAMPLE_ID
+      expectedActions = [
+        { type: REQUEST_INFO, id: id },
+        { type: RECEIVE_DETAILED_BOOK, data: HOUSEKEEPING_RESPONSE, id: id },
+        { type: RECEIVE_INFO, id: id }
+      ]
+
+      return store.dispatch(fetchBookInfo(id)).then(() => {
+        let nameTypes = store.getActions().map(action => action.type)
+        let expectedActionTypes = expectedActions.map(action => action.type)
+        expect(nameTypes).to.deep.equal(expectedActionTypes)
+      })
     })
   })
 
