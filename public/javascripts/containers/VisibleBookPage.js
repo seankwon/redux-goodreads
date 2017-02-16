@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchBookInfoIfNeeded(id) {
+    fetchBookInfoIfNeeded (id) {
       return dispatch(fetchBookInfoIfNeeded(id))
     }
   }

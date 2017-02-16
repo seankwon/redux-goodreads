@@ -1,4 +1,5 @@
 import { receiveBooks, receiveDetailedBook } from '../actions/LibraryActions'
+import { receiveVisibleBooks } from '../actions/ShelfActions'
 import {
   requestSearch,
   receiveSearch,
@@ -50,6 +51,11 @@ function fetchBooks (query) {
     return getBooks(query)
       .then(data => {
         const convertedData = convertData(data, query)
+        const booksToDisplay = convertedData.searches[query].map(id => {
+          return convertedData.books[id]
+        })
+        dispatch(receiveVisibleBooks(booksToDisplay))
+        // TODO: rename receiveBooks
         dispatch(receiveBooks(convertedData, query))
         dispatch(receiveSearch(query))
       })
