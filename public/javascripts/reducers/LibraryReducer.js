@@ -1,4 +1,4 @@
-import { RECEIVE_BOOKS, RECEIVE_DETAILED_BOOK } from '../actions/LibraryActions'
+import { STORE_BOOKS_DATA, RECEIVE_DETAILED_BOOK } from '../actions/LibraryActions'
 
 export default function library (
   state = {
@@ -14,7 +14,7 @@ export default function library (
   const { data } = action
 
   switch (action.type) {
-    case RECEIVE_BOOKS:
+    case STORE_BOOKS_DATA:
       return Object.assign({}, state, {
         books: Object.assign({}, state.books, data.books),
         searches: Object.assign({}, state.searches, data.searches)

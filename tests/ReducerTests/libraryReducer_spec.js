@@ -1,16 +1,15 @@
 import {
     expect
-} from 'chai';
+} from 'chai'
 import library from '../../public/javascripts/reducers/LibraryReducer'
 import {
     requestBooks,
-    receiveBooks,
+    storeBooksData,
     receiveDetailedBook
-} from '../../public/javascripts/actions/LibraryActions';
+} from '../../public/javascripts/actions/LibraryActions'
 
 describe('library reducer', () => {
-
-  const books = { 
+  const books = {
     books: {
       1: {
         id: '1',
@@ -21,7 +20,7 @@ describe('library reducer', () => {
         query: 'test',
         title: 'Test',
         author_id: '3'
-      }, 
+      },
       2: {
         id: '2',
         year: '1985',
@@ -34,7 +33,7 @@ describe('library reducer', () => {
       }
     },
     searches: {'test': [1, 2]}
-  };
+  }
 
   const books2 = {
     books: {
@@ -69,13 +68,13 @@ describe('library reducer', () => {
     books: {},
     searches: {},
     bookPage: {}
-  };
+  }
 
   const requestState = {
-      books: {},
-      searches: {},
-      bookPage: {}
-  };
+    books: {},
+    searches: {},
+    bookPage: {}
+  }
 
   const receiveState = {
     books: {1: books['books'][1], 2: books['books'][2]},
@@ -107,18 +106,18 @@ describe('library reducer', () => {
   }
 
   it('initializes state', () => {
-    expect(library(undefined)).to.deep.equal(defaultState);
-  });
+    expect(library(undefined)).to.deep.equal(defaultState)
+  })
 
   it('should add a list of book objects and a search object', () => {
-    expect(library(requestState, receiveBooks(books, 'test'))).to.deep.equal(receiveState);
-  });
+    expect(library(requestState, storeBooksData(books, 'test'))).to.deep.equal(receiveState)
+  })
 
   it('should add another key to the books object', () => {
-    expect(library(receiveState, receiveBooks(books2, 'test2'))).to.deep.equal(receiveState2);
+    expect(library(receiveState, storeBooksData(books2, 'test2'))).to.deep.equal(receiveState2)
   })
 
   it('should add a singular book with detailed info', () => {
-    expect(library(defaultState, receiveDetailedBook(bookPage, '3'))).to.deep.equal(receiveState3);
+    expect(library(defaultState, receiveDetailedBook(bookPage, '3'))).to.deep.equal(receiveState3)
   })
-});
+})

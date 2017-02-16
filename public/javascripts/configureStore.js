@@ -8,6 +8,7 @@ import {routerReducer} from 'react-router-redux'
 import library from './reducers/LibraryReducer'
 import cart from './reducers/CartReducer'
 import navigator from './reducers/NavigatorReducer'
+import shelf from './reducers/ShelfReducer'
 
 // Created Middleware
 import DevTools from './DevTools'
@@ -17,6 +18,7 @@ const loggerMiddleware = createLogger()
 const reducers = combineReducers({
   library,
   cart,
+  shelf,
   navigator,
   routing: routerReducer
 })

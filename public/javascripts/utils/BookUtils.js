@@ -1,4 +1,4 @@
-import { receiveBooks, receiveDetailedBook } from '../actions/LibraryActions'
+import { storeBooksData, receiveDetailedBook } from '../actions/LibraryActions'
 import { receiveVisibleBooks } from '../actions/ShelfActions'
 import {
   requestSearch,
@@ -55,8 +55,7 @@ function fetchBooks (query) {
           return convertedData.books[id]
         })
         dispatch(receiveVisibleBooks(booksToDisplay))
-        // TODO: rename receiveBooks
-        dispatch(receiveBooks(convertedData, query))
+        dispatch(storeBooksData(convertedData, query))
         dispatch(receiveSearch(query))
       })
       .catch(ex => dispatch(throwSearchError(query)))

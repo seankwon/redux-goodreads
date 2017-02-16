@@ -16,7 +16,7 @@ import {
   RECEIVE_INFO
 } from '../../public/javascripts/actions/NavigatorActions'
 import {
-  RECEIVE_BOOKS,
+  STORE_BOOKS_DATA,
   RECEIVE_DETAILED_BOOK
 } from '../../public/javascripts/actions/LibraryActions'
 import {
@@ -27,6 +27,7 @@ import {
   fetchBookInfo,
   fetchBookInfoIfNeeded
 } from '../../public/javascripts/utils/BookUtils'
+import { RECEIVE_VISIBLE_BOOKS } from '../../public/javascripts/actions/ShelfActions'
 // Functions that are being tested
 
 const answer1 = {
@@ -157,15 +158,16 @@ describe('BookUtils', () => {
   })
 
   describe('fetchBooksIfNeeded', () => {
-    it('creates RECEIVE_BOOKS when fetching books', () => {
+    it('creates STORE_BOOKS_DATA when fetching books', () => {
       const query = 'Enders Game'
       const expectedActions = [
         { type: REQUEST_SEARCH, query: query },
-        { type: RECEIVE_BOOKS, query: query, data: ENDERS_GAME_RESPONSE },
+        { type: RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
+        { type: STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE },
         { type: RECEIVE_SEARCH, query: query }
       ]
 
-      const store = mockStore({library: {}, navigator: {}})
+      const store = mockStore({library: {}, navigator: {}, shelf: {}})
 
       return store.dispatch(fetchBooksIfNeeded('Enders Game'))
         .then(() => {
