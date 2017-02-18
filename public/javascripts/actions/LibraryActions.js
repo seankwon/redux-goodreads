@@ -1,17 +1,14 @@
-export const REQUEST_BOOKS = 'REQUEST_BOOKS';
-export const RECEIVE_BOOKS = 'RECEIVE_BOOKS';
+export const STORE_BOOKS_DATA = 'STORE_BOOKS_DATA'
+export const RECEIVE_DETAILED_BOOK = 'RECEIVE_DETAILED_BOOK'
 
-//TODO: [] - need action to grab info for individual pages
-
-export const requestBooks = (query) => ({
-  type: REQUEST_BOOKS,
-  isFetching: true,
-  active: false,
+export const storeBooksData = (data, query) => ({
+  type: STORE_BOOKS_DATA,
+  data,
   query
-});
+})
 
-export const receiveBooks = (books, query) => ({
-  type: RECEIVE_BOOKS,
-  books,
-  query
-});
+export const receiveDetailedBook = (data, id) => ({
+  type: RECEIVE_DETAILED_BOOK,
+  data,
+  id
+})

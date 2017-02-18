@@ -1,40 +1,35 @@
-import React, { Component } from 'react';
-import { dispatch } from 'redux';
-import { fetchBooksIfNeeded } from '../utils/BookUtils';
-import Book from './Book';
+import React, { Component, PropTypes } from 'react'
+
+import Book from './Book'
 
 export default class BookList extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
-    this.handleRender = this.handleRender.bind(this);
-    this.renderPage = this.renderPage.bind(this);
+    this.handleRender = this.handleRender.bind(this)
+    this.renderPage = this.renderPage.bind(this)
   }
 
-  componentDidMount() {
-    this.props.onStartup();
+  componentDidMount () {
+    this.props.onStartup()
   }
 
-  handleRender() {
-    const { isFetching } = this.props;
-    if (isFetching) {
-      return (
-        <div id='book-list-container'>
-          Currently Fetching
-        </div>
-      );
+  handleRender () {
+    if (this.props.isFetching) {
+      return <p>Currently Fetching Books</p>
+    } else {
+      return this.renderPage()
     }
-    return this.renderPage();
   }
 
-  renderPage() {
-    if (typeof this.props.activePage.books === 'undefined') {
+  renderPage () {
+    if (typeof this.props.currentSearches === 'undefined') {
       return <p>No Books to see here</p>
     }
 
     return (
       <div id='book-list-container' className='flex flex-wrap'>
-        {this.props.activePage.books.map((book) =>
+        {this.props.currentSearches.map((book) =>
           <Book
             key={book.id}
             id={book.id}
@@ -47,7 +42,12 @@ export default class BookList extends Component {
     )
   }
 
-  render() {
-    return this.handleRender();
+  render () {
+    return this.handleRender()
   }
+}
+
+BookList.propTypes = {
+  currentSearches: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired
 }
