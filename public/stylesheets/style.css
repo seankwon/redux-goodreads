@@ -179,3 +179,32 @@ p {
   padding: 20px;
 }
 
+.title-description-container {
+  border: 1px solid #3a3f41;
+  padding: 20px;
+}
+
+.shelves-container {
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 20px;
+  border: 1px solid #3a3f41;
+}
+
+.shelves-container .shelf-section span {
+  display: inline-block;
+}
+
+.shelves-container .shelf-section .count {
+  float: right;
+}
+
+.shelves-container .shelf-section .genre {
+  float: left;
+}
+
+.shelves-container .shelf-section {
+  padding: 5px;
+  border-top: 1px solid #ababab;
+}

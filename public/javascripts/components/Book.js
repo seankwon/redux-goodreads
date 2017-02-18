@@ -9,10 +9,10 @@ export default class Book extends Component {
   render() {
     const {
       id,
-      image_url, 
-      title, 
-      author, 
-      addBookToCart, 
+      image_url,
+      title,
+      author,
+      addBookToCart,
       deleteBookFromCart
     } = this.props;
 
