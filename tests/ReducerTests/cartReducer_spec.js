@@ -36,7 +36,7 @@ describe('Cart Reducer', () => {
 
   it('should delete a book if the book exists', () => {
     let state = [{id: '1', year: '1', rating: '1', author: 'hello', image_url: 'wo'}]
-    expect(cart(state, deleteBook(state[0]))).to.be.empty;
+    expect(cart(state, deleteBook('1'))).to.be.empty;
   });
 
   it('should delete a book if the book exists', () => {
@@ -50,6 +50,6 @@ describe('Cart Reducer', () => {
       {id: '3', year: '1', rating: '1', author: 'hello', image_url: 'wo'}
     ];
 
-    expect(cart(state, deleteBook(state[0]))).to.deep.equal(winState);
+    expect(cart(state, deleteBook('1'))).to.deep.equal(winState);
   });
 });

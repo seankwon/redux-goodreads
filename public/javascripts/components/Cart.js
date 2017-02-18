@@ -32,7 +32,8 @@ export default class Cart extends Component {
           id={book.id}
           image_url={book.image_url}
           title={book.title}
-          author={book.author} />
+          author={book.author}
+          removeBookFromCart={this.props.removeBookFromCart} />
       )}
       </div>
     );
@@ -42,8 +43,8 @@ export default class Cart extends Component {
     const { hide } = this.state;
 
     return (
-      <div onClick={this.toggleCart} className={hide ? 'hidecart' : 'showcart'} id='cartcontainer'>
-        <div className="cart-border">
+      <div className={hide ? 'hidecart' : 'showcart'} id='cartcontainer'>
+        <div onClick={this.toggleCart} className="cart-border">
           <div className="container clearfix"><p className="cart-title">Cart ^</p></div>
         </div>
         <div className="inner-cart">
