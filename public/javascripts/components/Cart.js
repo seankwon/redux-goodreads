@@ -3,17 +3,17 @@ import { dispatch } from 'redux';
 import Book from './Book'
 
 export default class Cart extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {hide: true};
     this.toggleCart = this.toggleCart.bind(this);
   }
 
-  toggleCart() {
+  toggleCart () {
     this.setState({ hide: !this.state.hide });
   }
 
-  handleCart() {
+  handleCart () {
     const { cart } = this.props;
     if (typeof cart === 'undefined' || cart === null) {
       return <p>No cart Added</p>
@@ -22,7 +22,7 @@ export default class Cart extends Component {
     }
   }
 
-  renderCart() {
+  renderCart () {
     const { cart } = this.props;
     return (
       <div className="flex flex-wrap">
@@ -39,7 +39,7 @@ export default class Cart extends Component {
     );
   }
 
-  render() {
+  render () {
     const { hide } = this.state;
 
     return (
