@@ -1,11 +1,4 @@
-import { 
-  REQUEST_SEARCH, 
-  RECEIVE_SEARCH,
-  REQUEST_INFO,
-  RECEIVE_INFO,
-  THROW_SEARCH_ERROR,
-  THROW_FETCH_INFO_ERROR
-} from '../actions/NavigatorActions';
+import * as types from '../constants/ActionTypes'
 
 export default function navigator(state = {
   isFetching: false,
@@ -17,21 +10,21 @@ export default function navigator(state = {
     return state;
 
   switch(action.type) {
-    case REQUEST_SEARCH:
-      return Object.assign({}, state, 
+    case types.REQUEST_SEARCH:
+      return Object.assign({}, state,
         {isFetching: true, currentQuery: action.query})
-    case RECEIVE_SEARCH: 
-      return Object.assign({}, state, 
+    case types.RECEIVE_SEARCH:
+      return Object.assign({}, state,
         {isFetching: false, currentQuery: action.query})
-    case REQUEST_INFO:
+    case types.REQUEST_INFO:
       return Object.assign({}, state,
         {isFetching: true, id: action.id})
-    case RECEIVE_INFO:
+    case types.RECEIVE_INFO:
       return Object.assign({}, state,
         {isFetching: false, id: action.id})
-    case THROW_SEARCH_ERROR:
+    case types.THROW_SEARCH_ERROR:
       return state
-    case THROW_FETCH_INFO_ERROR:
+    case types.THROW_FETCH_INFO_ERROR:
       return state
     default: 
       return state;

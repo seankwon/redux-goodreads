@@ -13,12 +13,12 @@ export default class Book extends Component {
       title,
       author,
       addBookToCart,
-      deleteBookFromCart
+      removeBookFromCart
     } = this.props;
 
     return (
       <div key={id} className="image-wrapper col-2 mr2">
-        <BookInfo id={id} addBookToCart={addBookToCart} />
+        <BookInfo id={id} addBookToCart={addBookToCart} removeBookFromCart={removeBookFromCart} />
         <img src={image_url} />
         <h5>{title}</h5>
         <p>{author}</p>

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { dispatch } from 'redux'
 import { addBookToCart } from '../utils/CartUtils'
+import { deleteBook } from '../actions/CartActions'
 import { fetchBooksIfNeeded } from '../utils/BookUtils'
 import BookList from '../components/BookList'
 

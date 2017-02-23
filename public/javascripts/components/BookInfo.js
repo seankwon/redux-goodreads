@@ -19,9 +19,9 @@ export default class BookInfo extends Component {
   }
 
   renderDeleteButton() {
-    if (typeof deleteBookFromCart !== 'undefined') {
+    if (typeof this.props.removeBookFromCart !== 'undefined') {
       return (
-        <button onClick={() => this.props.deleteBookFromCart(this.props.id)}
+        <button onClick={() => this.props.removeBookFromCart(this.props.id)}
           className='btn not-rounded'>
           Delete
         </button>
