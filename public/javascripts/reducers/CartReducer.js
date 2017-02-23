@@ -3,11 +3,6 @@ import * as types from '../constants/ActionTypes'
 function books(state, action) {
   switch(action.type) {
     case types.ADD_BOOK:
-      // XXX: checks if book is already in cart
-      let requestedBook = state.find((addedBooks) => addedBooks.id === action.book.id);
-      if (typeof requestedBook !== 'undefined') {
-        return state
-      }
       return [...state, action.book]
     case types.DELETE_BOOK:
       return state.filter(book => action.id !== book.id)
