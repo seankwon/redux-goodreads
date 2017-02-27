@@ -28,7 +28,7 @@ export const receiveInfo = (id) => ({
 export const throwFetchInfoError = (id) => ({
   type: types.THROW_FETCH_INFO_ERROR,
   id
-});
+})
 
 export const enterCheckoutStepOne = () => ({
   type: types.ENTER_CHECKOUT_STEP_ONE
