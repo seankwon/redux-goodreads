@@ -1,40 +1,39 @@
-import { 
-  REQUEST_SEARCH, 
-  RECEIVE_SEARCH,
-  REQUEST_INFO,
-  RECEIVE_INFO,
-  THROW_SEARCH_ERROR,
-  THROW_FETCH_INFO_ERROR
-} from '../actions/NavigatorActions';
+import * as types from '../constants/ActionTypes'
 
-export default function navigator(state = {
+export default function navigator (state = {
   isFetching: false,
   currentQuery: undefined,
-  id: undefined
+  id: undefined,
+  checkoutStep: 0
 }, action) {
-
-  if (typeof action === 'undefined' || action === null)
-    return state;
-
-  switch(action.type) {
-    case REQUEST_SEARCH:
-      return Object.assign({}, state, 
-        {isFetching: true, currentQuery: action.query})
-    case RECEIVE_SEARCH: 
-      return Object.assign({}, state, 
-        {isFetching: false, currentQuery: action.query})
-    case REQUEST_INFO:
-      return Object.assign({}, state,
-        {isFetching: true, id: action.id})
-    case RECEIVE_INFO:
-      return Object.assign({}, state,
-        {isFetching: false, id: action.id})
-    case THROW_SEARCH_ERROR:
-      return state
-    case THROW_FETCH_INFO_ERROR:
-      return state
-    default: 
-      return state;
+  if (typeof action === 'undefined' || action === null) {
+    return state
   }
 
+  switch (action.type) {
+    case types.REQUEST_SEARCH:
+      return Object.assign({}, state,
+        {isFetching: true, currentQuery: action.query})
+    case types.RECEIVE_SEARCH:
+      return Object.assign({}, state,
+        {isFetching: false, currentQuery: action.query})
+    case types.REQUEST_INFO:
+      return Object.assign({}, state,
+        {isFetching: true, id: action.id})
+    case types.RECEIVE_INFO:
+      return Object.assign({}, state,
+        {isFetching: false, id: action.id})
+    case types.THROW_SEARCH_ERROR:
+      return state
+    case types.THROW_FETCH_INFO_ERROR:
+      return state
+    case types.ENTER_CHECKOUT_STEP_ONE:
+      return Object.assign({}, state,
+        {checkoutStep: 1})
+    case types.FINISH_CHECKOUT:
+      return Object.assign({}, state,
+        {checkoutStep: 0})
+    default:
+      return state
+  }
 }

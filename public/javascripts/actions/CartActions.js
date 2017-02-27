@@ -1,12 +1,15 @@
-export const ADD_BOOK = 'ADD_BOOK';
-export const DELETE_BOOK = 'DELETE_BOOK';
+import * as types from '../constants/ActionTypes'
 
 export const addBook = (book) => ({
-  type: ADD_BOOK,
+  type: types.ADD_BOOK,
   book
-});
+})
 
-export const deleteBook = (book) => ({
-  type: DELETE_BOOK,
-  book
-});
+export const deleteBook = (id) => ({
+  type: types.DELETE_BOOK,
+  id
+})
+
+export const checkoutAllBooks = () => ({
+  type: types.CHECKOUT_ALL_BOOKS
+})

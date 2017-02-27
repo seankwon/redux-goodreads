@@ -3,17 +3,17 @@ import { dispatch } from 'redux';
 import Book from './Book'
 
 export default class Cart extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {hide: true};
     this.toggleCart = this.toggleCart.bind(this);
   }
 
-  toggleCart() {
+  toggleCart () {
     this.setState({ hide: !this.state.hide });
   }
 
-  handleCart() {
+  handleCart () {
     const { cart } = this.props;
     if (typeof cart === 'undefined' || cart === null) {
       return <p>No cart Added</p>
@@ -22,7 +22,7 @@ export default class Cart extends Component {
     }
   }
 
-  renderCart() {
+  renderCart () {
     const { cart } = this.props;
     return (
       <div className="flex flex-wrap">
@@ -32,18 +32,19 @@ export default class Cart extends Component {
           id={book.id}
           image_url={book.image_url}
           title={book.title}
-          author={book.author} />
+          author={book.author}
+          removeBookFromCart={this.props.removeBookFromCart} />
       )}
       </div>
     );
   }
 
-  render() {
+  render () {
     const { hide } = this.state;
 
     return (
-      <div onClick={this.toggleCart} className={hide ? 'hidecart' : 'showcart'} id='cartcontainer'>
-        <div className="cart-border">
+      <div className={hide ? 'hidecart' : 'showcart'} id='cartcontainer'>
+        <div onClick={this.toggleCart} className="cart-border">
           <div className="container clearfix"><p className="cart-title">Cart ^</p></div>
         </div>
         <div className="inner-cart">
