@@ -1,15 +1,16 @@
 import * as types from '../constants/ActionTypes'
 
-export default function navigator(state = {
+export default function navigator (state = {
   isFetching: false,
   currentQuery: undefined,
-  id: undefined
+  id: undefined,
+  checkoutStep: 0
 }, action) {
+  if (typeof action === 'undefined' || action === null) {
+    return state
+  }
 
-  if (typeof action === 'undefined' || action === null)
-    return state;
-
-  switch(action.type) {
+  switch (action.type) {
     case types.REQUEST_SEARCH:
       return Object.assign({}, state,
         {isFetching: true, currentQuery: action.query})
@@ -26,8 +27,13 @@ export default function navigator(state = {
       return state
     case types.THROW_FETCH_INFO_ERROR:
       return state
-    default: 
-      return state;
+    case types.ENTER_CHECKOUT_STEP_ONE:
+      return Object.assign({}, state,
+        {checkoutStep: 1})
+    case types.FINISH_CHECKOUT:
+      return Object.assign({}, state,
+        {checkoutStep: 0})
+    default:
+      return state
   }
-
 }

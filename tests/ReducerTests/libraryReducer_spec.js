@@ -30,7 +30,7 @@ describe ('library reducer', () => {
     }
 
     expect (library({
-      books: {}, 
+      books: {},
       searches: {}
     }, receiveDetailedBook(detailedBook, '2'))).to.deep.equals({
       books: {},

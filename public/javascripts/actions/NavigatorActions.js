@@ -30,8 +30,8 @@ export const throwFetchInfoError = (id) => ({
   id
 });
 
-export const enterCheckoutStepTwo = () => ({
-  type: types.ENTER_CHECKOUT_STEP_TWO
+export const enterCheckoutStepOne = () => ({
+  type: types.ENTER_CHECKOUT_STEP_ONE
 })
 
 export const finishCheckout = () => ({
