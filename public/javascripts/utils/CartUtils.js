@@ -1,5 +1,5 @@
 import { addBook } from '../actions/CartActions'
-
+//TODO: Fix this logic, currently doesn't work
 export function addBookToCart (id) {
   return (dispatch, getState) => {
     const { cart } = getState()

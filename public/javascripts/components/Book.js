@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import BookInfo from './BookInfo'
-
+// TODO: Fix image_url camel casing
 export default class Book extends Component {
   constructor (props) {
     super(props)
