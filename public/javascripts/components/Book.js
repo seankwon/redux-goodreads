@@ -1,12 +1,12 @@
-import React, { Component, PropTypes } from 'react';
-import BookInfo from './BookInfo';
+import React, { Component, PropTypes } from 'react'
+import BookInfo from './BookInfo'
 
 export default class Book extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   }
 
-  render() {
+  render () {
     const {
       id,
       image_url,
@@ -14,7 +14,7 @@ export default class Book extends Component {
       author,
       addBookToCart,
       removeBookFromCart
-    } = this.props;
+    } = this.props
 
     return (
       <div key={id} className="image-wrapper col-2 mr2">
@@ -23,7 +23,7 @@ export default class Book extends Component {
         <h5>{title}</h5>
         <p>{author}</p>
       </div>
-    );
+    )
   }
 }
 
@@ -31,5 +31,5 @@ Book.propTypes = {
   id: PropTypes.string.isRequired,
   image_url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired
 }
