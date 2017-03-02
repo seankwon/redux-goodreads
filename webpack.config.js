@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+var webpack = require('webpack')
 
 module.exports = {
   entry: './public/javascripts/app.js',
@@ -6,11 +6,10 @@ module.exports = {
     path: './public',
     filename: 'bundle.js'
   },
-  /*
-	plugins: [
+  plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      minimize: false,
+      minimize: true,
       compress: {
         warnings: false
       }
@@ -20,10 +19,7 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     })
-    ],
-    */
-
-
+  ],
   module: {
     loaders: [
       {
@@ -35,5 +31,5 @@ module.exports = {
   },
   node: {
     fs: 'empty'
-	}
-};
+  }
+}
