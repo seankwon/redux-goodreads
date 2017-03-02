@@ -1,30 +1,30 @@
-import { ADD_BOOK, DELETE_BOOK } from '../actions/CartActions';
+import * as types from '../constants/ActionTypes'
 
 function books(state, action) {
-  let requestedBook = state.find((addedBooks) => addedBooks.id === action.book.id);
   switch(action.type) {
-    case ADD_BOOK:
-      if (typeof requestedBook !== 'undefined') {
-        return state;
-      }
-      return [...state, action.book];
-    case DELETE_BOOK:
-      return state.filter(book => action.book.id !== book.id);
+    case types.ADD_BOOK:
+      return [...state, action.book]
+    case types.DELETE_BOOK:
+      return state.filter(book => action.id !== book.id)
+    case types.CHECKOUT_ALL_BOOKS:
+      return []
   }
-  return state;
+  return state
 }
 
 export default function cart(state = [], action) {
   if (typeof action === 'undefined' || action === null) {
-    return state;
+    return state
   }
 
   switch(action.type) {
-    case ADD_BOOK:
-      return books(state, action);
-    case DELETE_BOOK:
-      return books(state, action);
+    case types.ADD_BOOK:
+      return books(state, action)
+    case types.DELETE_BOOK:
+      return books(state, action)
+    case types.CHECKOUT_ALL_BOOKS:
+      return books(state, action)
     default:
-      return state;
+      return state
   }
 }

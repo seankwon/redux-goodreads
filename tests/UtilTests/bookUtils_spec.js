@@ -5,20 +5,9 @@ import { readFileSync } from 'fs'
 import fetchMock from 'fetch-mock'
 // Required Modules
 
+import * as types from '../../public/javascripts/constants/ActionTypes'
 import { ENDERS_GAME_RESPONSE	} from '../Stubs/bookResponse.js'
 import { HOUSEKEEPING_RESPONSE	} from '../Stubs/bookReviewResponse.js'
-import {
-  REQUEST_SEARCH,
-  RECEIVE_SEARCH,
-  THROW_SEARCH_ERROR,
-  THROW_FETCH_INFO_ERROR,
-  REQUEST_INFO,
-  RECEIVE_INFO
-} from '../../public/javascripts/actions/NavigatorActions'
-import {
-  STORE_BOOKS_DATA,
-  RECEIVE_DETAILED_BOOK
-} from '../../public/javascripts/actions/LibraryActions'
 import {
   getBook,
   getBooks,
@@ -27,7 +16,6 @@ import {
   fetchBookInfo,
   fetchBookInfoIfNeeded
 } from '../../public/javascripts/utils/BookUtils'
-import { RECEIVE_VISIBLE_BOOKS } from '../../public/javascripts/actions/ShelfActions'
 // Functions that are being tested
 
 const answer1 = {
@@ -131,8 +119,8 @@ describe('BookUtils', () => {
       fetchMock.get('*', Error)
       id = '2'
       expectedActions = [
-        { type: REQUEST_INFO, id: id },
-        { type: THROW_FETCH_INFO_ERROR, id: id }
+        { type: types.REQUEST_INFO, id: id },
+        { type: types.THROW_FETCH_INFO_ERROR, id: id }
       ]
       return store.dispatch(fetchBookInfo('2')).then(data => {
         expect(store.getActions()).to.deep.equal(expectedActions)
@@ -144,9 +132,9 @@ describe('BookUtils', () => {
       fetchMock.get('*', readFileSync('tests/Stubs/bookReviewResponse.xml').toString())
       id = EXAMPLE_ID
       expectedActions = [
-        { type: REQUEST_INFO, id: id },
-        { type: RECEIVE_DETAILED_BOOK, data: HOUSEKEEPING_RESPONSE, id: id },
-        { type: RECEIVE_INFO, id: id }
+        { type: types.REQUEST_INFO, id: id },
+        { type: types.RECEIVE_DETAILED_BOOK, data: HOUSEKEEPING_RESPONSE, id: id },
+        { type: types.RECEIVE_INFO, id: id }
       ]
 
       return store.dispatch(fetchBookInfo(id)).then(() => {
@@ -161,10 +149,10 @@ describe('BookUtils', () => {
     it('creates STORE_BOOKS_DATA when fetching books', () => {
       const query = 'Enders Game'
       const expectedActions = [
-        { type: REQUEST_SEARCH, query: query },
-        { type: RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
-        { type: STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE },
-        { type: RECEIVE_SEARCH, query: query }
+        { type: types.REQUEST_SEARCH, query: query },
+        { type: types.RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
+        { type: types.STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE },
+        { type: types.RECEIVE_SEARCH, query: query }
       ]
 
       const store = mockStore({library: {}, navigator: {}, shelf: {}})
@@ -185,7 +173,7 @@ describe('BookUtils', () => {
         navigator: { currentQuery: 'Enders Game', isFetching: false }
       })
       const expectedActions = [
-        { type: RECEIVE_SEARCH, query: query }
+        { type: types.RECEIVE_SEARCH, query: query }
       ]
       return store.dispatch(fetchBooksIfNeeded(query))
         .then(() => {
@@ -198,8 +186,8 @@ describe('BookUtils', () => {
       fetchMock.get('*', Error)
       const query = 'BAD_INPUT'
       const expectedActions = [
-        { type: REQUEST_SEARCH, query: query },
-        { type: THROW_SEARCH_ERROR, query: query }
+        { type: types.REQUEST_SEARCH, query: query },
+        { type: types.THROW_SEARCH_ERROR, query: query }
       ]
       const store = mockStore({library: {}, navigator: {}})
       return store.dispatch(fetchBooksIfNeeded(query))

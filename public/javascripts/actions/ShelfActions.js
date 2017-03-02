@@ -1,6 +1,6 @@
-export const RECEIVE_VISIBLE_BOOKS = 'RECEIVE_VISIBLE_BOOKS'
+import * as types from '../constants/ActionTypes'
 
 export const receiveVisibleBooks = (books) => ({
-  type: RECEIVE_VISIBLE_BOOKS,
+  type: types.RECEIVE_VISIBLE_BOOKS,
   books
 })

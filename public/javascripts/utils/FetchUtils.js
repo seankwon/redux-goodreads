@@ -9,7 +9,7 @@ export function goodreadsJSON (url) {
   // TODO perhaps Promise.resolve(convert...);
   return fetchGoodreadsXml(url)
     .then(data => convert.xmlDataToJSON(data, { 
-      tagNameProcessors: [(name) => {return name.replace('\n', '')}] 
+      tagNameProcessors: [(name) => { return name.replace('\n', '') }] 
     })
     .then(json => { return json }))
 }
