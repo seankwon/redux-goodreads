@@ -24,8 +24,7 @@ const reducers = combineReducers({
 })
 
 const enhancer = compose(
-  applyMiddleware(thunkMiddleware, loggerMiddleware),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(thunkMiddleware)
 )
 
 export default function configureStore (preloadedState) {
