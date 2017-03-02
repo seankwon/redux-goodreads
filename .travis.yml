@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - "6"
+deploy:
+  provider: heroku
+  api_key:
+    secure: "fa4acfeb-ba56-47b7-b7a1-1be7410eba30"
