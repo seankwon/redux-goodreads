@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { dispatch } from 'redux'
-import { fetchBooksIfNeeded } from '../utils/BookUtils'
+import { browserHistory } from 'react-router'
 
 export default class Nav extends Component {
   constructor (props) {
@@ -14,6 +13,7 @@ export default class Nav extends Component {
   onHandleEnter (e) {
     if (e.charCode === 13 && this.state.value.length > 0) {
       this.props.onSearch(this.state.value)
+      browserHistory.push('/app/books')
     }
   }
 
