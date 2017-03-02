@@ -1,26 +1,27 @@
-import React, { Component, PropTypes } from 'react';
-import { dispatch } from 'redux';
-import { fetchBooksIfNeeded } from '../utils/BookUtils';
+import React, { Component, PropTypes } from 'react'
+import { dispatch } from 'redux'
+import { fetchBooksIfNeeded } from '../utils/BookUtils'
 
 export default class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
+  constructor (props) {
+    super(props)
+    this.state = {value: ''}
 
-    this.onHandleEnter = this.onHandleEnter.bind(this);
-    this.onValueChange = this.onValueChange.bind(this);
+    this.onHandleEnter = this.onHandleEnter.bind(this)
+    this.onValueChange = this.onValueChange.bind(this)
   }
 
-  onHandleEnter(e) {
+  onHandleEnter (e) {
     if (e.charCode === 13 && this.state.value.length > 0) {
-      this.props.onSearch(this.state.value);
+      this.props.onSearch(this.state.value)
     }
   }
 
-  onValueChange(e) {
-    this.setState({value: e.target.value});
+  onValueChange (e) {
+    this.setState({value: e.target.value})
   }
-  render() {
+
+  render () {
     return (
       <nav className="mainnav">
         <div className="container clearfix">
@@ -40,7 +41,7 @@ export default class Nav extends Component {
           </div>
         </div>
       </nav>
-    );
+    )
   }
 }
 

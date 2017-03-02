@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 
 export default class BookInfo extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  renderAddButton() {
+  renderAddButton () {
     if (typeof this.props.addBookToCart !== 'undefined') {
       return (
         <button onClick={() => this.props.addBookToCart(this.props.id)}
@@ -15,10 +15,9 @@ export default class BookInfo extends Component {
         </button>
       )
     }
-
   }
 
-  renderDeleteButton() {
+  renderDeleteButton () {
     if (typeof this.props.removeBookFromCart !== 'undefined') {
       return (
         <button onClick={() => this.props.removeBookFromCart(this.props.id)}
@@ -29,7 +28,7 @@ export default class BookInfo extends Component {
     }
   }
 
-  render() {
+  render () {
     const { id } = this.props
     return (
       <div className='info-container'>

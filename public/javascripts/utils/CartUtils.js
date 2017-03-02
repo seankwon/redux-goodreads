@@ -1,13 +1,13 @@
 import { addBook } from '../actions/CartActions'
-
+// TODO: Fix this logic, currently doesn't work
 export function addBookToCart (id) {
   return (dispatch, getState) => {
     const { cart } = getState()
     const { books } = getState().library
-    let requestedBook = cart.find((cachedBook) => cachedBook.id === books[parseInt(id)]);
+    let requestedBook = books[parseInt(id)]
+    const cartIds = cart.map(book => book.id)
 
-    //Checks if the book is already cached
-    if (typeof requestedBook !== 'undefined') {
+    if (cartIds.indexOf(id) === -1) {
       return dispatch(addBook(requestedBook))
     }
   }

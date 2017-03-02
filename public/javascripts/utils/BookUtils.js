@@ -145,10 +145,7 @@ export function fetchBookInfo (id) {
       dispatch(receiveDetailedBook(data, id))
       return dispatch(receiveInfo(id))
     })
-    .catch(error => {
-      console.log(error)
-      return dispatch(throwFetchInfoError(id))
-    })
+    .catch(error => dispatch(throwFetchInfoError(id)))
   }
 }
 
