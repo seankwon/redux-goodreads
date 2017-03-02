@@ -23,8 +23,11 @@ const reducers = combineReducers({
   routing: routerReducer
 })
 
-const enhancer = compose(
-  applyMiddleware(thunkMiddleware)
+const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? compose(
+  applyMiddleware(thunkMiddleware, loggerMiddleware),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+) : compose(
+  applyMiddleware(thunkMiddleware, loggerMiddleware)
 )
 
 export default function configureStore (preloadedState) {
