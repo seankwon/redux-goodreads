@@ -1,46 +1,52 @@
-import React, { Component } from 'react';
-import { dispatch } from 'redux';
+import React, { Component } from 'react'
+import { dispatch } from 'redux'
 import Book from './Book'
+import { Link } from 'react-router'
 
 export default class Cart extends Component {
   constructor (props) {
-    super(props);
-    this.state = {hide: true};
-    this.toggleCart = this.toggleCart.bind(this);
+    super(props)
+    this.state = {hide: true}
+    this.toggleCart = this.toggleCart.bind(this)
   }
 
   toggleCart () {
-    this.setState({ hide: !this.state.hide });
+    this.setState({ hide: !this.state.hide })
   }
 
   handleCart () {
-    const { cart } = this.props;
-    if (typeof cart === 'undefined' || cart === null) {
+    const { cart } = this.props
+    if (typeof cart === 'undefined' || cart === null || cart.length === 0) {
       return <p>No cart Added</p>
     } else {
-      return this.renderCart();
+      return this.renderCart()
     }
   }
 
   renderCart () {
-    const { cart } = this.props;
+    const { cart } = this.props
     return (
-      <div className="flex flex-wrap">
-      {cart.map((book) =>
-        <Book
-          key={book.id}
-          id={book.id}
-          image_url={book.image_url}
-          title={book.title}
-          author={book.author}
-          removeBookFromCart={this.props.removeBookFromCart} />
-      )}
+      <div className="cart-container">
+        <div className="flex flex-wrap">
+        {cart.map((book) =>
+          <Book
+            key={book.id}
+            id={book.id}
+            image_url={book.image_url}
+            title={book.title}
+            author={book.author}
+            removeBookFromCart={this.props.removeBookFromCart} />
+        )}
+        </div>
+        <div className="ch-btn-wrapper flex flex-wrap">
+          <Link className="btn-black" to="/app/checkout/stepone" >Checkout</Link>
+        </div>
       </div>
-    );
+    )
   }
 
   render () {
-    const { hide } = this.state;
+    const { hide } = this.state
 
     return (
       <div className={hide ? 'hidecart' : 'showcart'} id='cartcontainer'>
@@ -53,6 +59,6 @@ export default class Cart extends Component {
           </div>
         </div>
       </div>
-    );
-	}
+    )
+  }
 }

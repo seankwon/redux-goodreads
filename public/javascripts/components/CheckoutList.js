@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import CheckoutBook from './CheckoutBook'
 
 export default class CheckoutList extends Component {
   render () {
     return (
-      <div className>
+      <div id='checkout-list-container' className='container flex flex-wrap'>
         <h1>Library Cart</h1>
+        <div className="divider"></div>
+        {this.props.cart.map(book => {
+          return <CheckoutBook book={book} />
+        })}
       </div>
     )
   }
