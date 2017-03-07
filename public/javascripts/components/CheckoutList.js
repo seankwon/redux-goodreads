@@ -8,7 +8,10 @@ export default class CheckoutList extends Component {
         <h1>Library Cart</h1>
         <div className="divider"></div>
         {this.props.cart.map(book => {
-          return <CheckoutBook book={book} />
+          return <CheckoutBook 
+                  deleteBook={this.props.deleteBook} 
+                  key={book.id} 
+                  bookprops={book} />
         })}
       </div>
     )

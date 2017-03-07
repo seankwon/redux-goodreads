@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import CheckoutPage from '../components/CheckoutPage'
-import deleteBook from '../actions/CartActions'
+import { deleteBook } from '../actions/CartActions'
 
 const mapStateToProps = (state) => {
   return {

@@ -124,6 +124,12 @@ p {
   font-weight: 400;
 }
 
+.logo a {
+  text-decoration: none;
+  font-style: none;
+  color: white;
+}
+
 .nav-section.right .nav-item {
   height: 50px;
   line-height: 50px;
@@ -234,4 +240,21 @@ p {
 
 .divider {
   border: 2px solid #111;
+}
+
+.checkout-book {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #111;
+}
+
+.checkout-book .ch-book-desc-container {
+  padding: 15px;
+}
+
+.checkout-book .ch-book-img-container {
+  padding: 15px;
+}
+
+.checkout-book .title {
+  font-weight: 700;
 }
