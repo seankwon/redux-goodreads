@@ -35,3 +35,8 @@ export default class CheckoutBook extends Component {
     )
   }
 }
+
+CheckoutBook.propTypes = {
+  deleteBook: PropTypes.func.isRequired,
+  bookprops: PropTypes.object.isRequired
+}

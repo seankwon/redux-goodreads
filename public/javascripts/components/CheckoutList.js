@@ -17,3 +17,8 @@ export default class CheckoutList extends Component {
     )
   }
 }
+
+CheckoutList.propTypes = {
+  deleteBook: PropTypes.func.isRequired,
+  cart: PropTypes.object.isRequired
+}

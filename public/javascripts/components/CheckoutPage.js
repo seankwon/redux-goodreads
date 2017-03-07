@@ -9,7 +9,7 @@ export default class CheckoutPage extends Component {
   }
 }
 
-CheckoutList.propTypes = {
+CheckoutPage.propTypes = {
   deleteBook: PropTypes.func.isRequired,
   cart: PropTypes.object.isRequired
 }
