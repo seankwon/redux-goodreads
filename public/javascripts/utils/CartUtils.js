@@ -1,5 +1,5 @@
 import { addBook } from '../actions/CartActions'
-const CART_LIMIT = 7
+const CART_LIMIT = 6
 
 export function addBookToCart (id) {
   return (dispatch, getState) => {
@@ -8,7 +8,7 @@ export function addBookToCart (id) {
     const cartIds = cart.map(book => book.id)
     let requestedBook = books[parseInt(id)]
 
-    if (cartIds.indexOf(id) === -1 && cartIds < CART_LIMIT) {
+    if (cartIds.indexOf(id) === -1 && cartIds.length < CART_LIMIT) {
       return dispatch(addBook(requestedBook))
     }
   }

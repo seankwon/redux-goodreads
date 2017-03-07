@@ -4,7 +4,10 @@ import CheckoutList from './CheckoutList'
 export default class CheckoutPage extends Component {
   render() {
     return (
-      <CheckoutList deleteBook={this.props.deleteBook} cart={this.props.cart}/>
+      <CheckoutList 
+        checkoutAllBooks={this.props.checkoutAllBooks} 
+        deleteBook={this.props.deleteBook} 
+        cart={this.props.cart}/>
     )
   }
 }

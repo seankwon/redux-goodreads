@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import CheckoutBook from './CheckoutBook'
 
 export default class CheckoutList extends Component {
@@ -13,6 +13,7 @@ export default class CheckoutList extends Component {
                   key={book.id} 
                   bookprops={book} />
         })}
+        <a className="btn-black">Finish Checkout</a>
       </div>
     )
   }
@@ -20,5 +21,6 @@ export default class CheckoutList extends Component {
 
 CheckoutList.propTypes = {
   deleteBook: PropTypes.func.isRequired,
+  checkoutAllBooks: PropTypes.func.isRequired,
   cart: PropTypes.object.isRequired
 }

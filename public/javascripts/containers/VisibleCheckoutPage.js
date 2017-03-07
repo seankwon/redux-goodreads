@@ -12,6 +12,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteBook(id) {
       dispatch(deleteBook(id))
+    },
+
+    checkoutAllBooks() {
+      // TODO: Convert to Promise or find way to add FinishCheckout
+      dispatch(checkoutAllBooks())
     }
   }
 }
