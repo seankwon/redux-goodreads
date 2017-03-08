@@ -39,7 +39,11 @@ export default class Cart extends Component {
         )}
         </div>
         <div className="ch-btn-wrapper flex flex-wrap">
-          <Link className="btn-black" to="/app/checkout/stepone" >Checkout</Link>
+          <Link onClick={this.props.enterCheckoutStepOne}
+          className="btn-black"
+          to="/app/checkout/stepone" >
+            Checkout
+          </Link>
         </div>
       </div>
     )

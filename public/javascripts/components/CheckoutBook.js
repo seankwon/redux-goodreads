@@ -18,7 +18,7 @@ export default class CheckoutBook extends Component {
       title,
       year,
       id
-    } = this.props.bookprops
+    } = (this.props.bookprops || {})
 
     return (
       <div className='flex flex-wrap checkout-book'>
@@ -37,6 +37,6 @@ export default class CheckoutBook extends Component {
 }
 
 CheckoutBook.propTypes = {
-  deleteBook: PropTypes.func.isRequired,
-  bookprops: PropTypes.object.isRequired
+  deleteBook: PropTypes.func,
+  bookprops: PropTypes.object
 }

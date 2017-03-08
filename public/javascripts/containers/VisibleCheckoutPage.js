@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import CheckoutPage from '../components/CheckoutPage'
-import { deleteBook } from '../actions/CartActions'
+import { deleteBook, checkoutAllBooks } from '../actions/CartActions'
+import { enterCheckoutStepOne, finishCheckout } from '../actions/NavigatorActions'
 
 const mapStateToProps = (state) => {
   return {
@@ -15,8 +16,11 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     checkoutAllBooks() {
-      // TODO: Convert to Promise or find way to add FinishCheckout
       dispatch(checkoutAllBooks())
+    },
+
+    finishCheckout() {
+      dispatch(finishCheckout())
     }
   }
 }

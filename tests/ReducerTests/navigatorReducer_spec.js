@@ -20,7 +20,8 @@ describe('navigator reducer', () => {
         isFetching: true,
         id: undefined,
         currentQuery: 'John Doe',
-        checkoutStep: 0
+        checkoutStep: 0,
+        checkoutDone: false
       })
   })
 
@@ -30,7 +31,8 @@ describe('navigator reducer', () => {
         isFetching: false,
         id: undefined,
         currentQuery: 'John Doe',
-        checkoutStep: 0
+        checkoutStep: 0,
+        checkoutDone: false
       })
   })
 
@@ -40,7 +42,8 @@ describe('navigator reducer', () => {
         isFetching: false,
         id: undefined,
         currentQuery: undefined,
-        checkoutStep: 0
+        checkoutStep: 0,
+        checkoutDone: false
       })
   })
 
@@ -50,7 +53,8 @@ describe('navigator reducer', () => {
         isFetching: true,
         id: '5',
         currentQuery: undefined,
-        checkoutStep: 0
+        checkoutStep: 0,
+        checkoutDone: false
       })
   })
 
@@ -60,7 +64,8 @@ describe('navigator reducer', () => {
         isFetching: false,
         id: '5',
         currentQuery: undefined,
-        checkoutStep: 0
+        checkoutStep: 0,
+        checkoutDone: false
       })
   })
 
@@ -70,7 +75,8 @@ describe('navigator reducer', () => {
         isFetching: false,
         id: undefined,
         currentQuery: undefined,
-        checkoutStep: 0
+        checkoutStep: 0,
+        checkoutDone: false
       })
   })
 
@@ -80,7 +86,8 @@ describe('navigator reducer', () => {
         isFetching: false,
         id: undefined,
         currentQuery: undefined,
-        checkoutStep: 1
+        checkoutStep: 1,
+        checkoutDone: false
       })
   })
 
@@ -89,13 +96,15 @@ describe('navigator reducer', () => {
       isFetching: false,
       id: undefined,
       currentQuery: undefined,
-      checkoutStep: 1
+      checkoutStep: 1,
+      checkoutDone: false
     }, finishCheckout()))
     .to.deep.equals({
       isFetching: false,
       id: undefined,
       currentQuery: undefined,
-      checkoutStep: 0
+      checkoutStep: 0,
+      checkoutDone: true
     })
   })
 })

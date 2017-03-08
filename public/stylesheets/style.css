@@ -228,6 +228,7 @@ p {
   background: #3a3f41;
   text-decoration: none;
   padding: 10px 20px;
+  cursor: pointer;
   font-size: 19px;
   border-radius: 3px;
   font-weight: 700;
@@ -256,5 +257,24 @@ p {
 }
 
 .checkout-book .title {
+  font-weight: 700;
+}
+
+.flash {
+  background: #59d8b8;
+}
+
+.flash p {
+  line-height: 40px;
+  text-align: center;
+}
+
+.flash .close {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  line-height: 40px;
+  top: -3px;
+  font-size: 24px;
   font-weight: 700;
 }

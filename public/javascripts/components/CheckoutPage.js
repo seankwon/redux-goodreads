@@ -4,15 +4,16 @@ import CheckoutList from './CheckoutList'
 export default class CheckoutPage extends Component {
   render() {
     return (
-      <CheckoutList 
-        checkoutAllBooks={this.props.checkoutAllBooks} 
-        deleteBook={this.props.deleteBook} 
+      <CheckoutList
+        checkoutAllBooks={this.props.checkoutAllBooks}
+        finishCheckout={this.props.finishCheckout}
+        deleteBook={this.props.deleteBook}
         cart={this.props.cart}/>
     )
   }
 }
 
 CheckoutPage.propTypes = {
-  deleteBook: PropTypes.func.isRequired,
-  cart: PropTypes.object.isRequired
+  deleteBook: PropTypes.func,
+  cart: PropTypes.object
 }

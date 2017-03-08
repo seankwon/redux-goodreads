@@ -4,7 +4,8 @@ export default function navigator (state = {
   isFetching: false,
   currentQuery: undefined,
   id: undefined,
-  checkoutStep: 0
+  checkoutStep: 0,
+  checkoutDone: false
 }, action) {
   if (typeof action === 'undefined' || action === null) {
     return state
@@ -32,7 +33,7 @@ export default function navigator (state = {
         {checkoutStep: 1})
     case types.FINISH_CHECKOUT:
       return Object.assign({}, state,
-        {checkoutStep: 0})
+        {checkoutStep: 0, checkoutDone: true})
     default:
       return state
   }

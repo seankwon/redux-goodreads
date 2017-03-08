@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { dispatch } from 'redux';
 import { fetchBooksIfNeeded } from '../utils/BookUtils';
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSearch: (query) => {
-      dispatch(fetchBooksIfNeeded(query));
-    }
-  }
-}
+const mapStateToProps = (state) => ({
+  checkoutDone: state.navigator.checkoutDone
+})
 
-export default connect(null, mapDispatchToProps)(Layout);
+const mapDispatchToProps = (dispatch) => ({
+  onSearch(query) {
+    dispatch(fetchBooksIfNeeded(query));
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
