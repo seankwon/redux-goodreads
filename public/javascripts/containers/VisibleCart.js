@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { deleteBook } from '../actions/CartActions'
+import { enterCheckoutStepOne } from '../actions/NavigatorActions'
 import Cart from '../components/Cart'
 
 const mapStateToProps = (state) => {
@@ -11,8 +12,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeBookFromCart: (id) => {
+    removeBookFromCart(id) {
       dispatch(deleteBook(id))
+    },
+
+    enterCheckoutStepOne() {
+      dispatch(enterCheckoutStepOne())
     }
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
 
 export default class Nav extends Component {
   constructor (props) {
@@ -26,7 +26,9 @@ export default class Nav extends Component {
       <nav className="mainnav">
         <div className="container clearfix">
           <div className='nav-section left'>
-            <div className="nav-item logo"><h1>Redux Public Library</h1></div>
+            <div className="nav-item logo">
+              <h1><Link to='/app/books'>Redux Public Library</Link></h1>
+            </div>
           </div>
           <div className='nav-section right'>
             <div className="nav-item">

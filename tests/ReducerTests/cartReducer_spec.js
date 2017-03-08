@@ -16,4 +16,8 @@ describe('Cart Reducer', () => {
   it('should handle DELETE_BOOK', () => {
     expect(cart([book], deleteBook('5'))).to.deep.equal([])
   })
+
+  it('should handle CHECKOUT_ALL_BOOKS', () => {
+    expect(cart([book], checkoutAllBooks())).to.deep.equal([])
+  })
 });
