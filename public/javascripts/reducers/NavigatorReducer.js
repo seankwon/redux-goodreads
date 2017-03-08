@@ -34,6 +34,9 @@ export default function navigator (state = {
     case types.FINISH_CHECKOUT:
       return Object.assign({}, state,
         {checkoutStep: 0, checkoutDone: true})
+    case types.RESET_CHECKOUT:
+      return Object.assign({}, state,
+        {checkoutDone: false})
     default:
       return state
   }

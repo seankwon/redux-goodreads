@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import CheckoutList from './CheckoutList'
 
 export default class CheckoutPage extends Component {
+  componentDidMount() {
+    this.props.resetCheckout()
+  }
+
   render() {
     return (
       <CheckoutList

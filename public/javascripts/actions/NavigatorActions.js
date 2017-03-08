@@ -37,3 +37,7 @@ export const enterCheckoutStepOne = () => ({
 export const finishCheckout = () => ({
   type: types.FINISH_CHECKOUT
 })
+
+export const resetCheckout = () => ({
+  type: types.RESET_CHECKOUT
+})

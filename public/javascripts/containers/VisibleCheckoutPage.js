@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import CheckoutPage from '../components/CheckoutPage'
 import { deleteBook, checkoutAllBooks } from '../actions/CartActions'
-import { enterCheckoutStepOne, finishCheckout } from '../actions/NavigatorActions'
+import { enterCheckoutStepOne, finishCheckout, resetCheckout } from '../actions/NavigatorActions'
 
 const mapStateToProps = (state) => {
   return {
@@ -21,6 +21,10 @@ const mapDispatchToProps = (dispatch) => {
 
     finishCheckout() {
       dispatch(finishCheckout())
+    },
+
+    resetCheckout() {
+      dispatch(resetCheckout())
     }
   }
 }
