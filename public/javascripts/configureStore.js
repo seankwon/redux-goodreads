@@ -2,7 +2,7 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
-import {routerReducer} from 'react-router-redux'
+import { routerReducer } from 'react-router-redux'
 
 // Reducers
 import library from './reducers/LibraryReducer'
@@ -30,6 +30,6 @@ const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? compose(
   applyMiddleware(thunkMiddleware, loggerMiddleware)
 )
 
-export default function configureStore (preloadedState) {
+export default function configureStore(preloadedState) {
   return createStore(reducers, preloadedState, enhancer)
 }

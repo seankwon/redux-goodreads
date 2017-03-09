@@ -11,9 +11,14 @@ import VisibleCheckoutPage from './containers/VisibleCheckoutPage'
 import Layout from './containers/Layout'
 import configureStore from './configureStore'
 import VisibleBookPage from './containers/VisibleBookPage'
+import { saveState, loadState } from './localStorage'
 
-const store = configureStore()
+const store = configureStore(loadState())
 const history = syncHistoryWithStore(browserHistory, store)
+
+store.subscribe(() => {
+  saveState(store.getState())
+})
 
 const root = (
   <Provider store={store}>
