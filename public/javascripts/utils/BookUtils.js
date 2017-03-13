@@ -41,7 +41,7 @@ export function getBooks (query, page) {
 
 
 function fetchBooks (query, page) {
-  let convertData = (data, query) => {
+  let convertData = (data, query, page) => {
     let searches = {}
     searches[query] = {
       booksById: Object.keys(data).map(key => parseInt(key)),
@@ -54,7 +54,7 @@ function fetchBooks (query, page) {
     dispatch(requestSearch(query))
     return getBooks(query, page)
       .then(data => {
-        const convertedData = convertData(data, query)
+        const convertedData = convertData(data, query, page)
         const booksToDisplay = convertedData.searches[query]['booksById'].map(id => {
           return convertedData.books[id]
         })
@@ -68,10 +68,10 @@ function fetchBooks (query, page) {
   }
 }
 
-function shouldFetchBooks (state, query) {
+function shouldFetchBooks (state, query, page) {
   const { isFetching } = state.navigator
   const searches = state.library.searches || {}
-  if (query in searches) {
+  if (query in searches && page === searches[query].page) {
     return false
   } else if (isFetching) {
     return false
@@ -82,7 +82,7 @@ function shouldFetchBooks (state, query) {
 
 export function fetchBooksIfNeeded (query, page) {
   return (dispatch, getState) => {
-    if (shouldFetchBooks(getState(), query)) {
+    if (shouldFetchBooks(getState(), query, page)) {
       return dispatch(fetchBooks(query, page))
     } else {
       const { searches, books } = getState().library

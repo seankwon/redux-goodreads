@@ -1,0 +1,39 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<GoodreadsResponse>
+   <Request>
+      <authentication>true</authentication>
+      <key><![CDATA[GFPTphT7xVUhrarWQztUtg]]></key>
+      <method><![CDATA[search_index]]></method>
+   </Request>
+   <search>
+      <query><![CDATA[Ender's Game]]></query>
+      <results-start>21</results-start>
+      <results-end>22</results-end>
+      <total-results>500</total-results>
+      <source>Goodreads</source>
+      <query-time-seconds>0.19</query-time-seconds>
+      <results>
+         <work>
+            <id type="integer">987654</id>
+            <books_count type="integer">108</books_count>
+            <ratings_count type="integer">827969</ratings_count>
+            <text_reviews_count type="integer">36902</text_reviews_count>
+            <original_publication_year type="integer">2002</original_publication_year>
+            <original_publication_month type="integer" nil="true" />
+            <original_publication_day type="integer" nil="true" />
+            <average_rating>4.48</average_rating>
+            <best_book type="Book">
+               <id type="integer">987654</id>
+               <title>Ender's Game Boxed Set: Ender's Game, Ender's Shadow, Shadow of the Hegemon</title>
+               <author>
+                  <id type="integer">589</id>
+                  <name>Orson Scott Card</name>
+               </author>
+               <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+               <small_image_url>https://images.gr-assets.com/books/1408303130s/375802.jpg</small_image_url>
+            </best_book>
+         </work>
+      </results>
+   </search>
+</GoodreadsResponse>

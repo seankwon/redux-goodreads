@@ -7,6 +7,7 @@ import fetchMock from 'fetch-mock'
 
 import * as types from '../../public/javascripts/constants/ActionTypes'
 import { ENDERS_GAME_RESPONSE	} from '../Stubs/bookResponse.js'
+import { ENDERS_GAME_RESPONSE_PAGE_TWO } from '../Stubs/bookResponsePageTwo.js'
 import { HOUSEKEEPING_RESPONSE	} from '../Stubs/bookReviewResponse.js'
 import {
   getBook,
@@ -191,17 +192,22 @@ describe('BookUtils', () => {
     })
 
     it('should call another request if the search query is the same but the page number is different', () => {
+      fetchMock.restore()
+      fetchMock.get('*', readFileSync('tests/Stubs/bookResponseTwo.xml').toString())
       const query = 'Enders Game'
       const page = 2
-      // FIXME: figure out what data it's supposed to receive
-
-      const mergedVisibleBooks = undefined
-      const response = undefined
+      const mergedBooks = Object.assign({},
+        ENDERS_GAME_RESPONSE['books'],
+        ENDERS_GAME_RESPONSE_PAGE_TWO['books'])
+      const secondPageBookIds = ENDERS_GAME_RESPONSE_PAGE_TWO
+        .searches['Enders Game']
+        .booksById
+        .map(id => ENDERS_GAME_RESPONSE_PAGE_TWO['books'][id])
 
       const expectedActions = [
         { type: types.REQUEST_SEARCH, query: query },
-        { type: types.RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game']['booksById'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
-        { type: types.STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE },
+        { type: types.RECEIVE_VISIBLE_BOOKS, books: secondPageBookIds },
+        { type: types.STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE_PAGE_TWO },
         { type: types.RECEIVE_SEARCH, query: query }
       ]
 
@@ -221,9 +227,8 @@ describe('BookUtils', () => {
       return store.dispatch(fetchBooksIfNeeded(query, page))
         .then(() => {
           expect(store.getActions()).to.deep.equals(expectedActions)
+          expect(store.getState().library.books).to.deep.equals(mergedBooks)
         })
-
-
     })
 
     it('should throw an error when the request fails', () => {
