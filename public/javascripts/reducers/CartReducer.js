@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes'
 
-function books(state, action) {
-  switch(action.type) {
+function books (state, action) {
+  switch (action.type) {
     case types.ADD_BOOK:
       return [...state, action.book]
     case types.DELETE_BOOK:
@@ -12,12 +12,12 @@ function books(state, action) {
   return state
 }
 
-export default function cart(state = [], action) {
+export default function cart (state = [], action) {
   if (typeof action === 'undefined' || action === null) {
     return state
   }
 
-  switch(action.type) {
+  switch (action.type) {
     case types.ADD_BOOK:
       return books(state, action)
     case types.DELETE_BOOK:

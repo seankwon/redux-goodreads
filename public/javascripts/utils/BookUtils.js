@@ -11,12 +11,13 @@ import { goodreadsJSON } from './FetchUtils'
 export const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q='
 export let BOOK_REVIEWS_URL = '/goodreads?page=https://www.goodreads.com/book/show/'
 
-export function getBooks (query) {
+export function getBooks (query, page) {
   if (typeof query === 'undefined') {
     throw Error('No Argument')
   }
   const convertedQuery = encodeURIComponent(query)
-  const fullUrl = `${BOOK_SEARCH_URL}${convertedQuery}`
+  const pageQuery = (typeof page !== undefined) ? encodeURIComponent("&p=" + page) : ""
+  const fullUrl = `${BOOK_SEARCH_URL}${convertedQuery}${pageQuery}`
 
   return goodreadsJSON(fullUrl).then(rawData => {
     const searchResults = rawData['GoodreadsResponse']['search'][0]['results'][0]['work']
@@ -39,26 +40,31 @@ export function getBooks (query) {
 }
 
 
-function fetchBooks (query) {
+function fetchBooks (query, page) {
   let convertData = (data, query) => {
     let searches = {}
-    searches[query] = Object.keys(data).map(key => parseInt(key))
+    searches[query] = {
+      booksById: Object.keys(data).map(key => parseInt(key)),
+      page: page
+    }
     return {searches: searches, books: data}
   }
 
   return (dispatch, getState) => {
     dispatch(requestSearch(query))
-    return getBooks(query)
+    return getBooks(query, page)
       .then(data => {
         const convertedData = convertData(data, query)
-        const booksToDisplay = convertedData.searches[query].map(id => {
+        const booksToDisplay = convertedData.searches[query]['booksById'].map(id => {
           return convertedData.books[id]
         })
         dispatch(receiveVisibleBooks(booksToDisplay))
         dispatch(storeBooksData(convertedData, query))
         dispatch(receiveSearch(query))
       })
-      .catch(ex => dispatch(throwSearchError(query)))
+      .catch(ex => {
+        dispatch(throwSearchError(query))
+      })
   }
 }
 
@@ -74,10 +80,10 @@ function shouldFetchBooks (state, query) {
   }
 }
 
-export function fetchBooksIfNeeded (query) {
+export function fetchBooksIfNeeded (query, page) {
   return (dispatch, getState) => {
     if (shouldFetchBooks(getState(), query)) {
-      return dispatch(fetchBooks(query))
+      return dispatch(fetchBooks(query, page))
     } else {
       return Promise.resolve(dispatch(receiveSearch(query)))
     }
