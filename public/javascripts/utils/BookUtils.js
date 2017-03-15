@@ -8,15 +8,15 @@ import {
   throwSearchError,
   throwFetchInfoError } from '../actions/NavigatorActions'
 import { goodreadsJSON } from './FetchUtils'
-export const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q='
-export let BOOK_REVIEWS_URL = '/goodreads?page=https://www.goodreads.com/book/show/'
+export const BOOK_SEARCH_URL = '/goodreads?torequest=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q='
+export let BOOK_REVIEWS_URL = '/goodreads?torequest=https://www.goodreads.com/book/show/'
 
 export function getBooks (query, page) {
   if (typeof query === 'undefined') {
     throw Error('No Argument')
   }
   const convertedQuery = encodeURIComponent(query)
-  const pageQuery = (typeof page !== undefined) ? encodeURIComponent("&p=" + page) : ""
+  const pageQuery = (typeof page !== undefined) ? ("&page=" + page) : ""
   const fullUrl = `${BOOK_SEARCH_URL}${convertedQuery}${pageQuery}`
 
   return goodreadsJSON(fullUrl).then(rawData => {
