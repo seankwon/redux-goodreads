@@ -17,12 +17,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addBookToCart: (id) => {
+    addBookToCart(id) {
       dispatch(addBookToCart(id))
     },
 
-    onStartup: () => {
-      dispatch(fetchBooksIfNeeded('Marilynne Robinson'))
+    onStartup() {
+      dispatch(fetchBooksIfNeeded('Marilynne Robinson', 1))
     }
   }
 }

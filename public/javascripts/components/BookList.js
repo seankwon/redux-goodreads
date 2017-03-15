@@ -12,14 +12,22 @@ export default class BookList extends Component {
 
   componentDidMount () {
     this.props.onStartup()
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  handleScroll() {
+    const currYPos = window.scrollY
+    const maxYPos = window.scrollMaxY
+    if (currYPos === maxYPos) {
+      console.log('bottomhit')
+    }
   }
 
   handleRender () {
     if (this.props.isFetching) {
-      return <p>Currently Fetching Books</p>
-    } else {
-      return this.renderPage()
+      return <p></p>
     }
+    return this.renderPage()
   }
 
   renderPage () {

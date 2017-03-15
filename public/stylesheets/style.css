@@ -106,9 +106,12 @@ p {
 
 .mainnav {
   height: 50px;
+  z-index: 3;
+  position: relative;
   margin-bottom: 50px;
   background: #3a3f41;
   color: #fff;
+  z-index: 3;
 }
 
 .container {
@@ -277,4 +280,67 @@ p {
   top: -3px;
   font-size: 24px;
   font-weight: 700;
+}
+
+.loader-overlay {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6) none repeat scroll 0% 0%;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 2;
+  left: 0px;
+}
+
+.spinner {
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+  margin: 22% auto;
+}
+
+.spinner > div {
+    background-color: rgba(186, 237, 21, 0.9);
+    height: 100%;
+    width: 7px;
+    margin: 0 3px 0 0;
+    display: inline-block;
+
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+        transform: scaleY(1.0);
+        -webkit-transform: scaleY(1.0);
+    }
 }

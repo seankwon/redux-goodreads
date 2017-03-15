@@ -10,14 +10,28 @@ router.get('/app*', (req, res, next) => {
 })
 
 router.get('/goodreads', (req, res, next) => {
-  let target = (req.query.page) + '&q=' + encodeURIComponent(req.query.q)
-  res.set('Content-Type', 'text/xml')
+  let target = req.query.torequest
 
+  if (validString(req.query.q)) {
+    target += '&q=' + encodeURIComponent(req.query.q)
+  }
+
+  if (validString(req.query.page)) {
+    target += '&page=' + encodeURIComponent(req.query.page)
+  }
+
+  res.set('Content-Type', 'text/xml')
   fetch(target)
     .then(response => response.text())
     .then(data => {
       res.send((data))
     })
 })
+
+function validString(obj) {
+  return typeof obj !== 'undefined' &&
+    obj !== null &&
+    obj.length > 0
+}
 
 module.exports = router
