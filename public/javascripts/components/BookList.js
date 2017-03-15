@@ -12,6 +12,15 @@ export default class BookList extends Component {
 
   componentDidMount () {
     this.props.onStartup()
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  handleScroll() {
+    const currYPos = window.scrollY
+    const maxYPos = window.scrollMaxY
+    if (currYPos === maxYPos) {
+      console.log('bottomhit')
+    }
   }
 
   handleRender () {
