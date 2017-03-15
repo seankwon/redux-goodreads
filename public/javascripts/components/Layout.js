@@ -1,20 +1,22 @@
-import React, { Component, PropTypes } from 'react';
-import { fetchBooksIfNeeded } from '../utils/BookUtils';
-import VisibleCart from '../containers/VisibleCart';
-import Nav from './Nav';
+import React, { Component, PropTypes } from 'react'
+import { fetchBooksIfNeeded } from '../utils/BookUtils'
+import VisibleCart from '../containers/VisibleCart'
+import Nav from './Nav'
 import Flash from './Flash'
+import Loader from './Loader'
 
 export default class Layout extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
     return (
       <div id='maincontainer'>
-        {(this.props.checkoutDone) ? <Flash /> : ""}
+        { (this.props.checkoutDone) ? <Flash /> : "" }
         <Nav onSearch={this.props.onSearch}/>
-        {React.cloneElement(this.props.children, { ...this.props, key: undefined, ref: undefined })}
+        { this.props.isFetching ? <Loader /> : ""}
+        { React.cloneElement(this.props.children, { ...this.props, key: undefined, ref: undefined }) }
         <VisibleCart />
       </div>
     );

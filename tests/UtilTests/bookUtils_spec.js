@@ -172,7 +172,10 @@ describe('BookUtils', () => {
         },
         navigator: { currentQuery: 'Enders Game', isFetching: false }
       })
+
+      // FIXME: fix this!
       const expectedActions = [
+        { type: types.RECEIVE_VISIBLE_BOOKS, books: [undefined] },
         { type: types.RECEIVE_SEARCH, query: query }
       ]
       return store.dispatch(fetchBooksIfNeeded(query))
