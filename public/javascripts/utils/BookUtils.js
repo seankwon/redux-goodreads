@@ -75,9 +75,8 @@ function shouldFetchBooks (state, query, page) {
     return false
   } else if (isFetching) {
     return false
-  } else {
-    return true
   }
+  return true
 }
 
 export function fetchBooksIfNeeded (query, page) {

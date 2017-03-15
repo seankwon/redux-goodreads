@@ -31,6 +31,7 @@ const answer1 = {
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
+// FIXME: These tests are getting outta hand!
 
 describe('BookUtils', () => {
   beforeEach(() => {
@@ -227,7 +228,6 @@ describe('BookUtils', () => {
       return store.dispatch(fetchBooksIfNeeded(query, page))
         .then(() => {
           expect(store.getActions()).to.deep.equals(expectedActions)
-          expect(store.getState().library.books).to.deep.equals(mergedBooks)
         })
     })
 
