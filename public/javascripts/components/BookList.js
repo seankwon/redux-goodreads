@@ -16,10 +16,9 @@ export default class BookList extends Component {
 
   handleRender () {
     if (this.props.isFetching) {
-      return <p>Currently Fetching Books</p>
-    } else {
-      return this.renderPage()
+      return <p></p>
     }
+    return this.renderPage()
   }
 
   renderPage () {

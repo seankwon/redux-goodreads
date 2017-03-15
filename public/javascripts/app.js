@@ -15,10 +15,11 @@ import { saveState, loadState } from './localStorage'
 
 const store = configureStore(loadState())
 const history = syncHistoryWithStore(browserHistory, store)
-
+/*
 store.subscribe(() => {
   saveState(store.getState())
 })
+*/
 
 const root = (
   <Provider store={store}>

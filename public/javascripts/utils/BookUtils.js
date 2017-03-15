@@ -79,6 +79,9 @@ export function fetchBooksIfNeeded (query) {
     if (shouldFetchBooks(getState(), query)) {
       return dispatch(fetchBooks(query))
     } else {
+      const { searches, books } = getState().library
+      let booksToDisplay = searches[query].map(id => books[id])
+      dispatch(receiveVisibleBooks(booksToDisplay))
       return Promise.resolve(dispatch(receiveSearch(query)))
     }
   }
