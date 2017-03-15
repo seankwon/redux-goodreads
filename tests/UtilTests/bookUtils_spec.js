@@ -150,25 +150,30 @@ describe('BookUtils', () => {
       const query = 'Enders Game'
       const expectedActions = [
         { type: types.REQUEST_SEARCH, query: query },
-        { type: types.RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
+        { type: types.RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game']['booksById'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
         { type: types.STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE },
         { type: types.RECEIVE_SEARCH, query: query }
       ]
 
       const store = mockStore({library: {}, navigator: {}, shelf: {}})
 
-      return store.dispatch(fetchBooksIfNeeded('Enders Game'))
+      return store.dispatch(fetchBooksIfNeeded('Enders Game', 1))
         .then(() => {
           expect(store.getActions()).to.deep.equals(expectedActions)
         })
     })
 
-    it('should not call another request if search is cached', () => {
+    it('should not call another request if search is cached and the page num is the same', () => {
       const query = 'Enders Game'
       const store = mockStore({
         library: {
           books: ENDERS_GAME_RESPONSE['books'],
-          searches: { 'Enders Game': Object.keys(ENDERS_GAME_RESPONSE['searches']).map(key => parseInt(key)) }
+          searches: {
+            'Enders Game': {
+              booksById: Object.keys(ENDERS_GAME_RESPONSE['searches']).map(key => parseInt(key)),
+              page: 1
+            }
+          }
         },
         navigator: { currentQuery: 'Enders Game', isFetching: false }
       })
@@ -178,10 +183,47 @@ describe('BookUtils', () => {
         { type: types.RECEIVE_VISIBLE_BOOKS, books: [undefined] },
         { type: types.RECEIVE_SEARCH, query: query }
       ]
-      return store.dispatch(fetchBooksIfNeeded(query))
+
+      return store.dispatch(fetchBooksIfNeeded(query, 1))
         .then(() => {
           expect(store.getActions()).to.deep.equals(expectedActions)
         })
+    })
+
+    it('should call another request if the search query is the same but the page number is different', () => {
+      const query = 'Enders Game'
+      const page = 2
+      // FIXME: figure out what data it's supposed to receive
+
+      const mergedVisibleBooks = undefined
+      const response = undefined
+
+      const expectedActions = [
+        { type: types.REQUEST_SEARCH, query: query },
+        { type: types.RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game']['booksById'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
+        { type: types.STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE },
+        { type: types.RECEIVE_SEARCH, query: query }
+      ]
+
+      const store = mockStore({
+        library: {
+          books: ENDERS_GAME_RESPONSE['books'],
+          searches: {
+            'Enders Game': {
+              booksById: Object.keys(ENDERS_GAME_RESPONSE['searches']).map(key => parseInt(key)),
+              page: 1
+            }
+          }
+        },
+        navigator: { currentQuery: 'Enders Game', isFetching: false }
+      })
+
+      return store.dispatch(fetchBooksIfNeeded(query, page))
+        .then(() => {
+          expect(store.getActions()).to.deep.equals(expectedActions)
+        })
+
+
     })
 
     it('should throw an error when the request fails', () => {

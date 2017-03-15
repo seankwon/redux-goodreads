@@ -11,7 +11,7 @@ describe ('library reducer', () => {
   it ('should handle STORE_BOOKS_DATA', () => {
     let data = {
       books: {id: 1, author: 'John Doe', title: 'The Generic Book'},
-      searches: {'John Doe': [1]}
+      searches: {'John Doe': {books: [1], page: 1}}
     }
     expect (library({bookPage: {}}, storeBooksData(data, 'John Doe')))
       .to.deep.equals({
