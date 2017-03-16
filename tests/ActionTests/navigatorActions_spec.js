@@ -20,9 +20,10 @@ describe ('Navigator Actions', () => {
   })
 
   it ('receive search finish a query', () => {
-    expect(receiveSearch('Test Query')).to.deep.equals({
+    expect(receiveSearch('Test Query', 1)).to.deep.equals({
       type: types.RECEIVE_SEARCH,
-      query: 'Test Query'
+      query: 'Test Query',
+      page: 1
     })
   })
 

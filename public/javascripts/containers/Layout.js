@@ -5,7 +5,8 @@ import { fetchBooksIfNeeded } from '../utils/BookUtils';
 
 const mapStateToProps = (state) => ({
   checkoutDone: state.navigator.checkoutDone,
-  isFetching: state.navigator.isFetching
+  isFetching: state.navigator.isFetching,
+  page: state.navigator.page
 })
 
 const mapDispatchToProps = (dispatch) => ({

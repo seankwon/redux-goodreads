@@ -154,7 +154,7 @@ describe('BookUtils', () => {
         { type: types.REQUEST_SEARCH, query: query },
         { type: types.RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game']['booksById'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
         { type: types.STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE },
-        { type: types.RECEIVE_SEARCH, query: query }
+        { type: types.RECEIVE_SEARCH, query: query, page: 1 }
       ]
 
       const store = mockStore({library: {}, navigator: {}, shelf: {}})
@@ -183,7 +183,7 @@ describe('BookUtils', () => {
       // FIXME: fix this!
       const expectedActions = [
         { type: types.RECEIVE_VISIBLE_BOOKS, books: [undefined] },
-        { type: types.RECEIVE_SEARCH, query: query }
+        { type: types.RECEIVE_SEARCH, query: query, page: 1 }
       ]
 
       return store.dispatch(fetchBooksIfNeeded(query, 1))
@@ -209,7 +209,7 @@ describe('BookUtils', () => {
         { type: types.REQUEST_SEARCH, query: query },
         { type: types.RECEIVE_VISIBLE_BOOKS, books: secondPageBookIds },
         { type: types.STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE_PAGE_TWO },
-        { type: types.RECEIVE_SEARCH, query: query }
+        { type: types.RECEIVE_SEARCH, query: query, page: 2 }
       ]
 
       const store = mockStore({
@@ -222,15 +222,13 @@ describe('BookUtils', () => {
             }
           }
         },
-        navigator: { currentQuery: 'Enders Game', isFetching: false }
+        navigator: { currentQuery: 'Enders Game', isFetching: false, page: 1 }
       })
 
       return store.dispatch(fetchBooksIfNeeded(query, page))
         .then(() => {
           expect(store.getActions()).to.deep.equals(expectedActions)
         })
-
-
     })
 
     it('should throw an error when the request fails', () => {

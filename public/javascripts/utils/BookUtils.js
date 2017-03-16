@@ -1,5 +1,5 @@
 import { storeBooksData, receiveDetailedBook } from '../actions/LibraryActions'
-import { receiveVisibleBooks } from '../actions/ShelfActions'
+import { receiveVisibleBooks, emptyShelf } from '../actions/ShelfActions'
 import {
   requestSearch,
   receiveSearch,
@@ -51,16 +51,24 @@ function fetchBooks (query, page) {
   }
 
   return (dispatch, getState) => {
+    let convertedPage = page || 1
+
+    if (getState().navigator.currentQuery !== query) {
+      dispatch(emptyShelf())
+    }
+
     dispatch(requestSearch(query))
-    return getBooks(query, page)
+
+    return getBooks(query, convertedPage)
       .then(data => {
-        const convertedData = convertData(data, query, page)
+        const convertedData = convertData(data, query, convertedPage)
         const booksToDisplay = convertedData.searches[query]['booksById'].map(id => {
           return convertedData.books[id]
         })
+
         dispatch(receiveVisibleBooks(booksToDisplay))
         dispatch(storeBooksData(convertedData, query))
-        dispatch(receiveSearch(query))
+        dispatch(receiveSearch(query, convertedPage))
       })
       .catch(ex => {
         dispatch(throwSearchError(query))
@@ -85,16 +93,23 @@ export function fetchBooksIfNeeded (query, page) {
       return dispatch(fetchBooks(query, page))
     } else {
       const { searches, books } = getState().library
-      let booksToDisplay = searches[query].map(id => books[id])
+      let booksToDisplay = (searches[query]['booksById'] || []).map(id => books[id])
+
+      if (getState().navigator.currentQuery !== query) {
+        dispatch(emptyShelf())
+      }
+
       dispatch(receiveVisibleBooks(booksToDisplay))
-      return Promise.resolve(dispatch(receiveSearch(query)))
+
+      if (typeof page !== 'undefined') {
+        return Promise.resolve(dispatch(receiveSearch(query, page)))
+      } else {
+        const pageNum = searches[query].page || 1
+        return Promise.resolve(dispatch(receiveSearch(query, pageNum)))
+      }
     }
   }
 }
-
-/*
-  functions for getting a book's details
-*/
 
 export function getBook (id) {
   if (typeof id === 'undefined' || id === null) {

@@ -5,7 +5,8 @@ export default function navigator (state = {
   currentQuery: undefined,
   id: undefined,
   checkoutStep: 0,
-  checkoutDone: false
+  checkoutDone: false,
+  page: undefined,
 }, action) {
   if (typeof action === 'undefined' || action === null) {
     return state
@@ -17,7 +18,7 @@ export default function navigator (state = {
         {isFetching: true, currentQuery: action.query})
     case types.RECEIVE_SEARCH:
       return Object.assign({}, state,
-        {isFetching: false, currentQuery: action.query})
+        {isFetching: false, currentQuery: action.query, page: action.page})
     case types.REQUEST_INFO:
       return Object.assign({}, state,
         {isFetching: true, id: action.id})

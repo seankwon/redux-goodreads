@@ -22,18 +22,20 @@ describe('navigator reducer', () => {
         id: undefined,
         currentQuery: 'John Doe',
         checkoutStep: 0,
-        checkoutDone: false
+        checkoutDone: false,
+        page: undefined
       })
   })
 
   it('should handle RECEIVE_SEARCH', () => {
-    expect(navigator(undefined, receiveSearch('John Doe')))
+    expect(navigator(undefined, receiveSearch('John Doe', 1)))
       .to.deep.equals({
         isFetching: false,
         id: undefined,
         currentQuery: 'John Doe',
         checkoutStep: 0,
-        checkoutDone: false
+        checkoutDone: false,
+        page: 1
       })
   })
 
@@ -44,7 +46,8 @@ describe('navigator reducer', () => {
         id: undefined,
         currentQuery: undefined,
         checkoutStep: 0,
-        checkoutDone: false
+        checkoutDone: false,
+        page: undefined
       })
   })
 
@@ -55,6 +58,7 @@ describe('navigator reducer', () => {
         id: '5',
         currentQuery: undefined,
         checkoutStep: 0,
+        page: undefined,
         checkoutDone: false
       })
   })
@@ -66,6 +70,7 @@ describe('navigator reducer', () => {
         id: '5',
         currentQuery: undefined,
         checkoutStep: 0,
+        page: undefined,
         checkoutDone: false
       })
   })
@@ -77,6 +82,7 @@ describe('navigator reducer', () => {
         id: undefined,
         currentQuery: undefined,
         checkoutStep: 0,
+        page: undefined,
         checkoutDone: false
       })
   })
@@ -88,6 +94,7 @@ describe('navigator reducer', () => {
         id: undefined,
         currentQuery: undefined,
         checkoutStep: 1,
+        page: undefined,
         checkoutDone: false
       })
   })
@@ -98,6 +105,7 @@ describe('navigator reducer', () => {
       id: undefined,
       currentQuery: undefined,
       checkoutStep: 1,
+      page: undefined,
       checkoutDone: false
     }, finishCheckout()))
     .to.deep.equals({
@@ -105,6 +113,7 @@ describe('navigator reducer', () => {
       id: undefined,
       currentQuery: undefined,
       checkoutStep: 0,
+      page: undefined,
       checkoutDone: true
     })
   })
@@ -115,6 +124,7 @@ describe('navigator reducer', () => {
       id: undefined,
       currentQuery: undefined,
       checkoutStep: 0,
+      page: undefined,
       checkoutDone: true
     }, resetCheckout()))
     .to.deep.equals({
@@ -122,6 +132,7 @@ describe('navigator reducer', () => {
       id: undefined,
       currentQuery: undefined,
       checkoutStep: 0,
+      page: undefined,
       checkoutDone: false
     })
   })

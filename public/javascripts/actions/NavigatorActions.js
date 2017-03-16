@@ -5,9 +5,10 @@ export const requestSearch = (query) => ({
   query
 })
 
-export const receiveSearch = (query) => ({
+export const receiveSearch = (query, page) => ({
   type: types.RECEIVE_SEARCH,
-  query
+  query,
+  page
 })
 
 export const throwSearchError = (query) => ({
