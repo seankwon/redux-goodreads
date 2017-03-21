@@ -15,7 +15,6 @@ export default class Layout extends Component {
       <div id='maincontainer'>
         { (this.props.checkoutDone) ? <Flash /> : "" }
         <Nav onSearch={this.props.onSearch}/>
-        { this.props.isFetching ? <Loader /> : ""}
         { React.cloneElement(this.props.children, { ...this.props, key: undefined, ref: undefined }) }
         <VisibleCart />
       </div>

@@ -39,6 +39,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jade": "~1.11.0",
     "jsdom": "^9.9.1",
+    "lodash.partial": "^4.2.1",
     "mocha": "^3.2.0",
     "mock": "^0.1.1",
     "morgan": "^1.7.0",
