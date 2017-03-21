@@ -27,9 +27,9 @@ export default class BookList extends Component {
   }
 
   handleScroll() {
-    const { currentQuery, page, } = this.props
+    const { currentQuery, page, isFetching } = this.props
 
-    if ((window.innerHeight + window.scrollY) + 10 >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) + 10 >= document.body.offsetHeight && !isFetching) {
       this.props.fetchBooksIfNeeded(currentQuery, page + 1)
     }
   }
