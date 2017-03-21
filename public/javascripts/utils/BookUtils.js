@@ -1,5 +1,5 @@
 import { storeBooksData, receiveDetailedBook } from '../actions/LibraryActions'
-import { receiveVisibleBooks } from '../actions/ShelfActions'
+import { receiveVisibleBooks, emptyShelf } from '../actions/ShelfActions'
 import {
   requestSearch,
   receiveSearch,
@@ -8,17 +8,23 @@ import {
   throwSearchError,
   throwFetchInfoError } from '../actions/NavigatorActions'
 import { goodreadsJSON } from './FetchUtils'
-export const BOOK_SEARCH_URL = '/goodreads?page=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q='
-export let BOOK_REVIEWS_URL = '/goodreads?page=https://www.goodreads.com/book/show/'
+export const BOOK_SEARCH_URL = '/goodreads?torequest=https://www.goodreads.com/search/index.xml?key=GFPTphT7xVUhrarWQztUtg&q='
+export let BOOK_REVIEWS_URL = '/goodreads?torequest=https://www.goodreads.com/book/show/'
 
-export function getBooks (query) {
+export function getBooks (query, page) {
   if (typeof query === 'undefined') {
     throw Error('No Argument')
   }
   const convertedQuery = encodeURIComponent(query)
-  const fullUrl = `${BOOK_SEARCH_URL}${convertedQuery}`
+  const pageQuery = (typeof page !== undefined) ? ("&page=" + page) : ""
+  const fullUrl = `${BOOK_SEARCH_URL}${convertedQuery}${pageQuery}`
+
 
   return goodreadsJSON(fullUrl).then(rawData => {
+    if (rawData['GoodreadsResponse']['search'][0]['total-results'][0] === '0') {
+      return {status: 'done'}
+    }
+
     const searchResults = rawData['GoodreadsResponse']['search'][0]['results'][0]['work']
     const convertedResults = searchResults.reduce((res, book) => {
       let id = parseInt(book['best_book'][0]['id'][0]['_'])
@@ -38,55 +44,83 @@ export function getBooks (query) {
   })
 }
 
-
-function fetchBooks (query) {
-  let convertData = (data, query) => {
-    let searches = {}
-    searches[query] = Object.keys(data).map(key => parseInt(key))
-    return {searches: searches, books: data}
+function convertData (data, query, page) {
+  let searches = {}
+  searches[query] = {
+    booksById: Object.keys(data).map(key => parseInt(key)),
+    page: page
   }
+  return {searches: searches, books: data}
+}
 
+function convertSearchIdsToBooks(searchIds, books) {
+  return (searchIds || []).map(id => books[id])
+}
+
+function fetchBooks (query, page) {
   return (dispatch, getState) => {
+    const convertedPage = page || 1
+
+    if (getState().navigator.currentQuery !== query) {
+      dispatch(emptyShelf())
+    }
+
     dispatch(requestSearch(query))
-    return getBooks(query)
+
+    return getBooks(query, convertedPage)
       .then(data => {
-        const convertedData = convertData(data, query)
-        const booksToDisplay = convertedData.searches[query].map(id => {
-          return convertedData.books[id]
-        })
+        if (data.status === 'done') {
+          // FIXME: perhaps create an action for this
+          dispatch(receiveSearch(query, convertedPage-1))
+          return
+        }
+
+        const idsToBooks = convertData(data, query, convertedPage)
+        const booksToDisplay = convertSearchIdsToBooks(
+          idsToBooks.searches[query]['booksById'],
+          idsToBooks.books
+        )
+
         dispatch(receiveVisibleBooks(booksToDisplay))
-        dispatch(storeBooksData(convertedData, query))
-        dispatch(receiveSearch(query))
+        dispatch(storeBooksData(idsToBooks, query))
+        dispatch(receiveSearch(query, convertedPage))
       })
-      .catch(ex => dispatch(throwSearchError(query)))
+      .catch(ex => {
+        dispatch(throwSearchError(query))
+      })
   }
 }
 
-function shouldFetchBooks (state, query) {
+function shouldFetchBooks (state, query, page) {
   const { isFetching } = state.navigator
   const searches = state.library.searches || {}
-  if (query in searches) {
+  if (query in searches && page === searches[query].page) {
     return false
   } else if (isFetching) {
     return false
-  } else {
-    return true
   }
+  return true
 }
 
-export function fetchBooksIfNeeded (query) {
+export function fetchBooksIfNeeded (query, page) {
   return (dispatch, getState) => {
-    if (shouldFetchBooks(getState(), query)) {
-      return dispatch(fetchBooks(query))
+    if (shouldFetchBooks(getState(), query, page)) {
+      return dispatch(fetchBooks(query, page))
     } else {
-      return Promise.resolve(dispatch(receiveSearch(query)))
+      const { searches, books } = getState().library
+      const { currentQuery } = getState().navigator
+      const pageNum = page || ((searches[query] && searches[query].page) || 1)
+      const booksToDisplay = convertSearchIdsToBooks(searches[query]['booksById'], books)
+
+      if (currentQuery !== query) {
+        dispatch(emptyShelf())
+      }
+
+      dispatch(receiveVisibleBooks(booksToDisplay))
+      return Promise.resolve(dispatch(receiveSearch(query, pageNum)))
     }
   }
 }
-
-/*
-  functions for getting a book's details
-*/
 
 export function getBook (id) {
   if (typeof id === 'undefined' || id === null) {

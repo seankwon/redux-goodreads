@@ -6,6 +6,7 @@ module.exports = {
     path: './public',
     filename: 'bundle.js'
   },
+  /*
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       minimize: false,
@@ -18,7 +19,8 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     })
-  ],
+    ],
+    */
   module: {
     loaders: [
       {

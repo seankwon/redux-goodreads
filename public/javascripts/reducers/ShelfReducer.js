@@ -7,7 +7,9 @@ export default function shelf (state = {books: []}, action) {
 
   switch (action.type) {
     case types.RECEIVE_VISIBLE_BOOKS:
-      return Object.assign({}, state, {books: action.books})
+      return Object.assign({}, state, {books: [...action.books, ...state.books]})
+    case types.EMPTY_SHELF:
+      return {books: []}
     default:
       return state
   }

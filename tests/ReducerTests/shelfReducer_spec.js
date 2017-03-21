@@ -3,7 +3,8 @@ import {
 } from 'chai'
 import shelf from '../../public/javascripts/reducers/ShelfReducer'
 import {
-  receiveVisibleBooks
+  receiveVisibleBooks,
+  emptyShelf
 } from '../../public/javascripts/actions/ShelfActions'
 
 describe ('Shelf Reducer', () => {
@@ -13,5 +14,9 @@ describe ('Shelf Reducer', () => {
         books: [{title: 'Book One'}]
 
       })
+  })
+
+  it ('should handle EMPTY_SHELF', () => {
+    expect(shelf(undefined, emptyShelf())).to.deep.equals({books: []})
   })
 })

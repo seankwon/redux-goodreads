@@ -7,6 +7,7 @@ import fetchMock from 'fetch-mock'
 
 import * as types from '../../public/javascripts/constants/ActionTypes'
 import { ENDERS_GAME_RESPONSE	} from '../Stubs/bookResponse.js'
+import { ENDERS_GAME_RESPONSE_PAGE_TWO } from '../Stubs/bookResponsePageTwo.js'
 import { HOUSEKEEPING_RESPONSE	} from '../Stubs/bookReviewResponse.js'
 import {
   getBook,
@@ -30,6 +31,7 @@ const answer1 = {
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
+// FIXME: These tests are getting outta hand!
 
 describe('BookUtils', () => {
   beforeEach(() => {
@@ -150,32 +152,80 @@ describe('BookUtils', () => {
       const query = 'Enders Game'
       const expectedActions = [
         { type: types.REQUEST_SEARCH, query: query },
-        { type: types.RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
+        { type: types.RECEIVE_VISIBLE_BOOKS, books: ENDERS_GAME_RESPONSE['searches']['Enders Game']['booksById'].map(id => ENDERS_GAME_RESPONSE['books'][id]) },
         { type: types.STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE },
-        { type: types.RECEIVE_SEARCH, query: query }
+        { type: types.RECEIVE_SEARCH, query: query, page: 1 }
       ]
 
       const store = mockStore({library: {}, navigator: {}, shelf: {}})
 
-      return store.dispatch(fetchBooksIfNeeded('Enders Game'))
+      return store.dispatch(fetchBooksIfNeeded('Enders Game', 1))
         .then(() => {
           expect(store.getActions()).to.deep.equals(expectedActions)
         })
     })
 
-    it('should not call another request if search is cached', () => {
+    it('should not call another request if search is cached and the page num is the same', () => {
       const query = 'Enders Game'
       const store = mockStore({
         library: {
           books: ENDERS_GAME_RESPONSE['books'],
-          searches: { 'Enders Game': Object.keys(ENDERS_GAME_RESPONSE['searches']).map(key => parseInt(key)) }
+          searches: {
+            'Enders Game': {
+              booksById: Object.keys(ENDERS_GAME_RESPONSE['searches']).map(key => parseInt(key)),
+              page: 1
+            }
+          }
         },
         navigator: { currentQuery: 'Enders Game', isFetching: false }
       })
+
+      // FIXME: fix this!
       const expectedActions = [
-        { type: types.RECEIVE_SEARCH, query: query }
+        { type: types.RECEIVE_VISIBLE_BOOKS, books: [undefined] },
+        { type: types.RECEIVE_SEARCH, query: query, page: 1 }
       ]
-      return store.dispatch(fetchBooksIfNeeded(query))
+
+      return store.dispatch(fetchBooksIfNeeded(query, 1))
+        .then(() => {
+          expect(store.getActions()).to.deep.equals(expectedActions)
+        })
+    })
+
+    it('should call another request if the search query is the same but the page number is different', () => {
+      fetchMock.restore()
+      fetchMock.get('*', readFileSync('tests/Stubs/bookResponseTwo.xml').toString())
+      const query = 'Enders Game'
+      const page = 2
+      const mergedBooks = Object.assign({},
+        ENDERS_GAME_RESPONSE['books'],
+        ENDERS_GAME_RESPONSE_PAGE_TWO['books'])
+      const secondPageBookIds = ENDERS_GAME_RESPONSE_PAGE_TWO
+        .searches['Enders Game']
+        .booksById
+        .map(id => ENDERS_GAME_RESPONSE_PAGE_TWO['books'][id])
+
+      const expectedActions = [
+        { type: types.REQUEST_SEARCH, query: query },
+        { type: types.RECEIVE_VISIBLE_BOOKS, books: secondPageBookIds },
+        { type: types.STORE_BOOKS_DATA, query: query, data: ENDERS_GAME_RESPONSE_PAGE_TWO },
+        { type: types.RECEIVE_SEARCH, query: query, page: 2 }
+      ]
+
+      const store = mockStore({
+        library: {
+          books: ENDERS_GAME_RESPONSE['books'],
+          searches: {
+            'Enders Game': {
+              booksById: Object.keys(ENDERS_GAME_RESPONSE['searches']).map(key => parseInt(key)),
+              page: 1
+            }
+          }
+        },
+        navigator: { currentQuery: 'Enders Game', isFetching: false, page: 1 }
+      })
+
+      return store.dispatch(fetchBooksIfNeeded(query, page))
         .then(() => {
           expect(store.getActions()).to.deep.equals(expectedActions)
         })

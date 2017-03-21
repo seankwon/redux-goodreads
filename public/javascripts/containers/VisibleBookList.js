@@ -6,23 +6,29 @@ import { fetchBooksIfNeeded } from '../utils/BookUtils'
 import BookList from '../components/BookList'
 
 const mapStateToProps = (state) => {
-  const { isFetching } = state.navigator
+  const { isFetching, page, currentQuery } = state.navigator
   const { books } = state.shelf
 
   return {
     currentSearches: books,
-    isFetching
+    currentQuery,
+    isFetching,
+    page
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addBookToCart: (id) => {
+    addBookToCart(id) {
       dispatch(addBookToCart(id))
     },
 
-    onStartup: () => {
-      dispatch(fetchBooksIfNeeded('Marilynne Robinson'))
+    onStartup() {
+      dispatch(fetchBooksIfNeeded('Marilynne Robinson', 1))
+    },
+
+    fetchBooksIfNeeded(curr, page) {
+      dispatch(fetchBooksIfNeeded(curr, page))
     }
   }
 }
