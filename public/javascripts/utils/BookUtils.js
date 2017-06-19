@@ -189,6 +189,5 @@ export function fetchBookInfoIfNeeded (id) {
     if (shouldFetchBook(id, isFetching, getState())) {
       dispatch(fetchBookInfo(id))
     }
-    return Promise.resolve(receiveInfo(id))
   }
 }
