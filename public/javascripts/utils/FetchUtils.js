@@ -1,10 +1,11 @@
 import convert from 'xml-to-json-promise'
+import fetch from 'isomorphic-fetch'
 
 export function goodreadsJSON (url) {
   function fetchGoodreadsXml (url) {
     return fetch(url)
       .then(response => response.text())
-      .then(data => { return data })
+      .then(data => data)
   }
   // TODO perhaps Promise.resolve(convert...);
   return fetchGoodreadsXml(url)

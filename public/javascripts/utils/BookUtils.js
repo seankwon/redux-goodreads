@@ -67,7 +67,7 @@ function fetchBooks (query, page) {
 
     dispatch(requestSearch(query))
 
-    return getBooks(query, convertedPage)
+    getBooks(query, convertedPage)
       .then(data => {
         if (data.status === 'done') {
           // FIXME: perhaps create an action for this
@@ -105,7 +105,7 @@ function shouldFetchBooks (state, query, page) {
 export function fetchBooksIfNeeded (query, page) {
   return (dispatch, getState) => {
     if (shouldFetchBooks(getState(), query, page)) {
-      return dispatch(fetchBooks(query, page))
+      dispatch(fetchBooks(query, page))
     } else {
       const { searches, books } = getState().library
       const { currentQuery } = getState().navigator
@@ -117,7 +117,7 @@ export function fetchBooksIfNeeded (query, page) {
       }
 
       dispatch(receiveVisibleBooks(booksToDisplay))
-      return Promise.resolve(dispatch(receiveSearch(query, pageNum)))
+      Promise.resolve(dispatch(receiveSearch(query, pageNum)))
     }
   }
 }
@@ -175,9 +175,9 @@ export function shouldFetchBook (id, isFetching, state) {
 export function fetchBookInfo (id) {
   return (dispatch, getState) => {
     dispatch(requestInfo(id))
-    return getBook(id).then(data => {
+    getBook(id).then(data => {
       dispatch(receiveDetailedBook(data, id))
-      return dispatch(receiveInfo(id))
+      dispatch(receiveInfo(id))
     })
     .catch(error => dispatch(throwFetchInfoError(id)))
   }
@@ -187,7 +187,7 @@ export function fetchBookInfoIfNeeded (id) {
   return (dispatch, getState) => {
     const { isFetching } = getState().navigator
     if (shouldFetchBook(id, isFetching, getState())) {
-      return dispatch(fetchBookInfo(id))
+      dispatch(fetchBookInfo(id))
     }
     return Promise.resolve(receiveInfo(id))
   }

@@ -1,7 +1,6 @@
 import BookPage from '../components/BookPage'
 import { fetchBookInfoIfNeeded } from '../utils/BookUtils'
 import { connect } from 'react-redux'
-import { dispatch } from 'redux'
 
 const mapStateToProps = (state) => {
   return {
