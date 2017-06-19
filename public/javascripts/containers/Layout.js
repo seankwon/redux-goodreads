@@ -1,7 +1,6 @@
-import Layout from '../components/Layout';
-import { connect } from 'react-redux';
-import { dispatch } from 'redux';
-import { fetchBooksIfNeeded } from '../utils/BookUtils';
+import Layout from '../components/Layout'
+import { connect } from 'react-redux'
+import { fetchBooksIfNeeded } from '../utils/BookUtils'
 
 const mapStateToProps = (state) => ({
   checkoutDone: state.navigator.checkoutDone,
@@ -10,9 +9,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onSearch(query) {
-    dispatch(fetchBooksIfNeeded(query));
+  onSearch (query) {
+    dispatch(fetchBooksIfNeeded(query))
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout)

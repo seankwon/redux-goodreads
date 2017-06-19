@@ -1,7 +1,22 @@
 import BookPage from '../components/BookPage'
 import { fetchBookInfoIfNeeded } from '../utils/BookUtils'
 import { connect } from 'react-redux'
-import { dispatch } from 'redux'
+import React from 'react'
+
+class BookPageContainer extends React.Component {
+  constructor (props) {
+    super(props)
+  }
+
+  componentDidMount () {
+    // get Initial Data
+    this.props.fetchBookInfoIfNeeded((this.props.params.bookid))
+  }
+
+  render () {
+    return <BookPage {...this.props} />
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -17,4 +32,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookPage)
+export default connect(mapStateToProps, mapDispatchToProps)(BookPageContainer)

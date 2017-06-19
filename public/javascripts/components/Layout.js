@@ -6,11 +6,11 @@ import Flash from './Flash'
 import Loader from './Loader'
 
 export default class Layout extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  render() {
+  render () {
     return (
       <div id='maincontainer'>
         { (this.props.checkoutDone) ? <Flash /> : "" }

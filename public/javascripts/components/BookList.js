@@ -1,42 +1,10 @@
-import React, { Component, PropTypes } from 'react'
-
+import React, { PureComponent, PropTypes } from 'react'
 import Book from './Book'
 
-function debounce(fn, delay) {
-  var timer = null;
-  return function () {
-    var context = this, args = arguments;
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      fn.apply(context, args);
-    }, delay);
-  };
-}
-
-export default class BookList extends Component {
-  constructor (props) {
-    super(props)
-
-    this.renderPage = this.renderPage.bind(this)
-    this.handleScroll = this.handleScroll.bind(this)
-  }
-
-  componentDidMount () {
-    this.props.onStartup()
-    window.addEventListener('scroll', debounce(this.handleScroll, 500))
-  }
-
-  handleScroll() {
-    const { currentQuery, page, isFetching } = this.props
-
-    if ((window.innerHeight + window.scrollY) + 10 >= document.body.offsetHeight && !isFetching) {
-      this.props.fetchBooksIfNeeded(currentQuery, page + 1)
-    }
-  }
-
-  renderPage () {
-    if (typeof this.props.currentSearches === 'undefined') {
-      return <p>No Books to see here</p>
+export default class BookList extends PureComponent {
+  render () {
+    if (!this.props.currentSearches) {
+      return <noscript />
     }
 
     return (
@@ -53,10 +21,6 @@ export default class BookList extends Component {
         )}
       </div>
     )
-  }
-
-  render () {
-    return this.renderPage()
   }
 }
 
